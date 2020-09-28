@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
  
-## [0.1.0] - (September 22, 2020)
+## [0.1.213] - (September 28, 2020)
 ### Added
 Rules added (30):
 Cloudrail has the following rules built to ensure that workloads exposable to the internet are not exposing the following network traffic:
