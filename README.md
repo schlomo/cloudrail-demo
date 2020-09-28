@@ -64,29 +64,8 @@ The login will generate a file on your hard drive at ~/.cloudrail/config with yo
 You may choose to remove this file and retain the API key for your records. The API key can be provided as a parameter to the tool when using various commands.
 
 
-#### 4. Create the AWS IAM Role for Cloudrail
+#### 4. Create the AWS IAM Role and add your AWS account to Cloudrail service
 Please, follow the instructions [here](docs/cloudrail-role/README.md) in order to create the AWS IAM Role for Cloudrail.
-
-
-#### 5. Add your cloud account to Cloudrail service
-You need to add your cloud account to the Cloudrail service. You have to provide:
-- A name for your account. This name is just for identification purposes inside your Cloudrail service.
-- Your account ID
-- The AWS IAM Role ARN created in step #0
-- The AWS IAM Role external ID created in step #0
-```
-~ # cloudrail add_cloud_account
-Enter the name of your cloud account: ZZZZZ
-Enter the ID of your cloud account: XXXXXXXXXXXX
-Enter the ARN of the role created in your account for Cloudrail: arn:aws:iam::XXXXXXXXXXXX:role/ROLE_NAME
-Enter the role External ID: YYYYYYYYYY
-(     ●) Adding account
-
-Thank you, that worked.
-
-Please allow the Cloudrail Service some time to collect a snapshot of your live environment.
-An email will be sent to you once ready.
-```
 
 You can also list your cloud accounts that have been added to Cloudrail service:
 ```

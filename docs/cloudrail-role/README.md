@@ -24,7 +24,7 @@ At this point, you can use the Terraform or CloudFormation template to generate 
 - IAM Role name (the templates contain a unique name per customer)
 - External ID (the templates contain a unique value per customer)
 
-Once the IAM Role is created, you can continue with the execution of "cloudrail add_cloud_account" command.
+Once the IAM Role is created, you can continue with the execution of "cloudrail add_cloud_account" command to add your AWS account to the Cloudrail service or you can hit "q" in order to abort and continue later.
 
 ```
 Enter the name of your cloud account: my-account
