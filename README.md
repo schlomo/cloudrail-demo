@@ -43,15 +43,16 @@ Next step is to register with the Cloudrail service.
 Please enter the email address you would like to register with: xxx@xxx.com
 The password you would like to use: 
 Repeat for confirmation: 
-Your Cloudrail Customer ID []: 
 Successfully register
 Registration completed successfully. You can now begin to use the Cloudrail CLI tool.
 ```
-You will need to provide a valid email address and a password. You can leave Cloudrail Customer ID empty for demo purposes.
+You will need to provide a valid email address and a password. Password should include capital letters, numbers and special characters.
 
+The registration will generate a file on your hard drive at ~/.cloudrail/config with your API key, Customer ID and Username.
+You may choose to remove this file and retain the API key for your records. The API key can be provided as a parameter to the tool when using various commands.
 
 #### 3. Login to Cloudrail service
-Once the service registration has been completed, you will need to login with the Cloudrail service:
+If you ever need to regenerate the ~/.cloudrail/config file, use the login function:
 ```
 ~ # cloudrail login
 Your username [xxx@xxx.com]: xxx@xxx.com
@@ -59,10 +60,6 @@ Password:
 Successfully login
 You are now logged in and can begin to use the Cloudrail CLI tool.
 ```
-
-The login will generate a file on your hard drive at ~/.cloudrail/config with your API key, Customer ID and Username.
-You may choose to remove this file and retain the API key for your records. The API key can be provided as a parameter to the tool when using various commands.
-
 
 #### 4. Create the AWS IAM Role and add your AWS account to Cloudrail service
 Please, follow the instructions [here](docs/cloudrail-role/README.md) in order to create the AWS IAM Role for Cloudrail.
