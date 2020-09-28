@@ -65,7 +65,7 @@ You may choose to remove this file and retain the API key for your records. The 
 
 
 #### 4. Create the AWS IAM Role for Cloudrail
-Please, follow the instructions [here](docs/cloudrail-role/README-md) in order to create the AWS IAM Role for Cloudrail.
+Please, follow the instructions [here](docs/cloudrail-role/README.md) in order to create the AWS IAM Role for Cloudrail.
 
 
 #### 5. Add your cloud account to Cloudrail service
