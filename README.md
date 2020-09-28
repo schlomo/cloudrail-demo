@@ -28,7 +28,7 @@ You can install Cloudrail with the following command:
 Once the installation is complete, you can verify the Cloudrail version with the command:
 ```
 ~ # cloudrail --version
-cloudrail, version 0.1.138
+cloudrail, version 0.1.213
 ```
 If you need to upgrade the Cloudrail version, you can run the following command:
 ```
