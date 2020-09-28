@@ -78,7 +78,7 @@ If you want to remove your cloud account from Cloudrail service:
 ```
 
 #### 5. Execute Terraform examples
-Inside the "test" folder you will find several examples you can use to try Cloudrail with. Some of these examples will set up vulnerable resources that are detected by Cloudrail as such. A few of these examples are _not_ vulnerable, and are there to show Cloudrail's context awareness.
+Inside the ["test"](test/README.md) folder you will find several examples you can use to try Cloudrail with. Some of these examples will set up vulnerable resources that are detected by Cloudrail as such. A few of these examples are _not_ vulnerable, and are there to show Cloudrail's context awareness.
 
 #### 6. Try your own scenarios
 Now it's time for you to try Cloudrail with your own scenarios. Simply follow the same process - "terraform init", "terraform plan -out=plan.out" and "cloudrail run".
