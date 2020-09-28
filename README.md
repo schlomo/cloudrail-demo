@@ -20,21 +20,6 @@ Cloudrail currently supports Terraform files used with the AWS cloud provider.
 - Python >= 3.8
 
 ## Usage
-#### 0. Create the AWS IAM Role for Cloudrail
-You will need to create an IAM role in your account in order for Cloudrail be able to use STS assume role to get temporary read access to your account.
-
-- Trusted account ID: 645376637575 (This is the account used by Indeni Cloudrail service)
-- Specify an External ID (you will need this value when configuring Cloudrail CLI in the next steps)
-- Attach the "ReadOnlyAccess" AWS Managed policy.
-
-<kbd>
-<img src="/docs/images/cloudrail-role-01.png" alt="Cloudrail-role-01" title="Create Cloudrail IAM role trusted policy"/>
-</kbd>
-<br><br>
-<kbd>
-<img src="/docs/images/cloudrail-role-02.png" alt="Cloudrail-role-02" title="Create Cloudrail IAM role permissions policy"/>
-</kbd>
-
 #### 1. Installation & Upgrade
 You can install Cloudrail with the following command:
 ```
@@ -44,7 +29,6 @@ Once the installation is complete, you can verify the Cloudrail version with the
 ```
 ~ # cloudrail --version
 cloudrail, version 0.1.138
-~ #
 ```
 If you need to upgrade the Cloudrail version, you can run the following command:
 ```
@@ -62,7 +46,6 @@ Repeat for confirmation:
 Your Cloudrail Customer ID []: 
 Successfully register
 Registration completed successfully. You can now begin to use the Cloudrail CLI tool.
-~ # 
 ```
 You will need to provide a valid email address and a password. You can leave Cloudrail Customer ID empty for demo purposes.
 
@@ -75,13 +58,17 @@ Your username [xxx@xxx.com]: xxx@xxx.com
 Password: 
 Successfully login
 You are now logged in and can begin to use the Cloudrail CLI tool.
-~ #
 ```
 
 The login will generate a file on your hard drive at ~/.cloudrail/config with your API key, Customer ID and Username.
 You may choose to remove this file and retain the API key for your records. The API key can be provided as a parameter to the tool when using various commands.
 
-#### 4. Add your cloud account to Cloudrail service
+
+#### 4. Create the AWS IAM Role for Cloudrail
+Please, follow the instructions [here](docs/cloudrail-role/README-md) in order to create the AWS IAM Role for Cloudrail.
+
+
+#### 5. Add your cloud account to Cloudrail service
 You need to add your cloud account to the Cloudrail service. You have to provide:
 - A name for your account. This name is just for identification purposes inside your Cloudrail service.
 - Your account ID
