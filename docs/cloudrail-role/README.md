@@ -33,5 +33,4 @@ Enter the ID of your cloud account: XXXXXXXXXXXX
 Thank you, that worked.
 
 Please allow the Cloudrail Service some time to collect a snapshot of your live environment.
-An email will be sent to you once ready.
 ```
