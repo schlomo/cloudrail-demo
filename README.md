@@ -9,9 +9,14 @@
 - [Troubleshooting](#troubleshooting)
 
 ## Overview
-#### *Warning: Cloudrail is in version v0.1. Please use it with development or small environments to begin with.*
+#### *Warning: Cloudrail is in version v0.1. Please use it with development or small environments to begin with. It only supports Terraform with AWS at the moment.*
 Cloudrail is a context-aware cloud security tool that will audit your cloud environment and your IaC templates in order to build a security context of the resources being deployed to determine the security risks. 
 The goal of Cloudrail is to be integrated within a CI/CD process to catch violations of your security policy before they make it into the production environment.
+
+Cloudrail's main advantages vs existing tools are:
+- The understanding of relationships between resources (for example, a given security group can be problematic or not, depending on how it's used)
+- Taking into account the live cloud environment, and its potential impact on the resources in the IaC code
+- Support for tfvars, runtime variables and modules (Cloudrail reviews the full plan, instead of specific .tf files)
 
 ## Features
 Cloudrail currently supports Terraform files used with the AWS cloud provider.
@@ -30,6 +35,8 @@ Once the installation is complete, you can verify the Cloudrail version with the
 ~ # cloudrail --version
 cloudrail, version 0.1.213
 ```
+NOTE: If the installation completed successfully, but the above command fails, please try opening a new shell window or restarting.
+
 If you need to upgrade the Cloudrail version, you can run the following command:
 ```
 ~ # pip3 install cloudrail --upgrade --extra-index-url https://indeni.jfrog.io/indeni/api/pypi/cloudrail-cli-pypi/simple
