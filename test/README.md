@@ -74,5 +74,7 @@ If you'd like to be even more creative, you can apply some of the resources firs
 | ~/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_ec2_using_tf_ssh_module | Public access through port 22 found |
 | ~/test/aws/terraform/test_disallow_default_vpc/deploy_ec2_to_default_vpc | Use of Default VPC identified |
 | ~/test/aws/terraform/test_disallow_default_vpc/deploy_ec2_to_specific_vpc | No violation |
+| ~/test/aws/terraform/test_runtime_variables | Read the README in the test |
+| ~/test/aws/terraform/test_tfvars | Read the README in the test |
 | ~/test/aws/terraform/vpcs_in_tgw_no_overlapping_cidr_rule/overlapping_routes | Use of overlapping CIDR blocks identified |
 | ~/test/aws/terraform/vpcs_in_tgw_no_overlapping_cidr_rule/typical_setup_no_issue | No violation |

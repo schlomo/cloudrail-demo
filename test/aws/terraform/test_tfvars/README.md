@@ -1,0 +1,1 @@
+This is a bit of a different test case. Here, you have a variable in use. We will show how Cloudrail supports tfvars.
