@@ -4,9 +4,9 @@
 
 You will need to create an IAM role in your account in order for Cloudrail be able to use STS assume role to get temporary read access to your account.
 
-Use "cloudrail add_cloud_account" command to generate the Terraform and CloudFormation templates to create the IAM Role. You can then use those templates to create the IAM Role in your account.
+Use "cloudrail add-cloud-account" command to generate the Terraform and CloudFormation templates to create the IAM Role. You can then use those templates to create the IAM Role in your account.
 ```
-~ # cloudrail add_cloud_account
+~ # cloudrail add-cloud-account
 Before adding a cloud account, please make sure to create a role for Cloudrail to assume in your account with SecurityAudit and ViewOnlyAccess policies.
 
 You can do this manually, or Cloudrail can generate a template for you to use (both CloudFormation and Terraform). Would you like us to generate the cloudrail_viewonly_role template? [YES]: 
@@ -24,7 +24,7 @@ At this point, you can use the Terraform or CloudFormation template to generate 
 - IAM Role name (the templates contain a unique name per customer)
 - External ID (the templates contain a unique value per customer)
 
-Once the IAM Role is created, you can continue with the execution of "cloudrail add_cloud_account" command to add your AWS account to the Cloudrail service or you can hit "q" in order to abort and continue later.
+Once the IAM Role is created, you can continue with the execution of "cloudrail add-cloud-account" command to add your AWS account to the Cloudrail service or you can hit "q" in order to abort and continue later.
 
 ```
 Enter the name of your cloud account: my-account

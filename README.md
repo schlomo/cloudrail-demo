@@ -73,12 +73,12 @@ Please, follow the instructions [here](docs/cloudrail-role/README.md) in order t
 
 You can also list your cloud accounts that have been added to Cloudrail service:
 ```
-~ # cloudrail list_cloud_accounts
+~ # cloudrail list-cloud-accounts
 ```
 
 If you want to remove your cloud account from Cloudrail service:
 ```
-~ # cloudrail remove_cloud_account
+~ # cloudrail remove-cloud-account
 ```
 
 #### 5. Execute Terraform examples
