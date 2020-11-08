@@ -9,7 +9,7 @@
 - [Troubleshooting](#troubleshooting)
 
 ## Overview
-#### *Warning: Cloudrail is in version v0.1. Please use it with development or small environments to begin with. It only supports Terraform with AWS at the moment.*
+#### *Warning: Cloudrail is in version v0.2. Please use it with development or small environments to begin with. It only supports Terraform with AWS at the moment.*
 Cloudrail is a context-aware cloud security tool that will audit your cloud environment and your IaC templates in order to build a security context of the resources being deployed to determine the security risks. 
 The goal of Cloudrail is to be integrated within a CI/CD process to catch violations of your security policy before they make it into the production environment.
 
