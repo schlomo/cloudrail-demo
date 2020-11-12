@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
  
 ## [0.2.312] - (November 1, 2020)
 ### Added
+Rule Added (1)
+- [CR-271] Identify publically accessible EKS APIs
+
+Resources supported for our Context Engine: AWS (1)
+- EKS
+
 Platform Enhancements (4):
 - Support for AWS Provider v3.9.0, v3.10.0, v3.11.0, v3.12.0, v3.13.0
 - Introduce junit support for Cloudrail's evaluation results.
