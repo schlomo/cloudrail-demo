@@ -8,6 +8,11 @@ variables:
   TEST_ROOT: ${CI_PROJECT_DIR}/test
   TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/${CI_PROJECT_NAME}
 
+cache:
+  key: cloudrail-demo-tfs
+  paths:
+    - ./**/.terraform
+
 before_script:
   - cd ${TEST_ROOT}
 
