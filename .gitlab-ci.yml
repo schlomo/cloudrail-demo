@@ -19,7 +19,7 @@ before_script:
 stages:
   - prepare
   - plan
-#  - cloudrail
+  - cloudrail
 
 init:
   stage: prepare
@@ -35,6 +35,11 @@ plan:
     paths:
       - ./**/plan.out
 
+cloudrail:
+  stage: cloudrail
+  script:
+    - pip3 install cloudrail --extra-index-url https://indeni.jfrog.io/indeni/api/pypi/cloudrail-cli-pypi/simple
+    - find . -name "main.tf" | sed 's/\/main.tf//' | while read case; do PRECWD=$PWD ; cd $case ; cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} ; cd $PRECWD ; done
 
 #    reports:
 #      junit: plan.out
