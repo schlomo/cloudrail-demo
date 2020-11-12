@@ -32,11 +32,12 @@ plan:
     - find . -name "main.tf" | sed 's/\/main.tf//' | while read case; do PRECWD=$PWD ; cd $case ; terraform plan -out=plan.out ; cd $PRECWD ; done
   artifacts:
     name: "$CI_JOB_NAME"
-    when: always
     paths:
-      - ./**
-    reports:
-      junit: plan.out
+      - ./**/plan.out
+
+
+#    reports:
+#      junit: plan.out
 
 
 
