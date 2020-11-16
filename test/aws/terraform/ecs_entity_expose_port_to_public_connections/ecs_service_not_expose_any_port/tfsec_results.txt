@@ -1,0 +1,68 @@
+[0m[31m[1m
+3 potential problems detected:
+
+[0m[0m[31m[1m[1m[4mProblem 1[0m[31m[1m
+[0m[0m
+  [34m[[39mAWS018[34m][39m[34m[[39m[0m[31mERROR[39m[0m[34m][39m Resource 'aws_security_group.sg' should include a description for auditing purposes.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/ecs_entity_expose_port_to_public_connections/ecs_service_not_expose_any_port/main.tf:67-86[39m
+
+[0m[0m  [34m    64[39m | [0m[0m[33m}[39m
+[0m[0m  [34m    65[39m | [0m[0m[33m[39m
+[0m[0m  [34m    66[39m | [0m[0m[33m[39m
+[0m[0m  [34m    67[39m | [0m[0m[1m[31mresource "aws_security_group" "sg" {[39m[0m[39m
+[0m[0m  [34m    68[39m | [0m[0m[1m[31m  name   = "sg"[39m[0m[39m
+[0m[0m  [34m    69[39m | [0m[0m[1m[31m  vpc_id = aws_vpc.main-vpc.id[39m[0m[39m
+[0m[0m  [34m    70[39m | [0m[0m[1m[31m[39m[0m[39m
+[0m[0m  [34m    71[39m | [0m[0m[1m[31m  ingress {[39m[0m[39m
+[0m[0m  [34m    72[39m | [0m[0m[1m[31m    description = "mysql"[39m[0m[39m
+[0m[0m  [34m    73[39m | [0m[0m[1m[31m    from_port   = local.web_server_port[39m[0m[39m
+[0m[0m  [34m    74[39m | [0m[0m[1m[31m    to_port     = local.web_server_port[39m[0m[39m
+[0m[0m  [34m    75[39m | [0m[0m[1m[31m    protocol    = "tcp"[39m[0m[39m
+[0m[0m  [34m    76[39m | [0m[0m[1m[31m    cidr_blocks = ["0.0.0.0/0"][39m[0m[39m
+[0m[0m  [34m    77[39m | [0m[0m[1m[31m  }[39m[0m[39m
+[0m[0m  [34m    78[39m | [0m[0m[1m[31m[39m[0m[39m
+[0m[0m  [34m    79[39m | [0m[0m[1m[31m  egress {[39m[0m[39m
+[0m[0m  [34m    80[39m | [0m[0m[1m[31m    from_port   = 0[39m[0m[39m
+[0m[0m  [34m    81[39m | [0m[0m[1m[31m    to_port     = 0[39m[0m[39m
+[0m[0m  [34m    82[39m | [0m[0m[1m[31m    protocol    = "-1"[39m[0m[39m
+[0m[0m  [34m    83[39m | [0m[0m[1m[31m    cidr_blocks = ["0.0.0.0/0"][39m[0m[39m
+[0m[0m  [34m    84[39m | [0m[0m[1m[31m  }[39m[0m[39m
+[0m[0m  [34m    85[39m | [0m[0m[1m[31m[39m[0m[39m
+[0m[0m  [34m    86[39m | [0m[0m[1m[31m}[39m[0m[39m
+[0m[0m  [34m    87[39m | [0m[0m[33m[39m
+[0m[0m  [34m    88[39m | [0m[0m[33mresource "aws_ecs_cluster" "ecs-cluster" {[39m
+[0m[0m  [34m    89[39m | [0m[0m[33m  name = "ecs-cluster"[39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/AWS018 for more information.[39m
+
+[0m[0m[31m[1m[1m[4mProblem 2[0m[31m[1m
+[0m[0m
+  [34m[[39mAWS008[34m][39m[34m[[39m[0m[33mWARNING[39m[0m[34m][39m Resource 'aws_security_group.sg' defines a fully open ingress security group.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/ecs_entity_expose_port_to_public_connections/ecs_service_not_expose_any_port/main.tf:76[39m
+
+[0m[0m  [34m    73[39m | [0m[0m[33m    from_port   = local.web_server_port[39m
+[0m[0m  [34m    74[39m | [0m[0m[33m    to_port     = local.web_server_port[39m
+[0m[0m  [34m    75[39m | [0m[0m[33m    protocol    = "tcp"[39m
+[0m[0m  [34m    76[39m | [0m[0m[1m[31m    cidr_blocks = ["0.0.0.0/0"][39m[0m[39m
+[0m[0m  [34m    77[39m | [0m[0m[33m  }[39m
+[0m[0m  [34m    78[39m | [0m[0m[33m[39m
+[0m[0m  [34m    79[39m | [0m[0m[33m  egress {[39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/AWS008 for more information.[39m
+
+[0m[0m[31m[1m[1m[4mProblem 3[0m[31m[1m
+[0m[0m
+  [34m[[39mAWS009[34m][39m[34m[[39m[0m[33mWARNING[39m[0m[34m][39m Resource 'aws_security_group.sg' defines a fully open egress security group.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/ecs_entity_expose_port_to_public_connections/ecs_service_not_expose_any_port/main.tf:83[39m
+
+[0m[0m  [34m    80[39m | [0m[0m[33m    from_port   = 0[39m
+[0m[0m  [34m    81[39m | [0m[0m[33m    to_port     = 0[39m
+[0m[0m  [34m    82[39m | [0m[0m[33m    protocol    = "-1"[39m
+[0m[0m  [34m    83[39m | [0m[0m[1m[31m    cidr_blocks = ["0.0.0.0/0"][39m[0m[39m
+[0m[0m  [34m    84[39m | [0m[0m[33m  }[39m
+[0m[0m  [34m    85[39m | [0m[0m[33m[39m
+[0m[0m  [34m    86[39m | [0m[0m[33m}[39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/AWS009 for more information.[39m
+
+[0m

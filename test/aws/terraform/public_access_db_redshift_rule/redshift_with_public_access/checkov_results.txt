@@ -1,0 +1,173 @@
+
+       _               _              
+   ___| |__   ___  ___| | _______   __
+  / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+ | (__| | | |  __/ (__|   < (_) \ V / 
+  \___|_| |_|\___|\___|_|\_\___/ \_/  
+                                      
+By bridgecrew.io | version: 1.0.627 
+
+terraform scan results:
+
+Passed checks: 6, Failed checks: 8, Skipped checks: 0
+
+Check: CKV_AWS_41: "Ensure no hard coded AWS access key and and secret key exists in provider"
+	PASSED for resource: aws.default
+	File: /main.tf:1-5
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_5
+
+Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+	PASSED for resource: aws_security_group.nondefault
+	File: /main.tf:11-20
+	Guide: https://docs.bridgecrew.io/docs/networking_1-port-security
+
+Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+	PASSED for resource: aws_security_group.nondefault
+	File: /main.tf:11-20
+	Guide: https://docs.bridgecrew.io/docs/networking_2
+
+Check: CKV_AWS_41: "Ensure no hard coded AWS access key and and secret key exists in provider"
+	PASSED for resource: aws.default
+	File: /some_module/main.tf:1-5
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_5
+
+Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+	PASSED for resource: aws_security_group.nondefault
+	File: /some_module/main.tf:11-20
+	Guide: https://docs.bridgecrew.io/docs/networking_1-port-security
+
+Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+	PASSED for resource: aws_security_group.nondefault
+	File: /some_module/main.tf:11-20
+	Guide: https://docs.bridgecrew.io/docs/networking_2
+
+Check: CKV_AWS_23: "Ensure every security groups rule has a description"
+	FAILED for resource: aws_security_group.nondefault
+	File: /main.tf:11-20
+	Guide: https://docs.bridgecrew.io/docs/networking_31
+
+		11 | resource "aws_security_group" "nondefault" {
+		12 |   vpc_id = aws_vpc.nondefault.id
+		13 | 
+		14 |   ingress {
+		15 |     from_port = 5439
+		16 |     protocol = "TCP"
+		17 |     to_port = 5439
+		18 |     cidr_blocks = ["0.0.0.0/0"]
+		19 |   }
+		20 | }
+
+
+Check: CKV_AWS_64: "Ensure all data stored in the Redshift cluster is securely encrypted at rest"
+	FAILED for resource: aws_redshift_cluster.test
+	File: /main.tf:97-106
+	Guide: https://docs.bridgecrew.io/page/guideline-does-not-exist
+
+		97  | resource "aws_redshift_cluster" "test" {
+		98  |   cluster_identifier = "redshift-defaults-only"
+		99  |   node_type = "dc2.large"
+		100 |   master_password = "Test1234"
+		101 |   master_username = "test"
+		102 |   skip_final_snapshot = true
+		103 |   vpc_security_group_ids = [aws_security_group.nondefault.id]
+		104 |   cluster_subnet_group_name = aws_redshift_subnet_group.nondefault.name
+		105 |   publicly_accessible = true
+		106 | }
+
+Check: CKV_AWS_71: "Ensure Redshift Cluster logging is enabled"
+	FAILED for resource: aws_redshift_cluster.test
+	File: /main.tf:97-106
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_logging_12
+
+		97  | resource "aws_redshift_cluster" "test" {
+		98  |   cluster_identifier = "redshift-defaults-only"
+		99  |   node_type = "dc2.large"
+		100 |   master_password = "Test1234"
+		101 |   master_username = "test"
+		102 |   skip_final_snapshot = true
+		103 |   vpc_security_group_ids = [aws_security_group.nondefault.id]
+		104 |   cluster_subnet_group_name = aws_redshift_subnet_group.nondefault.name
+		105 |   publicly_accessible = true
+		106 | }
+
+Check: CKV_AWS_87: "Redshift cluster should not be publicly accessible"
+	FAILED for resource: aws_redshift_cluster.test
+	File: /main.tf:97-106
+	Guide: https://docs.bridgecrew.io/docs/public_9
+
+		97  | resource "aws_redshift_cluster" "test" {
+		98  |   cluster_identifier = "redshift-defaults-only"
+		99  |   node_type = "dc2.large"
+		100 |   master_password = "Test1234"
+		101 |   master_username = "test"
+		102 |   skip_final_snapshot = true
+		103 |   vpc_security_group_ids = [aws_security_group.nondefault.id]
+		104 |   cluster_subnet_group_name = aws_redshift_subnet_group.nondefault.name
+		105 |   publicly_accessible = true
+		106 | }
+
+Check: CKV_AWS_23: "Ensure every security groups rule has a description"
+	FAILED for resource: aws_security_group.nondefault
+	File: /some_module/main.tf:11-20
+	Guide: https://docs.bridgecrew.io/docs/networking_31
+
+		11 | resource "aws_security_group" "nondefault" {
+		12 |   vpc_id = aws_vpc.nondefault.id
+		13 | 
+		14 |   ingress {
+		15 |     from_port = 5439
+		16 |     protocol = "TCP"
+		17 |     to_port = 5439
+		18 |     cidr_blocks = ["0.0.0.0/0"]
+		19 |   }
+		20 | }
+
+
+Check: CKV_AWS_64: "Ensure all data stored in the Redshift cluster is securely encrypted at rest"
+	FAILED for resource: aws_redshift_cluster.test
+	File: /some_module/main.tf:97-106
+	Guide: https://docs.bridgecrew.io/page/guideline-does-not-exist
+
+		97  | resource "aws_redshift_cluster" "test" {
+		98  |   cluster_identifier = "redshift-defaults-only"
+		99  |   node_type = "dc2.large"
+		100 |   master_password = "Test1234"
+		101 |   master_username = "test"
+		102 |   skip_final_snapshot = true
+		103 |   vpc_security_group_ids = [aws_security_group.nondefault.id]
+		104 |   cluster_subnet_group_name = aws_redshift_subnet_group.nondefault.name
+		105 |   publicly_accessible = true
+		106 | }
+
+Check: CKV_AWS_71: "Ensure Redshift Cluster logging is enabled"
+	FAILED for resource: aws_redshift_cluster.test
+	File: /some_module/main.tf:97-106
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_logging_12
+
+		97  | resource "aws_redshift_cluster" "test" {
+		98  |   cluster_identifier = "redshift-defaults-only"
+		99  |   node_type = "dc2.large"
+		100 |   master_password = "Test1234"
+		101 |   master_username = "test"
+		102 |   skip_final_snapshot = true
+		103 |   vpc_security_group_ids = [aws_security_group.nondefault.id]
+		104 |   cluster_subnet_group_name = aws_redshift_subnet_group.nondefault.name
+		105 |   publicly_accessible = true
+		106 | }
+
+Check: CKV_AWS_87: "Redshift cluster should not be publicly accessible"
+	FAILED for resource: aws_redshift_cluster.test
+	File: /some_module/main.tf:97-106
+	Guide: https://docs.bridgecrew.io/docs/public_9
+
+		97  | resource "aws_redshift_cluster" "test" {
+		98  |   cluster_identifier = "redshift-defaults-only"
+		99  |   node_type = "dc2.large"
+		100 |   master_password = "Test1234"
+		101 |   master_username = "test"
+		102 |   skip_final_snapshot = true
+		103 |   vpc_security_group_ids = [aws_security_group.nondefault.id]
+		104 |   cluster_subnet_group_name = aws_redshift_subnet_group.nondefault.name
+		105 |   publicly_accessible = true
+		106 | }
+

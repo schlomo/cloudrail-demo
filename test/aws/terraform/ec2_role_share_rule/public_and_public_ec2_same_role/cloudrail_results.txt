@@ -1,0 +1,68 @@
+
+WARNINGs found:
+Rule: Ensure all used default security groups of every VPC restrict all traffic
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.pub_ins1] (main.tf:99)
+     Violating Resource: [module.vpc.aws_default_security_group.this[0]]  (.terraform/modules/vpc/main.tf:57)
+
+     Evidence:
+         VPC module.vpc.aws_vpc.this[0]
+             | eni-pseudo-89c39cd9-2cb2-4827-bafb-6f79b547a63e uses ENI aws_instance.pub_ins1
+             | The ENI is secured by default Security Group module.vpc.aws_default_security_group.this[0] and allow all traffic
+
+-----------------------------------------------
+Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to port 22 (SSH)
+ - 2 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.pub_ins1] (main.tf:99)
+     Violating Resource: [module.vpc.aws_default_security_group.this[0]]  (.terraform/modules/vpc/main.tf:57)
+
+     Evidence:
+         Internet
+             | Subnet module.vpc.aws_subnet.public[0] has Internet Gateway
+             | Instance aws_instance.pub_ins1 is on module.vpc.aws_subnet.public[0]
+             | Subnet routes traffic from instance to Internet Gateway
+             | Subnet uses NACL nacl-pseudo-5e04741c-95f2-4b91-94b9-808dae9dde33 which allows port 22
+             | Instance uses Security Group ['module.vpc.aws_default_security_group.this[0]']
+             | Security Group allows port 22
+         Instance
+
+   - Exposed Resource: [aws_instance.pub_ins2] (main.tf:107)
+     Violating Resource: [module.vpc.aws_default_security_group.this[0]]  (.terraform/modules/vpc/main.tf:57)
+
+     Evidence:
+         Internet
+             | Subnet module.vpc.aws_subnet.public[0] has Internet Gateway
+             | Instance aws_instance.pub_ins2 is on module.vpc.aws_subnet.public[0]
+             | Subnet routes traffic from instance to Internet Gateway
+             | Subnet uses NACL nacl-pseudo-5e04741c-95f2-4b91-94b9-808dae9dde33 which allows port 22
+             | Instance uses Security Group ['module.vpc.aws_default_security_group.this[0]']
+             | Security Group allows port 22
+         Instance
+
+-----------------------------------------------
+Rule: Ensure all data stored in the Launch configuration EBS is securely encrypted
+ - 2 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.pub_ins1] (main.tf:99)
+     Violating Resource: [aws_instance.pub_ins1]  (main.tf:99)
+
+     Evidence:
+             | This rule evaluated aws_instance.pub_ins1 only, it is not a context-aware rule.
+
+   - Exposed Resource: [aws_instance.pub_ins2] (main.tf:107)
+     Violating Resource: [aws_instance.pub_ins2]  (main.tf:107)
+
+     Evidence:
+             | This rule evaluated aws_instance.pub_ins2 only, it is not a context-aware rule.
+
+-----------------------------------------------
+
+Summary:
+3 Rules Violated:
+  0 Mandated Rules (these are considered FAILURES)
+  3 Advisory Rules (these are considered WARNINGS)
+59 Rules Passed
+
+

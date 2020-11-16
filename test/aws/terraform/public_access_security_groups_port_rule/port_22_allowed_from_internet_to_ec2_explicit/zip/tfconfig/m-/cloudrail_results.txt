@@ -1,0 +1,1 @@
+The path you have provided does not point to a specific file. Please provide the path directly to the plan file you wish to use Cloudrail with

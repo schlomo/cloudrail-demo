@@ -1,0 +1,25 @@
+
+WARNINGs found:
+Rule: Ensure all used default security groups of every VPC restrict all traffic
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_redshift_cluster.test] (main.tf:31)
+     Violating Resource: [sg-pseudo-b27790fe-8a98-4a31-b52d-5acfa4316a66]  (Not found in TF)
+
+     Evidence:
+         VPC aws_vpc.nondefault
+             | eni-pseudo-6276c4ff-bff8-48c3-aa43-115dd0b67b6b uses ENI aws_redshift_cluster.test
+             | The ENI is secured by default Security Group sg-pseudo-b27790fe-8a98-4a31-b52d-5acfa4316a66 and allow all traffic
+
+-----------------------------------------------
+
+Cloudrail has listed "pseudo" objects in the above results.
+These are resources that don't exist yet, or don't show in the Terraform input, but we know will be created in the real live environment.
+
+Summary:
+1 Rules Violated:
+  0 Mandated Rules (these are considered FAILURES)
+  1 Advisory Rules (these are considered WARNINGS)
+61 Rules Passed
+
+

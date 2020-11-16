@@ -1,0 +1,43 @@
+[0m[31m[1m
+2 potential problems detected:
+
+[0m[0m[31m[1m[1m[4mProblem 1[0m[31m[1m
+[0m[0m
+  [34m[[39mAWS018[34m][39m[34m[[39m[0m[31mERROR[39m[0m[34m][39m Resource 'aws_security_group.nondefault' should include a description for auditing purposes.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/public_access_db_rds/aurora/vpc-controlled/main.tf:9-18[39m
+
+[0m[0m  [34m     6[39m | [0m[0m[33m  cidr_block = "10.1.1.0/24"[39m
+[0m[0m  [34m     7[39m | [0m[0m[33m}[39m
+[0m[0m  [34m     8[39m | [0m[0m[33m[39m
+[0m[0m  [34m     9[39m | [0m[0m[1m[31mresource "aws_security_group" "nondefault" {[39m[0m[39m
+[0m[0m  [34m    10[39m | [0m[0m[1m[31m  vpc_id = aws_vpc.nondefault.id[39m[0m[39m
+[0m[0m  [34m    11[39m | [0m[0m[1m[31m[39m[0m[39m
+[0m[0m  [34m    12[39m | [0m[0m[1m[31m  ingress {[39m[0m[39m
+[0m[0m  [34m    13[39m | [0m[0m[1m[31m    from_port = 0[39m[0m[39m
+[0m[0m  [34m    14[39m | [0m[0m[1m[31m    protocol = "TCP"[39m[0m[39m
+[0m[0m  [34m    15[39m | [0m[0m[1m[31m    to_port = 64000[39m[0m[39m
+[0m[0m  [34m    16[39m | [0m[0m[1m[31m    cidr_blocks = ["0.0.0.0/0"][39m[0m[39m
+[0m[0m  [34m    17[39m | [0m[0m[1m[31m  }[39m[0m[39m
+[0m[0m  [34m    18[39m | [0m[0m[1m[31m}[39m[0m[39m
+[0m[0m  [34m    19[39m | [0m[0m[33m[39m
+[0m[0m  [34m    20[39m | [0m[0m[33mresource "aws_subnet" "nondefault_1" {[39m
+[0m[0m  [34m    21[39m | [0m[0m[33m  vpc_id = aws_vpc.nondefault.id[39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/AWS018 for more information.[39m
+
+[0m[0m[31m[1m[1m[4mProblem 2[0m[31m[1m
+[0m[0m
+  [34m[[39mAWS008[34m][39m[34m[[39m[0m[33mWARNING[39m[0m[34m][39m Resource 'aws_security_group.nondefault' defines a fully open ingress security group.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/public_access_db_rds/aurora/vpc-controlled/main.tf:16[39m
+
+[0m[0m  [34m    13[39m | [0m[0m[33m    from_port = 0[39m
+[0m[0m  [34m    14[39m | [0m[0m[33m    protocol = "TCP"[39m
+[0m[0m  [34m    15[39m | [0m[0m[33m    to_port = 64000[39m
+[0m[0m  [34m    16[39m | [0m[0m[1m[31m    cidr_blocks = ["0.0.0.0/0"][39m[0m[39m
+[0m[0m  [34m    17[39m | [0m[0m[33m  }[39m
+[0m[0m  [34m    18[39m | [0m[0m[33m}[39m
+[0m[0m  [34m    19[39m | [0m[0m[33m[39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/AWS008 for more information.[39m
+
+[0m

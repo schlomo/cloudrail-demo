@@ -1,0 +1,93 @@
+[0m[31m[1m
+5 potential problems detected:
+
+[0m[0m[31m[1m[1m[4mProblem 1[0m[31m[1m
+[0m[0m
+  [34m[[39mGEN003[34m][39m[34m[[39m[0m[33mWARNING[39m[0m[34m][39m Block 'aws_redshift_cluster.test' includes a potentially sensitive attribute which is defined within the project.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/indirect_public_access_db_redshift/public_ec2_points_to_private_redshift/main.tf:106[39m
+
+[0m[0m  [34m   103[39m | [0m[0m[33mresource "aws_redshift_cluster" "test" {[39m
+[0m[0m  [34m   104[39m | [0m[0m[33m  cluster_identifier = "redshift-defaults-only"[39m
+[0m[0m  [34m   105[39m | [0m[0m[33m  node_type = "dc2.large"[39m
+[0m[0m  [34m   106[39m | [0m[0m[1m[31m  master_password = "Test1234"[39m[0m[39m
+[0m[0m  [34m   107[39m | [0m[0m[33m  master_username = "test"[39m
+[0m[0m  [34m   108[39m | [0m[0m[33m  skip_final_snapshot = true[39m
+[0m[0m  [34m   109[39m | [0m[0m[33m  vpc_security_group_ids = [aws_security_group.publicly_accessible_sg.id][39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/GEN003 for more information.[39m
+
+[0m[0m[31m[1m[4m[1mProblem 2[0m[31m[1m
+[0m[0m
+  [34m[[39mAWS018[34m][39m[34m[[39m[0m[31mERROR[39m[0m[34m][39m Resource 'aws_security_group.publicly_accessible_sg' should include a description for auditing purposes.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/indirect_public_access_db_redshift/public_ec2_points_to_private_redshift/main.tf:114-128[39m
+
+[0m[0m  [34m   111[39m | [0m[0m[33m  publicly_accessible = false // Note that while the subnet itself has public access, the redshift is set NOT to have a public IP[39m
+[0m[0m  [34m   112[39m | [0m[0m[33m}[39m
+[0m[0m  [34m   113[39m | [0m[0m[33m[39m
+[0m[0m  [34m   114[39m | [0m[0m[1m[31mresource "aws_security_group" "publicly_accessible_sg" {[39m[0m[39m
+[0m[0m  [34m   115[39m | [0m[0m[1m[31m  vpc_id = aws_vpc.nondefault.id[39m[0m[39m
+[0m[0m  [34m   116[39m | [0m[0m[1m[31m  ingress {[39m[0m[39m
+[0m[0m  [34m   117[39m | [0m[0m[1m[31m    from_port = 0[39m[0m[39m
+[0m[0m  [34m   118[39m | [0m[0m[1m[31m    protocol = "tcp"[39m[0m[39m
+[0m[0m  [34m   119[39m | [0m[0m[1m[31m    to_port = 65000[39m[0m[39m
+[0m[0m  [34m   120[39m | [0m[0m[1m[31m    cidr_blocks = ["0.0.0.0/0"][39m[0m[39m
+[0m[0m  [34m   121[39m | [0m[0m[1m[31m  }[39m[0m[39m
+[0m[0m  [34m   122[39m | [0m[0m[1m[31m  egress {[39m[0m[39m
+[0m[0m  [34m   123[39m | [0m[0m[1m[31m    from_port = 0[39m[0m[39m
+[0m[0m  [34m   124[39m | [0m[0m[1m[31m    protocol = "tcp"[39m[0m[39m
+[0m[0m  [34m   125[39m | [0m[0m[1m[31m    to_port = 65000[39m[0m[39m
+[0m[0m  [34m   126[39m | [0m[0m[1m[31m    cidr_blocks = ["0.0.0.0/0"][39m[0m[39m
+[0m[0m  [34m   127[39m | [0m[0m[1m[31m  }[39m[0m[39m
+[0m[0m  [34m   128[39m | [0m[0m[1m[31m}[39m[0m[39m
+[0m[0m  [34m   129[39m | [0m[0m[33m[39m
+[0m[0m  [34m   130[39m | [0m[0m[33m// This instance is can potentially be used to hop into the DB[39m
+[0m[0m  [34m   131[39m | [0m[0m[33mresource "aws_instance" "public_ins" {[39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/AWS018 for more information.[39m
+
+[0m[0m[31m[1m[4m[1mProblem 3[0m[31m[1m
+[0m[0m
+  [34m[[39mAWS008[34m][39m[34m[[39m[0m[33mWARNING[39m[0m[34m][39m Resource 'aws_security_group.publicly_accessible_sg' defines a fully open ingress security group.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/indirect_public_access_db_redshift/public_ec2_points_to_private_redshift/main.tf:120[39m
+
+[0m[0m  [34m   117[39m | [0m[0m[33m    from_port = 0[39m
+[0m[0m  [34m   118[39m | [0m[0m[33m    protocol = "tcp"[39m
+[0m[0m  [34m   119[39m | [0m[0m[33m    to_port = 65000[39m
+[0m[0m  [34m   120[39m | [0m[0m[1m[31m    cidr_blocks = ["0.0.0.0/0"][39m[0m[39m
+[0m[0m  [34m   121[39m | [0m[0m[33m  }[39m
+[0m[0m  [34m   122[39m | [0m[0m[33m  egress {[39m
+[0m[0m  [34m   123[39m | [0m[0m[33m    from_port = 0[39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/AWS008 for more information.[39m
+
+[0m[0m[31m[1m[1m[4mProblem 4[0m[31m[1m
+[0m[0m
+  [34m[[39mAWS009[34m][39m[34m[[39m[0m[33mWARNING[39m[0m[34m][39m Resource 'aws_security_group.publicly_accessible_sg' defines a fully open egress security group.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/indirect_public_access_db_redshift/public_ec2_points_to_private_redshift/main.tf:126[39m
+
+[0m[0m  [34m   123[39m | [0m[0m[33m    from_port = 0[39m
+[0m[0m  [34m   124[39m | [0m[0m[33m    protocol = "tcp"[39m
+[0m[0m  [34m   125[39m | [0m[0m[33m    to_port = 65000[39m
+[0m[0m  [34m   126[39m | [0m[0m[1m[31m    cidr_blocks = ["0.0.0.0/0"][39m[0m[39m
+[0m[0m  [34m   127[39m | [0m[0m[33m  }[39m
+[0m[0m  [34m   128[39m | [0m[0m[33m}[39m
+[0m[0m  [34m   129[39m | [0m[0m[33m[39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/AWS009 for more information.[39m
+
+[0m[0m[31m[1m[1m[4mProblem 5[0m[31m[1m
+[0m[0m
+  [34m[[39mAWS012[34m][39m[34m[[39m[0m[31mERROR[39m[0m[34m][39m Resource 'aws_instance.public_ins' has a public IP address associated.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/indirect_public_access_db_redshift/public_ec2_points_to_private_redshift/main.tf:134[39m
+
+[0m[0m  [34m   131[39m | [0m[0m[33mresource "aws_instance" "public_ins" {[39m
+[0m[0m  [34m   132[39m | [0m[0m[33m  ami = "ami-0130bec6e5047f596"[39m
+[0m[0m  [34m   133[39m | [0m[0m[33m  instance_type = "t3.nano"[39m
+[0m[0m  [34m   134[39m | [0m[0m[1m[31m  associate_public_ip_address = true[39m[0m[39m
+[0m[0m  [34m   135[39m | [0m[0m[33m  vpc_security_group_ids = [aws_security_group.publicly_accessible_sg.id][39m
+[0m[0m  [34m   136[39m | [0m[0m[33m  subnet_id = aws_subnet.nondefault_1.id[39m
+[0m[0m  [34m   137[39m | [0m[0m[33m}[39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/AWS012 for more information.[39m
+
+[0m
