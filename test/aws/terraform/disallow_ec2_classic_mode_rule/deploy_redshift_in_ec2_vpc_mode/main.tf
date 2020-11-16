@@ -1,6 +1,3 @@
-# Test case: resource (redshift) deployed in EC2-VPC mode
-# Expected: no issue found
-
 provider "aws" {
   region                  = "us-east-1"
   shared_credentials_file = "~/.aws/credentials"

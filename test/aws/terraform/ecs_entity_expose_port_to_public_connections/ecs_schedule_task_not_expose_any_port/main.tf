@@ -114,11 +114,6 @@ resource "aws_ecs_task_definition" "web-server-task-definition" {
   requires_compatibilities = ["FARGATE"]
 }
 
-data "aws_ecs_container_definition" "container-definition" {
-  task_definition = aws_ecs_task_definition.web-server-task-definition.id
-  container_name  = "web-server"
-}
-
 resource "aws_cloudwatch_event_target" "web-server-et" {
   target_id = "web-server-schedule-rule-target-id"
   rule      = aws_cloudwatch_event_rule.web-server-schedule-every-1d-rule.name

@@ -35,5 +35,5 @@ resource "aws_redshift_cluster" "test" {
   master_username = "test"
   skip_final_snapshot = true
   cluster_subnet_group_name = aws_redshift_subnet_group.nondefault.name
-  publicly_accessible = false
+  publicly_accessible = true
 }
