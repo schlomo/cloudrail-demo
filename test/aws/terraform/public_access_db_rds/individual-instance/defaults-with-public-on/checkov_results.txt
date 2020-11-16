@@ -1,0 +1,46 @@
+
+       _               _              
+   ___| |__   ___  ___| | _______   __
+  / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+ | (__| | | |  __/ (__|   < (_) \ V / 
+  \___|_| |_|\___|\___|_|\_\___/ \_/  
+                                      
+By bridgecrew.io | version: 1.0.627 
+
+terraform scan results:
+
+Passed checks: 1, Failed checks: 2, Skipped checks: 0
+
+Check: CKV_AWS_41: "Ensure no hard coded AWS access key and and secret key exists in provider"
+	PASSED for resource: aws.default
+	File: /main.tf:1-3
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_5
+
+Check: CKV_AWS_17: "Ensure all data stored in the RDS bucket is not public accessible"
+	FAILED for resource: aws_db_instance.test
+	File: /main.tf:5-12
+	Guide: https://docs.bridgecrew.io/docs/public_2
+
+		5  | resource "aws_db_instance" "test" {
+		6  |   instance_class = "db.t3.micro"
+		7  |   publicly_accessible = true
+		8  |   allocated_storage = 50
+		9  |   engine               = "mysql"
+		10 |   username             = "foo"
+		11 |   password             = "foobarbaz"
+		12 | }
+
+Check: CKV_AWS_16: "Ensure all data stored in the RDS is securely encrypted at rest"
+	FAILED for resource: aws_db_instance.test
+	File: /main.tf:5-12
+	Guide: https://docs.bridgecrew.io/docs/general_4
+
+		5  | resource "aws_db_instance" "test" {
+		6  |   instance_class = "db.t3.micro"
+		7  |   publicly_accessible = true
+		8  |   allocated_storage = 50
+		9  |   engine               = "mysql"
+		10 |   username             = "foo"
+		11 |   password             = "foobarbaz"
+		12 | }
+

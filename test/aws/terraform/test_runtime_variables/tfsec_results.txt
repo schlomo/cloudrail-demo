@@ -1,0 +1,41 @@
+[0m[31m[1m
+2 potential problems detected:
+
+[0m[0m[31m[1m[1m[4mProblem 1[0m[31m[1m
+[0m[0m
+  [34m[[39mAWS018[34m][39m[34m[[39m[0m[31mERROR[39m[0m[34m][39m Resource 'aws_security_group.sg' should include a description for auditing purposes.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/test_runtime_variables/main.tf:35-43[39m
+
+[0m[0m  [34m    32[39m | [0m[0m[33m  }[39m
+[0m[0m  [34m    33[39m | [0m[0m[33m}[39m
+[0m[0m  [34m    34[39m | [0m[0m[33m[39m
+[0m[0m  [34m    35[39m | [0m[0m[1m[31mresource "aws_security_group" "sg" {[39m[0m[39m
+[0m[0m  [34m    36[39m | [0m[0m[1m[31m  vpc_id = aws_vpc.vpc.id[39m[0m[39m
+[0m[0m  [34m    37[39m | [0m[0m[1m[31m  ingress {[39m[0m[39m
+[0m[0m  [34m    38[39m | [0m[0m[1m[31m    from_port = 22[39m[0m[39m
+[0m[0m  [34m    39[39m | [0m[0m[1m[31m    protocol = "tcp"[39m[0m[39m
+[0m[0m  [34m    40[39m | [0m[0m[1m[31m    to_port = 22[39m[0m[39m
+[0m[0m  [34m    41[39m | [0m[0m[1m[31m    cidr_blocks = [var.source_cidr][39m[0m[39m
+[0m[0m  [34m    42[39m | [0m[0m[1m[31m  }[39m[0m[39m
+[0m[0m  [34m    43[39m | [0m[0m[1m[31m}[39m[0m[39m
+[0m[0m  [34m    44[39m | [0m[0m[33m[39m
+[0m[0m  [34m    45[39m | [0m[0m[33mresource "aws_internet_gateway" "igw" {[39m
+[0m[0m  [34m    46[39m | [0m[0m[33m  vpc_id = aws_vpc.vpc.id[39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/AWS018 for more information.[39m
+
+[0m[0m[31m[1m[4m[1mProblem 2[0m[31m[1m
+[0m[0m
+  [34m[[39mAWS012[34m][39m[34m[[39m[0m[31mERROR[39m[0m[34m][39m Resource 'aws_instance.test' has a public IP address associated.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/test_runtime_variables/main.tf:67[39m
+
+[0m[0m  [34m    64[39m | [0m[0m[33m  instance_type = "t2.micro"[39m
+[0m[0m  [34m    65[39m | [0m[0m[33m  subnet_id     = aws_subnet.subnet.id[39m
+[0m[0m  [34m    66[39m | [0m[0m[33m  vpc_security_group_ids = [aws_security_group.sg.id][39m
+[0m[0m  [34m    67[39m | [0m[0m[1m[31m  associate_public_ip_address = true[39m[0m[39m
+[0m[0m  [34m    68[39m | [0m[0m[33m}[39m
+[0m[0m  [34m    69[39m | [0m[0m[33m[39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/AWS012 for more information.[39m
+
+[0m

@@ -1,0 +1,114 @@
+
+       _               _              
+   ___| |__   ___  ___| | _______   __
+  / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+ | (__| | | |  __/ (__|   < (_) \ V / 
+  \___|_| |_|\___|\___|_|\_\___/ \_/  
+                                      
+By bridgecrew.io | version: 1.0.627 
+
+terraform scan results:
+
+Passed checks: 3, Failed checks: 5, Skipped checks: 0
+
+Check: CKV_AWS_41: "Ensure no hard coded AWS access key and and secret key exists in provider"
+	PASSED for resource: aws.default
+	File: /main.tf:2-4
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_5
+
+Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+	PASSED for resource: aws_security_group.sg
+	File: /main.tf:49-57
+	Guide: https://docs.bridgecrew.io/docs/networking_2
+
+Check: CKV_AWS_46: "Ensure no hard coded AWS access key and secret key exists in EC2 user data"
+	PASSED for resource: aws_instance.test
+	File: /main.tf:76-86
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_1
+
+Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+	FAILED for resource: aws_security_group.sg
+	File: /main.tf:49-57
+	Guide: https://docs.bridgecrew.io/docs/networking_1-port-security
+
+		49 | resource "aws_security_group" "sg" {
+		50 |   vpc_id = aws_vpc.vpc.id
+		51 |   ingress {
+		52 |     from_port = 22
+		53 |     protocol = "tcp"
+		54 |     to_port = 22
+		55 |     cidr_blocks = ["0.0.0.0/0"]
+		56 |   }
+		57 | }
+
+
+Check: CKV_AWS_23: "Ensure every security groups rule has a description"
+	FAILED for resource: aws_security_group.sg
+	File: /main.tf:49-57
+	Guide: https://docs.bridgecrew.io/docs/networking_31
+
+		49 | resource "aws_security_group" "sg" {
+		50 |   vpc_id = aws_vpc.vpc.id
+		51 |   ingress {
+		52 |     from_port = 22
+		53 |     protocol = "tcp"
+		54 |     to_port = 22
+		55 |     cidr_blocks = ["0.0.0.0/0"]
+		56 |   }
+		57 | }
+
+
+Check: CKV_AWS_79: "Ensure Instance Metadata Service Version 1 is not enabled"
+	FAILED for resource: aws_instance.test
+	File: /main.tf:76-86
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_general_31
+
+		76 | resource "aws_instance" "test" {
+		77 |   ami           = "ami-09b89ad3c5769cca2"
+		78 |   instance_type = "t2.micro"
+		79 |   subnet_id     = aws_subnet.subnet.id
+		80 |   vpc_security_group_ids = [aws_security_group.sg.id]
+		81 |   associate_public_ip_address = true
+		82 | 
+		83 |   tags = {
+		84 |     Name = local.test_name
+		85 |   }
+		86 | }
+
+
+Check: CKV_AWS_88: "EC2 instance should not have public IP."
+	FAILED for resource: aws_instance.test
+	File: /main.tf:76-86
+	Guide: https://docs.bridgecrew.io/docs/public_12
+
+		76 | resource "aws_instance" "test" {
+		77 |   ami           = "ami-09b89ad3c5769cca2"
+		78 |   instance_type = "t2.micro"
+		79 |   subnet_id     = aws_subnet.subnet.id
+		80 |   vpc_security_group_ids = [aws_security_group.sg.id]
+		81 |   associate_public_ip_address = true
+		82 | 
+		83 |   tags = {
+		84 |     Name = local.test_name
+		85 |   }
+		86 | }
+
+
+Check: CKV_AWS_8: "Ensure all data stored in the Launch configuration EBS is securely encrypted"
+	FAILED for resource: aws_instance.test
+	File: /main.tf:76-86
+	Guide: https://docs.bridgecrew.io/docs/general_13
+
+		76 | resource "aws_instance" "test" {
+		77 |   ami           = "ami-09b89ad3c5769cca2"
+		78 |   instance_type = "t2.micro"
+		79 |   subnet_id     = aws_subnet.subnet.id
+		80 |   vpc_security_group_ids = [aws_security_group.sg.id]
+		81 |   associate_public_ip_address = true
+		82 | 
+		83 |   tags = {
+		84 |     Name = local.test_name
+		85 |   }
+		86 | }
+
+

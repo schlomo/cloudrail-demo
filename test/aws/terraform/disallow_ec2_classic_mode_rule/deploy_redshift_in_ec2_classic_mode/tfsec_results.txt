@@ -1,0 +1,19 @@
+[0m[31m[1m
+1 potential problems detected:
+
+[0m[0m[31m[1m[4m[1mProblem 1[0m[31m[1m
+[0m[0m
+  [34m[[39mGEN003[34m][39m[34m[[39m[0m[33mWARNING[39m[0m[34m][39m Block 'aws_redshift_cluster.test' includes a potentially sensitive attribute which is defined within the project.
+  [34m/Users/yoni/code/cloudrail-demo/test/aws/terraform/disallow_ec2_classic_mode_rule/deploy_redshift_in_ec2_classic_mode/main.tf:8[39m
+
+[0m[0m  [34m     5[39m | [0m[0m[33mresource "aws_redshift_cluster" "test" {[39m
+[0m[0m  [34m     6[39m | [0m[0m[33m  cluster_identifier = "redshift-defaults-only"[39m
+[0m[0m  [34m     7[39m | [0m[0m[33m  node_type = "dc2.large"[39m
+[0m[0m  [34m     8[39m | [0m[0m[1m[31m  master_password = "Test1234"[39m[0m[39m
+[0m[0m  [34m     9[39m | [0m[0m[33m  master_username = "test"[39m
+[0m[0m  [34m    10[39m | [0m[0m[33m  skip_final_snapshot = true[39m
+[0m[0m  [34m    11[39m | [0m[0m[33m}[39m
+[0m
+[0m  [34mSee https://github.com/liamg/tfsec/wiki/GEN003 for more information.[39m
+
+[0m

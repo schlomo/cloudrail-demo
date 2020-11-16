@@ -1,0 +1,65 @@
+
+       _               _              
+   ___| |__   ___  ___| | _______   __
+  / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+ | (__| | | |  __/ (__|   < (_) \ V / 
+  \___|_| |_|\___|\___|_|\_\___/ \_/  
+                                      
+By bridgecrew.io | version: 1.0.627 
+
+terraform scan results:
+
+Passed checks: 3, Failed checks: 2, Skipped checks: 0
+
+Check: CKV_AWS_41: "Ensure no hard coded AWS access key and and secret key exists in provider"
+	PASSED for resource: aws.default
+	File: /main.tf:6-8
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_5
+
+Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+	PASSED for resource: aws_security_group.sg
+	File: /main.tf:67-86
+	Guide: https://docs.bridgecrew.io/docs/networking_1-port-security
+
+Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+	PASSED for resource: aws_security_group.sg
+	File: /main.tf:67-86
+	Guide: https://docs.bridgecrew.io/docs/networking_2
+
+Check: CKV_AWS_23: "Ensure every security groups rule has a description"
+	FAILED for resource: aws_security_group.sg
+	File: /main.tf:67-86
+	Guide: https://docs.bridgecrew.io/docs/networking_31
+
+		67 | resource "aws_security_group" "sg" {
+		68 |   name   = "sg"
+		69 |   vpc_id = aws_vpc.main-vpc.id
+		70 | 
+		71 |   ingress {
+		72 |     description = "mysql"
+		73 |     from_port   = local.web_server_port
+		74 |     to_port     = local.web_server_port
+		75 |     protocol    = "tcp"
+		76 |     cidr_blocks = ["0.0.0.0/0"]
+		77 |   }
+		78 | 
+		79 |   egress {
+		80 |     from_port   = 0
+		81 |     to_port     = 0
+		82 |     protocol    = "-1"
+		83 |     cidr_blocks = ["0.0.0.0/0"]
+		84 |   }
+		85 | 
+		86 | }
+
+
+Check: CKV_AWS_65: "Ensure container insights are enabled on ECS cluster"
+	FAILED for resource: aws_ecs_cluster.ecs-cluster
+	File: /main.tf:88-90
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_logging_11
+
+		88 | resource "aws_ecs_cluster" "ecs-cluster" {
+		89 |   name = "ecs-cluster"
+		90 | }
+
+

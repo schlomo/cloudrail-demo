@@ -1,0 +1,33 @@
+
+WARNINGs found:
+Rule: Ensure all used default security groups of every VPC restrict all traffic
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_redshift_cluster.test] (main.tf:5)
+     Violating Resource: [sg-230e6f52]  (Not found in TF)
+
+     Evidence:
+         VPC vpc-a102e4c7
+             | eni-pseudo-6cb942bb-136d-40be-9c2f-a23a66846a09 uses ENI aws_redshift_cluster.test
+             | The ENI is secured by default Security Group default and allow all traffic
+
+-----------------------------------------------
+Rule: Ensure the default VPC is not used
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_redshift_cluster.test] (main.tf:5)
+     Violating Resource: [aws_redshift_cluster.test]  (main.tf:5)
+
+     Evidence:
+         Default VPC
+             | aws_redshift_cluster.test is defined within the default VPC.
+
+-----------------------------------------------
+
+Summary:
+2 Rules Violated:
+  0 Mandated Rules (these are considered FAILURES)
+  2 Advisory Rules (these are considered WARNINGS)
+60 Rules Passed
+
+
