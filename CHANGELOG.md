@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
- 
+
+## [0.2.317] - (November 2, 2020)
+### Added
+Rule Added (1)
+- Identify if an LB target group is relying on HTTP
+
+## [0.2.315] - (November 2, 2020)
+### Added
+Platform Enhancements (1):
+- Support to output cloudrail's results in junit.xml
+
 ## [0.2.312] - (November 1, 2020)
 ### Added
 Rule Added (1)
