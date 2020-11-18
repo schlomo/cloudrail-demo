@@ -5,7 +5,8 @@
 
 image: registry.gitlab.com/gitlab-org/terraform-images/stable:latest
 variables:
-  TEST_ROOT: ${CI_PROJECT_DIR}/test
+  # Picking some TF folder to test
+  TEST_ROOT: ${CI_PROJECT_DIR}/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
   TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/${CI_PROJECT_NAME}
 
 cache:
