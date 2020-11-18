@@ -19,8 +19,8 @@ stages:
 init_and_plan:
   stage: init_and_plan
   script:
-    - find . -name "main.tf" | sed 's/\/main.tf//' | while read case; do PRECWD=$PWD ; cd $case ; terraform init ; cd $PRECWD ; done
-    - find . -name "main.tf" | sed 's/\/main.tf//' | while read case; do PRECWD=$PWD ; cd $case ; terraform plan -out=plan.out ; cd $PRECWD ; done
+    - find . -name "main.tf" | sed 's/\/main.tf//' | while read case; do PRECWD=$PWD ; cd $case ; echo $PWD; terraform init ; cd $PRECWD ; done
+    - find . -name "main.tf" | sed 's/\/main.tf//' | while read case; do PRECWD=$PWD ; cd $case ; echo $PWD; terraform plan -out=plan.out ; cd $PRECWD ; done
   artifacts:
     name: "$CI_JOB_NAME"
     paths:
