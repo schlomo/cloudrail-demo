@@ -48,6 +48,7 @@ def convert_issue_items_to_githab_vulns(rule_results):
 if len(sys.argv) != 3:
     print('Incorrect number of parameters. Correct usage:\n')
     print(os.path.basename(__file__) + ' <cloudrail_results.json> <base_tf_path>')
+    exit(1)
 
 results_json = sys.argv[1]
 base_tf_path = sys.argv[2]
@@ -61,4 +62,4 @@ result = {
     "vulnerabilities": convert_issue_items_to_githab_vulns(cloudrail_result)
 }
 
-print(result)
+print(json.dumps(result))
