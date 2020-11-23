@@ -32,7 +32,7 @@ cloudrail:
   image: indeni/cloudrail-cli:latest
   script:
     - find . -name "main.tf" | sed 's/\/main.tf//' | grep -v ".terraform" | while read case; do PRECWD=$PWD ; cd $case ; cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} ; cd $PRECWD ; done
-    - python3 ${CI_PROJECT_DIR}/integrations/ci/gitlab/py/cloudrailjson_to_gitlabsastjson.py ${CI_PROJECT_DIR}/integrations/ci/gitlab/py/sample_cloudrail_results.json $TEST_ROOT > ${CI_PROJECT_DIR}/gitlab_sast_report.json
+    - python3 ${CI_PROJECT_DIR}/integrations/ci/gitlab/py/cloudrailjson_to_gitlabsastjson.py ${CI_PROJECT_DIR}/integrations/ci/gitlab/py/sample_cloudrail_results.json $TEST_ROOT > ${CI_PROJECT_DIR}/cloudrail-sast-report.json
   artifacts:
     reports:
       sast: cloudrail-sast-report.json
