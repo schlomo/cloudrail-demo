@@ -28,7 +28,7 @@ def convert_issue_items_to_githab_vulns(rule_results):
                 "id": rule_result['id'] + issue_item['violating_entity']['id'] + issue_item['exposed_entity']['id'],
                 "category": "sast",
                 "name": rule_result['rule_name'],
-                "message": issue_item['violating_entity']['name'] + " is exposing " + issue_item['exposed_entity']['name'] + " due to violation of \"" + rule_result['rule_name'] + "\"",
+                "message": rule_result['rule_name'] + ": <" + get_friendly_name(issue_item['violating_entity']) + "> is exposing <" + get_friendly_name(issue_item['exposed_entity']) + ">",
                 "description": rule_result['rule_description'] + '\n\n' + evidence_to_simple_string(issue_item['evidence']),
                 "severity": "Medium", # Need to pull this from rule severity when supported
                 "confidence": "High",
@@ -43,6 +43,9 @@ def convert_issue_items_to_githab_vulns(rule_results):
                 }
             })
     return vulns
+
+def get_friendly_name(resource) -> str:
+    return resource['tf_address'] or resource['name'] or resource['cloud_id'] or resource['cloud_arn']
 
 
 if len(sys.argv) != 3:
