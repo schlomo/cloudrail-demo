@@ -28,8 +28,8 @@ def convert_issue_items_to_githab_vulns(rule_results):
                 "id": rule_result['id'] + issue_item['violating_entity']['id'] + issue_item['exposed_entity']['id'],
                 "category": "sast",
                 "name": rule_result['rule_name'],
-                "message": evidence_to_simple_string(issue_item['evidence']),
-                "description": rule_result['rule_description'],
+                "message": issue_item['violating_entity']['name'] + " is exposing " + issue_item['exposed_entity']['name'] + " due to violation of \"" + rule_result['rule_name'] + "\"",
+                "description": rule_result['rule_description'] + '\n\n' + evidence_to_simple_string(issue_item['evidence']),
                 "severity": "Medium", # Need to pull this from rule severity when supported
                 "confidence": "High",
                 "scanner": {
