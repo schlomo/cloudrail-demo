@@ -29,7 +29,7 @@ def convert_issue_items_to_githab_vulns(rule_results):
                 "category": "sast",
                 "name": rule_result['rule_name'],
                 "message": rule_result['rule_name'] + ": <" + get_friendly_name(issue_item['violating_entity']) + "> is exposing <" + get_friendly_name(issue_item['exposed_entity']) + ">",
-                "description": rule_result['rule_description'] + '\n\n' + evidence_to_simple_string(issue_item['evidence']),
+                "description": rule_result['rule_description'], # + '\n\n' + evidence_to_simple_string(issue_item['evidence']),
                 "severity": "Medium", # Need to pull this from rule severity when supported
                 "confidence": "High",
                 "scanner": {
