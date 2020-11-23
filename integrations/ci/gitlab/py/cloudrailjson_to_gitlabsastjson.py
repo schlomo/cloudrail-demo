@@ -23,23 +23,23 @@ def evidence_to_simple_string(evidence):
 def convert_issue_items_to_githab_vulns(rule_results):
     vulns = []
     for rule_result in rule_results:
-        for issue_item in rule_result["issue_items"]:
+        for issue_item in rule_result['issue_items']:
             vulns.append({
-                'id': rule_result['id'] + issue_item['violating_entity']['id'] + issue_item['exposed_entity']['id'],
-                'category': 'sast',
-                'name': rule_result['rule_name'],
-                'message': evidence_to_simple_string(issue_item['evidence']),
-                'description': rule_result['rule_description'],
-                'severity': 'Medium', # Need to pull this from rule severity when supported
-                'confidence': 'High',
-                'scanner': {
+                "id": rule_result['id'] + issue_item['violating_entity']['id'] + issue_item['exposed_entity']['id'],
+                "category": "sast",
+                "name": rule_result['rule_name'],
+                "message": evidence_to_simple_string(issue_item['evidence']),
+                "description": rule_result['rule_description'],
+                "severity": "Medium", # Need to pull this from rule severity when supported
+                "confidence": "High",
+                "scanner": {
                     "id": "indeni_cloudrail",
                     "name": "Indeni Cloudrail"
                 },
-                'location': {
-                    'file': base_tf_path + '/' + issue_item['violating_entity']['tf_resource_metadata']['file_name'],
-                    'start_line': issue_item['violating_entity']['tf_resource_metadata']['start_line'],
-                    'end_line': issue_item['violating_entity']['tf_resource_metadata']['end_line']
+                "location": {
+                    "file": base_tf_path + '/' + issue_item['violating_entity']['tf_resource_metadata']['file_name'],
+                    "start_line": issue_item['violating_entity']['tf_resource_metadata']['start_line'],
+                    "end_line": issue_item['violating_entity']['tf_resource_metadata']['end_line']
                 }
             })
     return vulns
@@ -57,8 +57,8 @@ with open(results_json, 'r') as file:
     cloudrail_result = json.loads(file.read().replace('\n', ''))
 
 result = {
-    'version' : '2.0',
-    'vulnerabilities': convert_issue_items_to_githab_vulns(cloudrail_result)
+    "version" : "2.0",
+    "vulnerabilities": convert_issue_items_to_githab_vulns(cloudrail_result)
 }
 
 print(result)
