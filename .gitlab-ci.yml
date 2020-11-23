@@ -35,7 +35,9 @@ cloudrail:
     - python3 ${CI_PROJECT_DIR}/integrations/ci/gitlab/py/cloudrailjson_to_gitlabsastjson.py ${CI_PROJECT_DIR}/integrations/ci/gitlab/py/sample_cloudrail_results.json $TEST_ROOT > ${CI_PROJECT_DIR}/gitlab_sast_report.json
   artifacts:
     reports:
-      sast: gitlab_sast_report.json
+      sast: cloudrail-sast-report.json
+    paths:
+      - cloudrail-sast-report.json
 
 
 
