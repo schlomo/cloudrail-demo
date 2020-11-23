@@ -19,8 +19,8 @@ stages:
 init_and_plan:
   stage: init_and_plan
   script:
-    - find . -name "main.tf" | sed 's/\/main.tf//' | grep -v ".terraform" | while read case; do PRECWD=$PWD ; cd $case ; echo $PWD; terraform init ; cd $PRECWD ; done
-    - find . -name "main.tf" | sed 's/\/main.tf//' | grep -v ".terraform" | while read case; do PRECWD=$PWD ; cd $case ; echo $PWD; terraform plan -out=plan.out ; cd $PRECWD ; done
+    - terraform init
+    - terraform plan -out=plan.out
   artifacts:
     name: "$CI_JOB_NAME"
     paths:
@@ -31,7 +31,7 @@ cloudrail:
   stage: cloudrail
   image: indeni/cloudrail-cli:latest
   script:
-    - find . -name "main.tf" | sed 's/\/main.tf//' | grep -v ".terraform" | while read case; do PRECWD=$PWD ; cd $case ; cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} --output-format json --output-file cloudrail-results.json ; cd $PRECWD ; done
+    - cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} --output-format json --output-file cloudrail-results.json
     - python3 ${CI_PROJECT_DIR}/integrations/ci/gitlab/py/cloudrailjson_to_gitlabsastjson.py $TEST_ROOT/cloudrail-results.json $TEST_ROOT > ${CI_PROJECT_DIR}/cloudrail-sast-report.json
   artifacts:
     reports:
