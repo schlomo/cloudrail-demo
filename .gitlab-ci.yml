@@ -7,6 +7,7 @@ image: registry.gitlab.com/gitlab-org/terraform-images/stable:latest
 variables:
   # Picking some TF folder to test
   TEST_ROOT: ${CI_PROJECT_DIR}/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+  TEST_RELATIVE_ROOT: /test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
   TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/${CI_PROJECT_NAME}
 
 before_script:
@@ -32,7 +33,7 @@ cloudrail:
   image: indeni/cloudrail-cli:latest
   script:
     - cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} --output-format json --output-file cloudrail-results.json
-    - python3 ${CI_PROJECT_DIR}/integrations/ci/gitlab/py/cloudrailjson_to_gitlabsastjson.py $TEST_ROOT/cloudrail-results.json "." > ${CI_PROJECT_DIR}/cloudrail-sast-report.json
+    - python3 ${CI_PROJECT_DIR}/integrations/ci/gitlab/py/cloudrailjson_to_gitlabsastjson.py $TEST_ROOT/cloudrail-results.json $TEST_RELATIVE_ROOT > ${CI_PROJECT_DIR}/cloudrail-sast-report.json
   artifacts:
     reports:
       sast: cloudrail-sast-report.json
