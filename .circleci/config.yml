@@ -6,7 +6,7 @@ orbs:
 workflows:
   main:
     jobs:
-      - tf_plan:
+      - tf_plan
       - security_check_terraform:
           requires:
             - tf_plan
