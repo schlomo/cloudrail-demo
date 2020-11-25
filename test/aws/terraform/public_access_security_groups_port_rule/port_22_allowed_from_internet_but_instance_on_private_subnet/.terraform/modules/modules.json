@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"vpc_example_complete-vpc","Source":"terraform-aws-modules/vpc/aws//examples/complete-vpc","Version":"2.63.0","Dir":".terraform/modules/vpc_example_complete-vpc/examples/complete-vpc"},{"Key":"vpc_example_complete-vpc.vpc","Source":"../../","Dir":".terraform/modules/vpc_example_complete-vpc"}]}
