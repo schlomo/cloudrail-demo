@@ -23,7 +23,7 @@ jobs:
           command: |
             cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
             terraform init -input=false
-            terraform plan -out /tmp/test_tf/plan.out
+            terraform plan -out plan.out
       - persist_to_workspace:
           root: .
           paths:
@@ -36,5 +36,5 @@ jobs:
       - cloudrail/scan_terraform:
           cloud-account-id: $AWS_ACCOUNT_ID
           cloudrail_api_key: $CLOUDRAIL_API_KEY
-          plan_output_file: /tmp/test_tf/plan.out
-          tf_directory: /tmp/test_tf/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+          plan_output_file: plan.out
+          tf_directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
