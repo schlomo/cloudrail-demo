@@ -30,7 +30,7 @@ jobs:
           
       # Pull and run Cloudrail image
       - run: docker pull indeni/cloudrail-cli
-      - run: docker run --rm -it -v $PWD:/src -v cloudrail:/indeni indeni/cloudrail-cli \
+      - run: docker run --rm -v $PWD:/src -v cloudrail:/indeni indeni/cloudrail-cli \
           run --tf-plan plan.out --directory . \
           --api-key $CLOUDRAIL_API_KEY
         working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
