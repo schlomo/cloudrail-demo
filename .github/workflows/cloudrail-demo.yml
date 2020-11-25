@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: v0.13.2
+      
+      # We're picking a specific test case to run against.
+      - run: cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+      - run: terraform init
+      - run: terraform plan -out=plan.out
+      
+      # Pull and run Cloudrail image
+      - run: docker pull indeni/cloudrail-cli
+      - run: docker run --rm -it -v $PWD:/src -v cloudrail:/indeni indeni/cloudrail-cli \
+          run --tf-plan plan.out --directory . \
+          --api-key $CLOUDRAIL_API_KEY
+
+
+           
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
