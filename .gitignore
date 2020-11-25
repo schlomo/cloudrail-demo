@@ -1,0 +1,5 @@
+.terraform
+*.plan
+plan.out
+plan.json
+cli.log
