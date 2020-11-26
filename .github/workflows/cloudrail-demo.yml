@@ -27,8 +27,10 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
       # Confirm we have the plan file
       - run: stat plan.out
+        working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
           
       # Pull and run Cloudrail image
       - run: docker pull indeni/cloudrail-cli
