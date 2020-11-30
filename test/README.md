@@ -55,6 +55,18 @@ If you'd like to be even more creative, you can apply some of the resources firs
   13. [Violations found in the runtime variable](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/test_runtime_variables)
   14. [Violations found in the TF Variables](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/test_tfvars)
   15. [Use of overlapping CIDR blocks](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/vpcs_in_tgw_no_overlapping_cidr_rule/overlapping_routes)
+  16. [Loadbalancers should not use HTTP for target groups](https://github.com/indeni/cloudrail-demo/tree/v0.3/test/aws/terraform/alb_disallow_target_groups_http_rule/alb_use_http)
+  17. [Cloudfront protocol version should be high](https://github.com/indeni/cloudrail-demo/tree/v0.3/test/aws/terraform/cloudfront_distributiion_list/cloudfront_protocol_version_is_low)
+  18. [EKS logging should be enabled](https://github.com/indeni/cloudrail-demo/tree/v0.3/test/aws/terraform/eks_logging_disable/failure)
+  19. [Default Security Groups, when used, shoudl restrict all traffic](https://github.com/indeni/cloudrail-demo/tree/v0.3/test/aws/terraform/ensure_all_used_default_security_groups_restrict_all_traffic_rule/ec2_simple_deceleration)
+  20. [ES domain is indirectly accessible from public EC2](https://github.com/indeni/cloudrail-demo/tree/v0.3/test/aws/terraform/indirect_public_access_es_domain/public_ec2_points_to_private_domain)
+  21. [VPC Peering should not be allowed in this environment](https://github.com/indeni/cloudrail-demo/tree/v0.3/test/aws/terraform/no_vpc_peering_allowed_rule/simple_vpc_peering_scenario)
+  22. [EKS should not have a publically exposable API](https://github.com/indeni/cloudrail-demo/tree/v0.3/test/aws/terraform/public_access_eks_api/eks_with_public_api)
+  23. [Loadbalancer should not expose port 22 to the internet](https://github.com/indeni/cloudrail-demo/tree/v0.3/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_load_balancer_explicit)
+  24. [S3 buckets should not be accessible from the public and cross-account](https://github.com/indeni/cloudrail-demo/tree/v0.3/test/aws/terraform/s3_acl_disallow_public_and_cross_account/acl_public_all_authenticated_users_canned)
+  25. [VPC Endpoint Gateway should be used for S3 buckets](https://github.com/indeni/cloudrail-demo/tree/v0.3/test/aws/terraform/s3_vpce_gateway_not_used_rule/vpc_do_not_have_direct_s3_service_connection)
+  26. [Cloudfront distribution should encrypt data in transit](https://github.com/indeni/cloudrail-demo/tree/v0.3/test/aws/terraform/test_ensure_cloudfront_distribution_encrypt_in_transit_rule/not_encrypted)
+  27. [VPC Peers should have routes defined with least-access](https://github.com/indeni/cloudrail-demo/tree/v0.3/test/aws/terraform/test_vpc_peering_least_access/routes_too_permissive_wider_than_VPC)
   
   
 </details>
