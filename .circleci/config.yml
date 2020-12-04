@@ -47,3 +47,4 @@ jobs:
           path: test_results/cloudrail-junit.xml
       - store_artifacts:
           path: test_results/cloudrail-junit.xml
+
