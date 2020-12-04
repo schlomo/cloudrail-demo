@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 ## [0.4.23] - (December 4, 2020)
 ### Added
-Rule Added (3):
+Rule Added (6):
 Harden VPCs with the use of VPC Endpoint gateways for the following services:
 - [CR-309] S3
 - [CR-597] DynamoDB for VPCs
