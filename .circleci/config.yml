@@ -15,7 +15,7 @@ jobs:
   tf_plan:
     working_directory: /tmp/test_tf
     docker:
-      - image: hashicorp/terraform:light
+      - image: hashicorp/terraform:0.13.5
     steps:
       - checkout
       - run:
