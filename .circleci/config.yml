@@ -41,3 +41,5 @@ jobs:
           junit-output-file: cloudrail-junit.xml
       - store_test_results:
           path: cloudrail-junit.xml
+      - store_artifacts:
+          path: cloudrail-junit.xml
