@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 Rule Added (6):
 Harden VPCs with the use of VPC Endpoint gateways for the following services:
 - [CR-309] S3
-- [CR-598] DynamoDB for Route Tables
+- [CR-598] DynamoDB
 
 - [CR-516] Ensure API Gateway caching is encrypted
 - [CR-593] Ensure no human IAM users defined
