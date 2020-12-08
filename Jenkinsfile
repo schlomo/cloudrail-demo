@@ -16,7 +16,7 @@ pipeline {
                         terraform init
                         terraform plan -out=plan.out
                  '''
-                }
+
             }
         }
         stage('Cloudrail') {
