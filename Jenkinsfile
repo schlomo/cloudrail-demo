@@ -16,7 +16,7 @@ pipeline {
                         terraform init
                         terraform plan -out=plan.out
                     '''
-                    stash includes: 'plan.out', name: 'PLAN_OUT'
+                    stash includes: 'test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role/plan.out', name: 'PLAN_OUT'
                 }
             }
         }
