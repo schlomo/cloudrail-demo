@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: v0.13.2
+      
+      # We're picking a specific test case to run against.
+      - run: terraform init
+        working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+      - run: terraform plan -out=plan.out
+        working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      # Confirm we have the plan file
+      - run: stat plan.out
+        working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+          
+      # Pull and run Cloudrail image
+      - run: docker pull indeni/cloudrail-cli
+      - run: docker run --rm -v $PWD:/src indeni/cloudrail-cli run --tf-plan /src/plan.out --directory /src --api-key $CLOUDRAIL_API_KEY
+        working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+        env:
+          CLOUDRAIL_API_KEY: ${{ secrets.CLOUDRAIL_API_KEY }}
