@@ -12,6 +12,7 @@ pipeline {
             steps {
                 withAWS(credentials: 'ea752f11-606a-4dba-827d-524b6772d674', region: 'us-east-1'){
                     sh '''
+                        cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
                         terraform init
                         terraform plan -out=plan.out
                     '''
@@ -31,6 +32,7 @@ pipeline {
             }
             steps {
                 sh '''
+                    cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
                     cloudrail run --directory "." --tf-plan "plan.out" \
                       --origin ci --build-link "${env.BUILD_URL}"  --execution-source-identifier "${env.BUILD_NUMBER}"  \
                       --api-key "$CLOUDRAIL_API_KEY" --cloud-account-id "$CLOUD_ACCOUNT_ID"
