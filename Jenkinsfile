@@ -16,6 +16,7 @@ pipeline {
                         terraform init
                         terraform plan -out=plan.out
                     '''
+                    stash includes: 'plan.out', name: 'PLAN_OUT'
                 }
             }
         }
@@ -30,13 +31,16 @@ pipeline {
                 CLOUDRAIL_API_KEY = credentials('bdf6753e-05fe-47b2-9994-67e3ed4f2b9c')
             }
             steps {
+                unstash 'PLAN_OUT'
                 sh '''
                     cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
                     cloudrail run --directory "." --tf-plan "plan.out" \
                       --origin ci --build-link "${BUILD_URL}"  --execution-source-identifier "${BUILD_NUMBER}"  \
-                      --api-key "$CLOUDRAIL_API_KEY" 
+                      --api-key "$CLOUDRAIL_API_KEY" \
+                      --output-format junit --output-file cloudrail_junit_results.xml
 
              '''
+                junit checksName: 'Cloudrail Terraform Security Analysis', testResults: 'cloudrail_junit_results.xml'
             }
         }
     }
