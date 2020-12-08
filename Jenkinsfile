@@ -4,7 +4,10 @@ pipeline {
     stages {
         stage('TF init and apply') {
             agent {
-                docker { image 'hashicorp/terraform:0.13.5' }
+                docker {
+                    image 'hashicorp/terraform:0.13.5'
+                    args '-it --entrypoint=/bin/bash' // See https://stackoverflow.com/questions/52558150/jenkins-pipeline-docker-container-is-not-running
+                }
             }
             environment {
                 AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
@@ -21,7 +24,10 @@ pipeline {
         }
         stage('Cloudrail') {
             agent {
-                docker { image 'indeni/cloudrail-cli:latest' }
+                docker {
+                    image 'indeni/cloudrail-cli:latest'
+                    args '-it --entrypoint=/bin/bash' // See https://stackoverflow.com/questions/52558150/jenkins-pipeline-docker-container-is-not-running
+                }
             }
             environment {
                 CLOUDRAIL_API_KEY = credentials('CLOUDRAIL_API_KEY')
