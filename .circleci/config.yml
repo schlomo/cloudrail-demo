@@ -44,7 +44,7 @@ jobs:
           tf_directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
           junit-output-file: test_results/cloudrail-junit.xml
       - store_test_results:
-          path: test_results/cloudrail-junit.xml
+          path: test_results
       - store_artifacts:
           path: test_results/cloudrail-junit.xml
 
