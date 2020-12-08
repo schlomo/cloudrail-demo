@@ -6,7 +6,7 @@ pipeline {
             agent {
                 docker {
                     image 'hashicorp/terraform:0.13.5'
-                    args '-it --entrypoint=/bin/bash' // See https://stackoverflow.com/questions/52558150/jenkins-pipeline-docker-container-is-not-running
+                    args '-i --entrypoint=' // See https://stackoverflow.com/questions/52558150/jenkins-pipeline-docker-container-is-not-running
                 }
             }
             environment {
@@ -26,7 +26,7 @@ pipeline {
             agent {
                 docker {
                     image 'indeni/cloudrail-cli:latest'
-                    args '-it --entrypoint=/bin/bash' // See https://stackoverflow.com/questions/52558150/jenkins-pipeline-docker-container-is-not-running
+                    args '-i --entrypoint=' // See https://stackoverflow.com/questions/52558150/jenkins-pipeline-docker-container-is-not-running
                 }
             }
             environment {
