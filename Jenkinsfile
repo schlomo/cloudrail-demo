@@ -40,7 +40,7 @@ pipeline {
                       --output-format junit --output-file cloudrail_junit_results.xml
 
              '''
-                junit checksName: 'Cloudrail Terraform Security Analysis', testResults: 'cloudrail_junit_results.xml'
+                junit testResults: 'cloudrail_junit_results.xml'
             }
         }
     }
