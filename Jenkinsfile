@@ -34,7 +34,7 @@ pipeline {
                 sh '''
                     cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
                     cloudrail run --directory "." --tf-plan "plan.out" \
-                      --origin ci --build-link "${env.BUILD_URL}"  --execution-source-identifier "${env.BUILD_NUMBER}"  \
+                      --origin ci --build-link "${BUILD_URL}"  --execution-source-identifier "${BUILD_NUMBER}"  \
                       --api-key "$CLOUDRAIL_API_KEY" --cloud-account-id "$CLOUD_ACCOUNT_ID"
 
              '''
