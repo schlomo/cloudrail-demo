@@ -16,7 +16,7 @@ pipeline {
                         terraform init
                         terraform plan -out=plan.out
                     '''
-                    stash includes: 'test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role/plan.out', name: 'PLAN_OUT'
+                    stash includes: 'test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role/**', name: 'PLAN_OUT'
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
                 unstash 'PLAN_OUT'
                 sh '''
                     cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
-                    cloudrail run --directory "." --tf-plan "plan.out" \
+                    cloudrail run --directory . --tf-plan "plan.out" \
                       --origin ci --build-link "${BUILD_URL}"  --execution-source-identifier "${BUILD_NUMBER}"  \
                       --api-key "$CLOUDRAIL_API_KEY" \
                       --output-format junit --output-file cloudrail_junit_results.xml
