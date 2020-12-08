@@ -37,10 +37,8 @@ pipeline {
                     cloudrail run --directory . --tf-plan "plan.out" \
                       --origin ci --build-link "${BUILD_URL}"  --execution-source-identifier "${BUILD_NUMBER}"  \
                       --api-key "$CLOUDRAIL_API_KEY" \
-                      --output-format junit --output-file cloudrail_junit_results.xml
 
              '''
-                junit testResults: 'test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role/cloudrail_junit_results.xml'
             }
         }
     }
