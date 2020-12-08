@@ -1,7 +1,7 @@
 # This is a sample gitlab CI configuration showing how to use Cloudrail
 # to test Terraform content. It will actually go and test all the cases included in this repo.
 
-# Based on example: https://gitlab.com/gitlab-org/configure/examples/gitlab-terraform-aws/-/blob/master/.gitlab-ci.yml
+# Based on Jenkinsfile: https://gitlab.com/gitlab-org/configure/examples/gitlab-terraform-aws/-/blob/master/.gitlab-ci.yml
 
 image: registry.gitlab.com/gitlab-org/terraform-images/stable:latest
 variables:
