@@ -10,11 +10,12 @@ pipeline {
                 }
             }
             steps {
-                sh(credentials: ['ea752f11-606a-4dba-827d-524b6772d674']) '''
+                withAWS(credentials: 'ea752f11-606a-4dba-827d-524b6772d674', region: 'us-east-1'){
+                    sh '''
                         terraform init
-                        AWS_REGION=us-east terraform plan -out=plan.out
-                 '''
-
+                        terraform plan -out=plan.out
+                    '''
+                }
             }
         }
         stage('Cloudrail') {
