@@ -9,15 +9,10 @@ pipeline {
                     args '-i --entrypoint=' // See https://stackoverflow.com/questions/52558150/jenkins-pipeline-docker-container-is-not-running
                 }
             }
-            environment {
-                AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
-                AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-                AWS_REGION = credentials('AWS_REGION')
-            }
             steps {
-                sh '''
+                sh(credentials: ['ea752f11-606a-4dba-827d-524b6772d674']) '''
                         terraform init
-                        terraform plan -out=plan.out
+                        AWS_REGION=us-east terraform plan -out=plan.out
                  '''
 
             }
@@ -30,7 +25,8 @@ pipeline {
                 }
             }
             environment {
-                CLOUDRAIL_API_KEY = credentials('CLOUDRAIL_API_KEY')
+                CLOUDRAIL_API_KEY = credentials('bdf6753e-05fe-47b2-9994-67e3ed4f2b9c')
+                CLOUD_ACCOUNT_ID = "154724799477"
             }
             steps {
                 sh '''
