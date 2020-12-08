@@ -28,14 +28,13 @@ pipeline {
             }
             environment {
                 CLOUDRAIL_API_KEY = credentials('bdf6753e-05fe-47b2-9994-67e3ed4f2b9c')
-                CLOUD_ACCOUNT_ID = "154724799477"
             }
             steps {
                 sh '''
                     cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
                     cloudrail run --directory "." --tf-plan "plan.out" \
                       --origin ci --build-link "${BUILD_URL}"  --execution-source-identifier "${BUILD_NUMBER}"  \
-                      --api-key "$CLOUDRAIL_API_KEY" --cloud-account-id "$CLOUD_ACCOUNT_ID"
+                      --api-key "$CLOUDRAIL_API_KEY" 
 
              '''
             }
