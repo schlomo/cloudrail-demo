@@ -36,4 +36,4 @@ jobs:
         with:
           tf-plan-file: plan.out
           cloudrail-api-key: ${{ secrets.CLOUDRAIL_API_KEY }}
-        working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+          working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role # Note, this is not part of the GitHub action syntax, but a parameter of the action
