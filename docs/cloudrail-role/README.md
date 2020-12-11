@@ -7,9 +7,9 @@ You will need to create an IAM role in your account in order for Cloudrail be ab
 Use "cloudrail add-cloud-account" command to generate the Terraform and CloudFormation templates to create the IAM Role. You can then use those templates to create the IAM Role in your account.
 ```
 ~ # cloudrail add-cloud-account
-Before adding a cloud account, please make sure to create a role for Cloudrail to assume in your account with SecurityAudit and ViewOnlyAccess policies.
+Make sure you can create a role for Cloudrail to assume in your account with SecurityAudit and ViewOnlyAccess policies.
 
-You can do this manually, or Cloudrail can generate a template for you to use (both CloudFormation and Terraform). Would you like us to generate the cloudrail_viewonly_role template? [YES]: 
+cloudrail_viewonly_role template? [YES]: 
 
 Templates generated. You can use either:
     * Cloudformation: /root/cloudrail-demo/test/aws/terraform/ec2_role_share_rule/private_and_private_ec2_same_role/cloudrail_viewonly_role.yaml

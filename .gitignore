@@ -3,3 +3,6 @@
 plan.out
 plan.json
 cli.log
+*.json
+*.py
+*.pyc
