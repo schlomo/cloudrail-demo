@@ -1,6 +1,0 @@
-[0m[32m[1m
-No problems detected!
-[0m[0m[31m[1m
-0 potential problems detected:
-
-[0m

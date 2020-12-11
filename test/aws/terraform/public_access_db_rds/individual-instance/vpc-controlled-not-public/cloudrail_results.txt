@@ -1,9 +1,0 @@
-
-
-Summary:
-0 Rules Violated:
-  0 Mandated Rules (these are considered FAILURES)
-  0 Advisory Rules (these are considered WARNINGS)
-62 Rules Passed
-
-

@@ -1,0 +1,40 @@
+version: 2.1
+
+orbs:
+  cloudrail: indeni/cloudrail@1.1.0
+
+workflows:
+  main:
+    jobs:
+      - tf_plan
+      - security_check_terraform:
+          requires:
+            - tf_plan
+
+jobs:
+  tf_plan:
+    working_directory: /tmp/test_tf
+    docker:
+      - image: hashicorp/terraform:light
+    steps:
+      - checkout
+      - run:
+          name: terraform init & plan
+          command: |
+            cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+            terraform init -input=false
+            terraform plan -out plan.out
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  security_check_terraform:
+    executor: cloudrail/default
+    steps:
+      - attach_workspace:
+          at: .
+      - cloudrail/scan_terraform:
+          cloud-account-id: $AWS_ACCOUNT_ID
+          cloudrail_api_key: $CLOUDRAIL_API_KEY
+          plan_output_file: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role/plan.out
+          tf_directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
