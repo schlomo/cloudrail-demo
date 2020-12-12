@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_api_gateway_rest_api" "api_gw" {
-  name        = "api-gw-cache-encrypted"
+  name        = "api-gw-cache-non-encrypted"
   description = "API GW test"
 }
 
@@ -55,6 +55,6 @@ resource "aws_api_gateway_method_settings" "api_gw_method_sett" {
   settings {
     logging_level        = "OFF"
     caching_enabled      = true # This is required for cache encryption
-    cache_data_encrypted = true # This is required for cache encryption
+    cache_data_encrypted = false # This is required for cache encryption
   }
 }

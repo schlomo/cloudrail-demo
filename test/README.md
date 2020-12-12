@@ -67,7 +67,7 @@ If you'd like to be even more creative, you can apply some of the resources firs
   25. [VPC Endpoint Gateway should be used for S3 buckets](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/s3_vpce_gateway_not_used_rule/vpc_do_not_have_direct_s3_service_connection)
   26. [Cloudfront distribution should encrypt data in transit](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/test_ensure_cloudfront_distribution_encrypt_in_transit_rule/not_encrypted)
   27. [VPC Peers should have routes defined with least-access](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/test_vpc_peering_least_access/routes_too_permissive_wider_than_VPC)
-  28. [API Gateway caching should be encrypted](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/encrypted_rest_api)
+  28. [API Gateway caching should be encrypted](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/non_encrypted_rest_api_cache_enabled)
   29. [No IAM user should be defined](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/iam_no_human_users_role)
   30. [Redshift clusters should be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_redshift_cluster_created_encrypted_rule)
   31. [Enforce the use of VPC Endpoint gateways for DynamoDB for VPCs](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/dynamodb_vpce_gateway_not_used_rule)
