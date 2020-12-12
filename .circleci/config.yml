@@ -15,7 +15,7 @@ jobs:
   tf_plan:
     working_directory: /tmp/test_tf
     docker:
-      - image: hashicorp/terraform:light
+      - image: hashicorp/terraform:0.13.5
     steps:
       - checkout
       - run:
@@ -33,8 +33,18 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - cloudrail/scan_terraform:
+      - run: # Tests must be in a sub directory, per https://support.circleci.com/hc/en-us/articles/360021624194-Test-summary-troubleshooting
+          name: Create test result directory (if not exists)
+          command: |
+            mkdir test_results
+      - cloudrail/scan_terraform_junit:
           cloud-account-id: $AWS_ACCOUNT_ID
           cloudrail_api_key: $CLOUDRAIL_API_KEY
           plan_output_file: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role/plan.out
           tf_directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+          junit-output-file: test_results/cloudrail-junit.xml
+      - store_test_results:
+          path: test_results
+      - store_artifacts:
+          path: test_results/cloudrail-junit.xml
+
