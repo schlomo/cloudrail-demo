@@ -72,5 +72,16 @@ If you'd like to be even more creative, you can apply some of the resources firs
   30. [Redshift clusters should be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_redshift_cluster_created_encrypted_rule)
   31. [Enforce the use of VPC Endpoint gateways for DynamoDB for VPCs](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/dynamodb_vpce_gateway_not_used_rule)
   32. [Enforce the use of VPC Endpoint gateways for DynamoDB for Route Tables](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/dynamodb_vpce_gateway_route_table_exposure_rule)
-  
+  33. [ALB should user HTTPS and not HTTP](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_alb_is_using_https)
+  34. [DocDB clusters should be set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_docdb_clusters_encrypted_rule)
+  35. [DynamodDB DAX clusters should be set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_dax_clusters_encrypted_rule)
+  36. [Elasticsearch domains should be set to be encrypted node-to-node](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/es_encrypt_node_to_node_rule)
+  37. [S3 buckets should be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_s3_buckets_encrypted_rule)
+  38. [CloudTrail trails being created should be encrypted at rest using KMS](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_cloudtrail_encryption_kms_rule)
+  39. [Athena Workgroup query results should be encrypted at rest using KMS CMK](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_athena_workgroups_results_encrypted_rule)
+  40. [Cloudwatch Log Groups should be encrypted at rest using KMS CMK](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_cloud_watch_log_groups_encrypted_rule)
+  41. [RDS instances should be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_rds_encrypt_at_rest_rule)
+  42. [Only private AMIs should be used](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/allow_only_private_amis_rule)
+
+
 </details>
