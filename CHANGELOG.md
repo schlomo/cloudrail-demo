@@ -11,3 +11,4 @@ For changes made in previous versions:
 - [V0.3](https://github.com/indeni/cloudrail-demo/blob/v0.3/CHANGELOG.md)
 - [V0.2](https://github.com/indeni/cloudrail-demo/blob/v0.2/CHANGELOG.md)
 - [V0.1](https://github.com/indeni/cloudrail-demo/blob/v0.1/CHANGELOG.md)
+
