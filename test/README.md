@@ -82,6 +82,7 @@ If you'd like to be even more creative, you can apply some of the resources firs
   40. [Cloudwatch Log Groups should be encrypted at rest using KMS CMK](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_cloud_watch_log_groups_encrypted_rule)
   41. [RDS instances should be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_rds_encrypt_at_rest_rule)
   42. [Only private AMIs should be used](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/allow_only_private_amis_rule)
-
+  43. [Codebuild projects should be set to be encrypted at rest with customer-managed CMK](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_code_build_projects_encrypted_rule)
+  44. [SQS queues should be set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_sqs_queues_encrypted_at_rest_rule)
 
 </details>
