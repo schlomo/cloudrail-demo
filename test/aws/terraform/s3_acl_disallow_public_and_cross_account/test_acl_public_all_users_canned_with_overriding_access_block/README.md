@@ -1,0 +1,1 @@
+In this case, the public access block was applied, and so Cloudrail was able to determine that the bucket is not publicly accessible.
