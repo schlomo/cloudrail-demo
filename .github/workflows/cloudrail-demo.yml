@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: hashicorp/setup-terraform@v1
+      - uses: hashicorp/setup-terraform@v1.2.1
         with:
           terraform_version: v0.13.2
       
@@ -32,9 +32,9 @@ jobs:
       - run: stat plan.out
         working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
           
-      # Pull and run Cloudrail image
-      - run: docker pull indeni/cloudrail-cli
-      - run: docker run --rm -v $PWD:/src indeni/cloudrail-cli run --tf-plan /src/plan.out --directory /src --origin ci --build-link "https://github.com/indeni/cloudrail-demo/actions/runs/$GITHUB_RUN_ID"  --execution-source-identifier "$GITHUB_REF - $GITHUB_RUN_NUMBER"  --api-key $CLOUDRAIL_API_KEY
-        working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
-        env:
-          CLOUDRAIL_API_KEY: ${{ secrets.CLOUDRAIL_API_KEY }}
+      - uses: indeni/cloudrail-run-ga@v1.0
+        with:
+          tf-plan-file: plan.out
+          cloudrail-api-key: ${{ secrets.CLOUDRAIL_API_KEY }}
+          cloud-account-id: 154724799477
+          working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role # Note, this is not part of the GitHub action syntax, but a parameter of the action
