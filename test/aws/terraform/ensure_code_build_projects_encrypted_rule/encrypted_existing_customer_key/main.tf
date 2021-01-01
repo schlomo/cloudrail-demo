@@ -2,10 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-data "aws_kms_key" "by_alias" {
-  key_id = "alias/test-codebuild"
-}
-
 resource "aws_kms_key" "codebuild" {
   description             = "KMS key for Codebuild project"
   deletion_window_in_days = 7
@@ -37,7 +33,7 @@ resource "aws_codebuild_project" "project-cloudrail-test" {
   build_timeout  = "5"
   queued_timeout = "5"
   service_role   = aws_iam_role.codebuild.arn
-  encryption_key = data.aws_kms_key.by_alias.arn
+  encryption_key = aws_kms_key.codebuild.arn
 
   artifacts {
     type = "NO_ARTIFACTS"
