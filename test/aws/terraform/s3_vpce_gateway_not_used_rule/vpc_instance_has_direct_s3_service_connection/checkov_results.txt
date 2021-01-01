@@ -1,0 +1,104 @@
+
+       _               _              
+   ___| |__   ___  ___| | _______   __
+  / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+ | (__| | | |  __/ (__|   < (_) \ V / 
+  \___|_| |_|\___|\___|_|\_\___/ \_/  
+                                      
+By bridgecrew.io | version: 1.0.684 
+
+terraform scan results:
+
+Passed checks: 9, Failed checks: 7, Skipped checks: 0
+
+Check: CKV_AWS_8: "Ensure all data stored in the Launch configuration EBS is securely encrypted"
+	FAILED for resource: aws_instance.test
+	File: /main.tf:98-103
+	Guide: https://docs.bridgecrew.io/docs/general_13
+
+		98  | resource "aws_instance" "test" {
+		99  |   ami = data.aws_ami.ubuntu.id
+		100 |   instance_type = "t2.micro"
+		101 |   vpc_security_group_ids = [aws_security_group.allow-public-outbound-sg.id]
+		102 |   subnet_id = aws_subnet.public-subnet.id
+		103 | }
+
+
+Check: CKV_AWS_79: "Ensure Instance Metadata Service Version 1 is not enabled"
+	FAILED for resource: aws_instance.test
+	File: /main.tf:98-103
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_general_31
+
+		98  | resource "aws_instance" "test" {
+		99  |   ami = data.aws_ami.ubuntu.id
+		100 |   instance_type = "t2.micro"
+		101 |   vpc_security_group_ids = [aws_security_group.allow-public-outbound-sg.id]
+		102 |   subnet_id = aws_subnet.public-subnet.id
+		103 | }
+
+
+Check: CKV_AWS_19: "Ensure all data stored in the S3 bucket is securely encrypted at rest"
+	FAILED for resource: aws_s3_bucket.public-bucket
+	File: /main.tf:105-111
+	Guide: https://docs.bridgecrew.io/docs/s3_14-data-encrypted-at-rest
+
+		105 | resource "aws_s3_bucket" "public-bucket" {
+		106 |   bucket = "public-bucket"
+		107 |   acl = "public-read"
+		108 |   tags = {
+		109 |     Name        = "public-bucket"
+		110 |   }
+		111 | }
+
+Check: CKV_AWS_20: "S3 Bucket has an ACL defined which allows public READ access."
+	FAILED for resource: aws_s3_bucket.public-bucket
+	File: /main.tf:105-111
+	Guide: https://docs.bridgecrew.io/docs/s3_1-acl-read-permissions-everyone
+
+		105 | resource "aws_s3_bucket" "public-bucket" {
+		106 |   bucket = "public-bucket"
+		107 |   acl = "public-read"
+		108 |   tags = {
+		109 |     Name        = "public-bucket"
+		110 |   }
+		111 | }
+
+Check: CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+	FAILED for resource: aws_s3_bucket.public-bucket
+	File: /main.tf:105-111
+	Guide: https://docs.bridgecrew.io/docs/s3_13-enable-logging
+
+		105 | resource "aws_s3_bucket" "public-bucket" {
+		106 |   bucket = "public-bucket"
+		107 |   acl = "public-read"
+		108 |   tags = {
+		109 |     Name        = "public-bucket"
+		110 |   }
+		111 | }
+
+Check: CKV_AWS_52: "Ensure S3 bucket has MFA delete enabled"
+	FAILED for resource: aws_s3_bucket.public-bucket
+	File: /main.tf:105-111
+
+		105 | resource "aws_s3_bucket" "public-bucket" {
+		106 |   bucket = "public-bucket"
+		107 |   acl = "public-read"
+		108 |   tags = {
+		109 |     Name        = "public-bucket"
+		110 |   }
+		111 | }
+
+Check: CKV_AWS_21: "Ensure all data stored in the S3 bucket have versioning enabled"
+	FAILED for resource: aws_s3_bucket.public-bucket
+	File: /main.tf:105-111
+	Guide: https://docs.bridgecrew.io/docs/s3_16-enable-versioning
+
+		105 | resource "aws_s3_bucket" "public-bucket" {
+		106 |   bucket = "public-bucket"
+		107 |   acl = "public-read"
+		108 |   tags = {
+		109 |     Name        = "public-bucket"
+		110 |   }
+		111 | }
+
+

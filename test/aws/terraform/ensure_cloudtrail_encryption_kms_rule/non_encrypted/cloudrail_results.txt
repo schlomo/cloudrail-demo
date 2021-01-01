@@ -1,0 +1,38 @@
+
+WARNINGs found:
+Rule: Ensure that the private bucket's policy reference a VPC Endpoint as source
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.foo] (main.tf:18)
+     Violating Resource: [aws_s3_bucket.foo]  (main.tf:18)
+
+     Evidence:
+             | ~Bucket aws_s3_bucket.foo
+             | is accessible via VPC endpoint vpce-0d03e8972ac4910df
+             | in VPC sfdc-somestage-consoleme
+             | with a policy that is not restricting requests sourced from a VPC Endpoint.
+
+
+-----------------------------------------------
+Rule: Ensure S3 buckets are set to be encrypted at rest
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.foo] (main.tf:18)
+     Violating Resource: [aws_s3_bucket.foo]  (main.tf:18)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.foo is not set to be encrypted at rest
+
+
+-----------------------------------------------
+Rule: Ensure CloudTrail trails are set to be encrypted at rest using SSE-KMS
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_cloudtrail.foobar] (main.tf:11)
+     Violating Resource: [aws_cloudtrail.foobar]  (main.tf:11)
+
+     Evidence:
+             | The CloudTrail trail aws_cloudtrail.foobar is not set to use encryption at rest with KMS CMK
+
+
+-----------------------------------------------

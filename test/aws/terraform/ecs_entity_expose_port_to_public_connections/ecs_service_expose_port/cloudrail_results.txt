@@ -1,0 +1,85 @@
+
+WARNINGs found:
+Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to port 1521 (ORACLE DB DEFAULT)
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_ecs_service.web-server-service] (main.tf:118)
+     Violating Resource: [aws_security_group.sg]  (main.tf:68)
+
+     Evidence:
+         Internet
+             | Subnet aws_subnet.main-public-subnet has Internet Gateway
+             | Instance aws_ecs_service.web-server-service is on aws_subnet.main-public-subnet
+             | Subnet routes traffic from instance to Internet Gateway
+             | Subnet uses NACL aws_network_acl.public-subnet-nacl which allows port 1521
+             | Instance uses Security Group ['aws_security_group.sg']
+             | Security Group allows port 1521
+         Instance
+
+
+-----------------------------------------------
+Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to port 2483 (ORACLE DB)
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_ecs_service.web-server-service] (main.tf:118)
+     Violating Resource: [aws_security_group.sg]  (main.tf:68)
+
+     Evidence:
+         Internet
+             | Subnet aws_subnet.main-public-subnet has Internet Gateway
+             | Instance aws_ecs_service.web-server-service is on aws_subnet.main-public-subnet
+             | Subnet routes traffic from instance to Internet Gateway
+             | Subnet uses NACL aws_network_acl.public-subnet-nacl which allows port 2483
+             | Instance uses Security Group ['aws_security_group.sg']
+             | Security Group allows port 2483
+         Instance
+
+
+-----------------------------------------------
+Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to port 2484 (ORACLE DB SSL)
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_ecs_service.web-server-service] (main.tf:118)
+     Violating Resource: [aws_security_group.sg]  (main.tf:68)
+
+     Evidence:
+         Internet
+             | Subnet aws_subnet.main-public-subnet has Internet Gateway
+             | Instance aws_ecs_service.web-server-service is on aws_subnet.main-public-subnet
+             | Subnet routes traffic from instance to Internet Gateway
+             | Subnet uses NACL aws_network_acl.public-subnet-nacl which allows port 2484
+             | Instance uses Security Group ['aws_security_group.sg']
+             | Security Group allows port 2484
+         Instance
+
+
+-----------------------------------------------
+Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to port 3306 (MYSQL)
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_ecs_service.web-server-service] (main.tf:118)
+     Violating Resource: [aws_security_group.sg]  (main.tf:68)
+
+     Evidence:
+         Internet
+             | Subnet aws_subnet.main-public-subnet has Internet Gateway
+             | Instance aws_ecs_service.web-server-service is on aws_subnet.main-public-subnet
+             | Subnet routes traffic from instance to Internet Gateway
+             | Subnet uses NACL aws_network_acl.public-subnet-nacl which allows port 3306
+             | Instance uses Security Group ['aws_security_group.sg']
+             | Security Group allows port 3306
+         Instance
+
+
+-----------------------------------------------
+Rule: Ensure every security groups rule has a description
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_security_group.sg] (main.tf:68)
+     Violating Resource: [aws_security_group.sg]  (main.tf:68)
+
+     Evidence:
+             | This rule evaluated aws_security_group.sg only, it is not a context-aware rule.
+
+
+-----------------------------------------------

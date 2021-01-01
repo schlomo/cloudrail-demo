@@ -1,0 +1,26 @@
+
+WARNINGs found:
+Rule: Ensure that the private bucket's policy reference a VPC Endpoint as source
+ - 2 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.kms-s3-encrypted] (main.tf:27)
+     Violating Resource: [aws_s3_bucket.kms-s3-encrypted]  (main.tf:27)
+
+     Evidence:
+             | ~Bucket aws_s3_bucket.kms-s3-encrypted
+             | is accessible via VPC endpoint vpce-0d03e8972ac4910df
+             | in VPC sfdc-somestage-consoleme
+             | with a policy that is not restricting requests sourced from a VPC Endpoint.
+
+
+   - Exposed Resource: [aws_s3_bucket.sse-s3-encrypted] (main.tf:5)
+     Violating Resource: [aws_s3_bucket.sse-s3-encrypted]  (main.tf:5)
+
+     Evidence:
+             | ~Bucket aws_s3_bucket.sse-s3-encrypted
+             | is accessible via VPC endpoint vpce-0d03e8972ac4910df
+             | in VPC sfdc-somestage-consoleme
+             | with a policy that is not restricting requests sourced from a VPC Endpoint.
+
+
+-----------------------------------------------

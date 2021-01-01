@@ -1,0 +1,62 @@
+
+WARNINGs found:
+Rule: Ensure Athena Workgroup query results are set to be encrypted at rest
+ - 2 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_athena_workgroup.cloudrail_wg] (main.tf:18)
+     Violating Resource: [aws_athena_workgroup.cloudrail_wg]  (main.tf:18)
+
+     Evidence:
+             | The Athena Workgroup aws_athena_workgroup.cloudrail_wg is not set to encrypt at rest the query results
+
+
+   - Exposed Resource: [aws_athena_workgroup.cloudrail_wg_2] (main.tf:45)
+     Violating Resource: [aws_athena_workgroup.cloudrail_wg_2]  (main.tf:45)
+
+     Evidence:
+             | The Athena Workgroup aws_athena_workgroup.cloudrail_wg_2 is not set to encrypt at rest the query results
+
+
+-----------------------------------------------
+Rule: Ensure that the private bucket's policy reference a VPC Endpoint as source
+ - 2 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.cloudrail_anthena_bucket] (main.tf:5)
+     Violating Resource: [aws_s3_bucket.cloudrail_anthena_bucket]  (main.tf:5)
+
+     Evidence:
+             | ~Bucket aws_s3_bucket.cloudrail_anthena_bucket
+             | is accessible via VPC endpoint vpce-0d03e8972ac4910df
+             | in VPC sfdc-somestage-consoleme
+             | with a policy that is not restricting requests sourced from a VPC Endpoint.
+
+
+   - Exposed Resource: [aws_s3_bucket.cloudrail_anthena_bucket_2] (main.tf:32)
+     Violating Resource: [aws_s3_bucket.cloudrail_anthena_bucket_2]  (main.tf:32)
+
+     Evidence:
+             | ~Bucket aws_s3_bucket.cloudrail_anthena_bucket_2
+             | is accessible via VPC endpoint vpce-0d03e8972ac4910df
+             | in VPC sfdc-somestage-consoleme
+             | with a policy that is not restricting requests sourced from a VPC Endpoint.
+
+
+-----------------------------------------------
+Rule: Ensure S3 buckets are set to be encrypted at rest
+ - 2 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.cloudrail_anthena_bucket] (main.tf:5)
+     Violating Resource: [aws_s3_bucket.cloudrail_anthena_bucket]  (main.tf:5)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.cloudrail_anthena_bucket is not set to be encrypted at rest
+
+
+   - Exposed Resource: [aws_s3_bucket.cloudrail_anthena_bucket_2] (main.tf:32)
+     Violating Resource: [aws_s3_bucket.cloudrail_anthena_bucket_2]  (main.tf:32)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.cloudrail_anthena_bucket_2 is not set to be encrypted at rest
+
+
+-----------------------------------------------

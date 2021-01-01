@@ -1,0 +1,38 @@
+
+WARNINGs found:
+Rule: Ensure all used default security groups of every VPC restrict all traffic
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_redshift_cluster.test] (main.tf:5)
+     Violating Resource: [default]  (Not found in TF)
+
+     Evidence:
+         VPC vpc-00f7a3e5b1a2d87f0
+             | eni-pseudo-dcbb58ab-3852-433b-babb-aaaa7f3ed073 uses ENI aws_redshift_cluster.test
+             | The ENI is secured by default Security Group default and allow all traffic
+
+
+-----------------------------------------------
+Rule: Ensure the default VPC is not used
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_redshift_cluster.test] (main.tf:5)
+     Violating Resource: [aws_redshift_cluster.test]  (main.tf:5)
+
+     Evidence:
+         Default VPC
+             | aws_redshift_cluster.test is defined within the default VPC.
+
+
+-----------------------------------------------
+Rule: Ensure Redshift clusters being created are set to be encrypted at rest
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_redshift_cluster.test] (main.tf:5)
+     Violating Resource: [aws_redshift_cluster.test]  (main.tf:5)
+
+     Evidence:
+             | "The Redshift cluster aws_redshift_cluster.test is not set to use encryption at rest"
+
+
+-----------------------------------------------

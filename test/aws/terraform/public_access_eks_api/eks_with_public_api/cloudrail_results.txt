@@ -1,0 +1,41 @@
+
+WARNINGs found:
+Rule: Ensure EKS API is not publicly accessible
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [module.my-cluster.aws_eks_cluster.this[0]] (.terraform/modules/my-cluster/cluster.tf:9)
+     Violating Resource: [aws_security_group.cluster]  (main.tf:35)
+
+     Evidence:
+         Internet
+             | Eks Cluster module.my-cluster.aws_eks_cluster.this[0] is on VPC module.vpc.aws_vpc.this[0]
+             | Master is protected by Security-Groups sg-pseudo-176fbbe0-11b7-4a41-9cfa-80242539c8c5, aws_security_group.cluster
+             | Cluster uses subnets module.vpc.aws_subnet.public[0], module.vpc.aws_subnet.public[1], module.vpc.aws_subnet.public[2]
+             | Subnets rely on NACL`s nacl-pseudo-c60baff2-bb3a-44d1-9750-d5162dd5f965, nacl-pseudo-c60baff2-bb3a-44d1-9750-d5162dd5f965, nacl-pseudo-c60baff2-bb3a-44d1-9750-d5162dd5f965
+             | They also rely on Routing-Tables module.vpc.aws_route_table.public[0], module.vpc.aws_route_table.public[0], module.vpc.aws_route_table.public[0]
+             | Cluster is set to be publicly accessible
+
+
+-----------------------------------------------
+Rule: Ensure IMDSv2 is used and IMDSv1 is disabled
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [module.my-cluster.aws_launch_configuration.workers[0]] (.terraform/modules/my-cluster/workers.tf:157)
+     Violating Resource: [module.my-cluster.aws_launch_configuration.workers[0]]  (.terraform/modules/my-cluster/workers.tf:157)
+
+     Evidence:
+             | The Launch Configuration module.my-cluster.aws_launch_configuration.workers[0] is allowing IMDSv1
+
+
+-----------------------------------------------
+Rule: Ensure every security groups rule has a description
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_security_group.cluster] (main.tf:35)
+     Violating Resource: [aws_security_group.cluster]  (main.tf:35)
+
+     Evidence:
+             | This rule evaluated aws_security_group.cluster only, it is not a context-aware rule.
+
+
+-----------------------------------------------

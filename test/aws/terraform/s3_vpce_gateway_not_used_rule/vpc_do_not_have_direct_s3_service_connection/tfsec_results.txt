@@ -1,0 +1,75 @@
+
+Problem 1
+
+  [AWS009][WARNING] Resource 'aws_security_group.allow-public-outbound-sg' defines a fully open egress security group.
+  /src/main.tf:32
+
+      29 |     from_port   = 443
+      30 |     to_port     = 443
+      31 |     protocol    = "tcp"
+      32 |     cidr_blocks = ["0.0.0.0/0"]
+      33 |   }
+      34 | 
+      35 | }
+
+   See https://tfsec.dev/docs/aws/AWS009/ for more information. 
+
+Problem 2
+
+  [AWS001][WARNING] Resource 'aws_s3_bucket.public-bucket' has an ACL which allows public access.
+  /src/main.tf:62
+
+      59 | 
+      60 | resource "aws_s3_bucket" "public-bucket" {
+      61 |   bucket = "public-bucket"
+      62 |   acl = "public-read"
+      63 |   tags = {
+      64 |     Name        = "public-bucket"
+      65 |   }
+
+   See https://tfsec.dev/docs/aws/AWS001/ for more information. 
+
+Problem 3
+
+  [AWS002][ERROR] Resource 'aws_s3_bucket.public-bucket' does not have logging enabled.
+  /src/main.tf:60-66
+
+      57 |   subnet_id = aws_subnet.public-subnet.id
+      58 | }
+      59 | 
+      60 | resource "aws_s3_bucket" "public-bucket" {
+      61 |   bucket = "public-bucket"
+      62 |   acl = "public-read"
+      63 |   tags = {
+      64 |     Name        = "public-bucket"
+      65 |   }
+      66 | }
+
+   See https://tfsec.dev/docs/aws/AWS002/ for more information. 
+
+Problem 4
+
+  [AWS017][ERROR] Resource 'aws_s3_bucket.public-bucket' defines an unencrypted S3 bucket (missing server_side_encryption_configuration block).
+  /src/main.tf:60-66
+
+      57 |   subnet_id = aws_subnet.public-subnet.id
+      58 | }
+      59 | 
+      60 | resource "aws_s3_bucket" "public-bucket" {
+      61 |   bucket = "public-bucket"
+      62 |   acl = "public-read"
+      63 |   tags = {
+      64 |     Name        = "public-bucket"
+      65 |   }
+      66 | }
+
+   See https://tfsec.dev/docs/aws/AWS017/ for more information. 
+
+  disk i/o             64.14401ms
+  parsing HCL          16.789µs
+  evaluating values    722.241µs
+  running checks       53.147305ms
+  files loaded         1
+
+4 potential problems detected.
+

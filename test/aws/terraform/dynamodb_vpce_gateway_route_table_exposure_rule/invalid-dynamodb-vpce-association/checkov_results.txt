@@ -1,0 +1,64 @@
+
+       _               _              
+   ___| |__   ___  ___| | _______   __
+  / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+ | (__| | | |  __/ (__|   < (_) \ V / 
+  \___|_| |_|\___|\___|_|\_\___/ \_/  
+                                      
+By bridgecrew.io | version: 1.0.684 
+
+terraform scan results:
+
+Passed checks: 6, Failed checks: 3, Skipped checks: 0
+
+Check: CKV_AWS_8: "Ensure all data stored in the Launch configuration EBS is securely encrypted"
+	FAILED for resource: aws_instance.test
+	File: /main.tf:109-114
+	Guide: https://docs.bridgecrew.io/docs/general_13
+
+		109 | resource "aws_instance" "test" {
+		110 |   ami = data.aws_ami.ubuntu.id
+		111 |   instance_type = "t2.micro"
+		112 |   vpc_security_group_ids = [aws_security_group.allow-public-outbound-sg.id]
+		113 |   subnet_id = aws_subnet.private-subnet.id
+		114 | }
+
+
+Check: CKV_AWS_79: "Ensure Instance Metadata Service Version 1 is not enabled"
+	FAILED for resource: aws_instance.test
+	File: /main.tf:109-114
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_general_31
+
+		109 | resource "aws_instance" "test" {
+		110 |   ami = data.aws_ami.ubuntu.id
+		111 |   instance_type = "t2.micro"
+		112 |   vpc_security_group_ids = [aws_security_group.allow-public-outbound-sg.id]
+		113 |   subnet_id = aws_subnet.private-subnet.id
+		114 | }
+
+
+Check: CKV_AWS_28: "Ensure Dynamodb point in time recovery (backup) is enabled"
+	FAILED for resource: aws_dynamodb_table.basic-dynamodb-table
+	File: /main.tf:116-133
+	Guide: https://docs.bridgecrew.io/docs/general_6
+
+		116 | resource "aws_dynamodb_table" "basic-dynamodb-table" {
+		117 |   name           = "GameScores"
+		118 |   billing_mode   = "PROVISIONED"
+		119 |   read_capacity  = 5
+		120 |   write_capacity = 5
+		121 |   hash_key       = "UserId"
+		122 |   range_key      = "GameTitle"
+		123 | 
+		124 |   attribute {
+		125 |     name = "UserId"
+		126 |     type = "S"
+		127 |   }
+		128 | 
+		129 |   attribute {
+		130 |     name = "GameTitle"
+		131 |     type = "S"
+		132 |   }
+		133 | }
+
+

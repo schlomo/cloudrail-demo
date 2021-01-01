@@ -1,0 +1,29 @@
+
+WARNINGs found:
+Rule: Ensure all used default security groups of every VPC restrict all traffic
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_redshift_cluster.test] (main.tf:28)
+     Violating Resource: [sg-pseudo-b589d319-e268-40d2-a6d1-e4314d05d068]  (Not found in TF)
+
+     Evidence:
+         VPC aws_vpc.nondefault
+             | eni-pseudo-8f13816a-a9b1-49d9-8e7a-54f219037b72 uses ENI aws_redshift_cluster.test
+             | The ENI is secured by default Security Group sg-pseudo-b589d319-e268-40d2-a6d1-e4314d05d068 and allow all traffic
+
+
+-----------------------------------------------
+Rule: Ensure Redshift clusters being created are set to be encrypted at rest
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_redshift_cluster.test] (main.tf:28)
+     Violating Resource: [aws_redshift_cluster.test]  (main.tf:28)
+
+     Evidence:
+             | "The Redshift cluster aws_redshift_cluster.test is not set to use encryption at rest"
+
+
+-----------------------------------------------
+
+Cloudrail has listed "pseudo" objects in the above results.
+These are resources that don't exist yet, or don't show in the Terraform input, but we know will be created in the real live environment.

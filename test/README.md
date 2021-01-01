@@ -10,22 +10,37 @@ To try any of these test cases, go to the specific test case's directory, create
 ~/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_ec2_explicit # cloudrail run
 Enter terraform plan file path: /root/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_ec2_explicit/plan.out
 Enter root directory of the .tf files. (Leave empty to use the plan path) []: 
-(  ●   ) Uploading Terraform plan file to the Cloudrail Service
-Successfully uploaded Terraform plan file, your job id is: f0366780-de4c-477c-8646-8b2c50e74096
+✔ Uploading Terraform plan file to the Cloudrail Service...vice...
+✔ Successfully uploaded Terraform plan file, your job id is: f2d1e613-9f1b-4d9f-93c8-cdfe5ec0c079
+✔ Spinning up a secure, isolated container for analysis...ysis...
+✔ Running a customized Terraform show using a customized version of Terraform to produce a detailed resource map. This is the longest phase of the evaluation, as it includes downloading Terraform plugins and providers, as well as a re-calculation of the plan...
+✔ Building simulated graph model, representing how the cloud account will look like if the plan were to be applied...
+✔ Running context-aware rules...ules...
+✔ Returning results, almost done!t done!
+✔ Analysis complete, fetching results...ults...
 
 WARNINGs found:
-  Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to port 22 (SSH)
-     - Rule Description:
-     - Ensure no used security groups allow inbound connections from 0.0.0.0/0 or ::/0 to port 22 (SSH). security issue=1 are in used and exposing instances to SSH from the Internet
-       - SG permission: from_port=22, to_port=22, ip_protocol=tcp, property_type=SecurityGroupRulePropertyType.IP_RANGES, property_value=0.0.0.0/0 is exposing ENI id=eni-fk-41f30735-36f1-4612-a8b9-2459da3d7ef7 owned by=Instance Name: PublicAccessSecurityGroupsPort test - use case 2 VPC Name: PublicAccessSecurityGroupsPort test - use case 2 Public IP(s): ['0.0.0.0'] Private IP(s): 10.10.0.0 to SSH from the Internet
+Rule: Ensure used routing tables for VPC peering are "least access"
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_vpc.vpc2] (main.tf:35)
+     Violating Resource: [aws_route_table.subnet2_1]  (main.tf:162)
+
+     Evidence:
+         VPC Peer aws_vpc.vpc1.id
+             | VPC Peer uses CIDR block aws_vpc.vpc1.id
+             | Local VPC's routing table aws_route_table.subnet2_1 has a route matching CIDR block
+             | Local VPC is potentially overexposing resources peering VPC
+         Local VPC aws_vpc.vpc2.id
+
+
+-----------------------------------------------
 
 Summary:
-X cloud resources analyzed by Cloudrail
-Y cloud resources identified as managed by Terraform
-
-1 rule violations found:
-  1 WARNINGs
-  24 PASS
+1 Rules Violated:
+  0 Mandated Rules (these are considered FAILURES)
+  1 Advisory Rules (these are considered WARNINGS)
+83 Rules Passed
 
 
 
@@ -51,16 +66,16 @@ If you'd like to be even more creative, you can apply some of the resources firs
   9. [RDS database found to be publicly accessible](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/public_access_db_rds/aurora/vpc-controlled-public)
   10. [Redshift cluster public access identified](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/public_access_db_redshift_rule/redshift_with_public_access)
   11. [Public access to port 22 found](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/public_access_security_groups_port_rule/bastion_server)
-  12. [Use of Default VPC identified](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/test_disallow_default_vpc/deploy_ec2_to_default_vpc)
-  13. [Violations found in the runtime variable](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/test_runtime_variables)
-  14. [Violations found in the TF Variables](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/test_tfvars)
+  12. [Use of Default VPC identified](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/disallow_default_vpc/deploy_ec2_to_default_vpc)
+  13. [Violations found in the runtime variable](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/runtime_variables)
+  14. [Violations found in the TF Variables](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/tfvars)
   15. [Use of overlapping CIDR blocks](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/vpcs_in_tgw_no_overlapping_cidr_rule/overlapping_routes)
   16. [Loadbalancers should not use HTTP for target groups](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/alb_disallow_target_groups_http_rule/alb_use_http)
   17. [Cloudfront protocol version should be high](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/cloudfront_distributiion_list/cloudfront_protocol_version_is_low)
   18. [EKS logging should be enabled](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/eks_logging_disable/failure)
   19. [Default Security Groups, when used, shoudl restrict all traffic](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_all_used_default_security_groups_restrict_all_traffic_rule/ec2_simple_deceleration)
   20. [ES domain is indirectly accessible from public EC2](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/indirect_public_access_es_domain/public_ec2_points_to_private_domain)
-  21. [VPC Peering should not be allowed in this environment](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/no_vpc_peering_allowed_rule/simple_vpc_peering_scenario)
+  21. [Ensure used routing tables for VPC peering are "least access"](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/over_exposed_vpc_peering/simple_vpc_peering_scenario)
   22. [EKS should not have a publically exposable API](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/public_access_eks_api/eks_with_public_api)
   23. [Loadbalancer should not expose port 22 to the internet](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_load_balancer_explicit)
   24. [S3 buckets should not be accessible from the public and cross-account](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/s3_acl_disallow_public_and_cross_account/acl_public_all_authenticated_users_canned)

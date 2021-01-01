@@ -1,0 +1,30 @@
+
+WARNINGs found:
+Rule: Ensure all used default security groups of every VPC restrict all traffic
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_lb.alb_test] (main.tf:60)
+     Violating Resource: [sg-pseudo-5ab7896a-c007-4b50-9a05-113606164cb4]  (Not found in TF)
+
+     Evidence:
+         VPC aws_vpc.vpc1
+             | eni-pseudo-ce954f39-e75a-477a-b967-ccbd78f9bf8d uses ENI aws_lb.alb_test
+             | The ENI is secured by default Security Group sg-pseudo-5ab7896a-c007-4b50-9a05-113606164cb4 and allow all traffic
+
+
+-----------------------------------------------
+Rule: Ensure ALB is using HTTPS and not HTTP
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_lb_listener.lb_listener_test] (main.tf:65)
+     Violating Resource: [aws_lb_listener.lb_listener_test]  (main.tf:65)
+
+     Evidence:
+         Load Balancer
+             | aws_lb_listener.lb_listener_test Load Balancer Listener is configured to use protocol HTTP on port: 80
+
+
+-----------------------------------------------
+
+Cloudrail has listed "pseudo" objects in the above results.
+These are resources that don't exist yet, or don't show in the Terraform input, but we know will be created in the real live environment.

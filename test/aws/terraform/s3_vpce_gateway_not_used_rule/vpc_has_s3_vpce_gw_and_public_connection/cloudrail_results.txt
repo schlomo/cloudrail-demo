@@ -1,0 +1,71 @@
+
+WARNINGs found:
+Rule: Ensure IMDSv2 is used and IMDSv1 is disabled
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.test] (main.tf:112)
+     Violating Resource: [aws_instance.test]  (main.tf:112)
+
+     Evidence:
+             | The EC2 aws_instance.test is allowing IMDSv1
+
+
+-----------------------------------------------
+Rule: Ensure VPC Endpoint for DynamoDB is enabled in all route tables in use in a VPC
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_vpc.main] (main.tf:9)
+     Violating Resource: [aws_route_table.public-rtb]  (main.tf:38)
+
+     Evidence:
+             | The VPC ~aws_vpc.main~ has a DYNAMODB Endpoint Gateway, but ~aws_subnet.public-subnet~ uses ~aws_route_table.public-rtb~, which does not have a route to the endpoint gateway
+
+
+-----------------------------------------------
+Rule: Ensure that the private bucket's policy reference a VPC Endpoint as source
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.public-bucket] (main.tf:119)
+     Violating Resource: [aws_s3_bucket.public-bucket]  (main.tf:119)
+
+     Evidence:
+             | ~Bucket aws_s3_bucket.public-bucket
+             | is accessible via VPC endpoint vpce-0d03e8972ac4910df
+             | in VPC sfdc-somestage-consoleme
+             | with a policy that is not restricting requests sourced from a VPC Endpoint.
+
+
+-----------------------------------------------
+Rule: Ensure S3 buckets are set to be encrypted at rest
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.public-bucket] (main.tf:119)
+     Violating Resource: [aws_s3_bucket.public-bucket]  (main.tf:119)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.public-bucket is not set to be encrypted at rest
+
+
+-----------------------------------------------
+Rule: Allow only private AMIs to be used
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.test] (main.tf:112)
+     Violating Resource: [ami-099e921e69356cf89]  (Not found in TF)
+
+     Evidence:
+             | The EC2 aws_instance.test uses AMI ami-099e921e69356cf89, which is public
+
+
+-----------------------------------------------
+Rule: Ensure all data stored in the Launch configuration EBS is securely encrypted
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.test] (main.tf:112)
+     Violating Resource: [aws_instance.test]  (main.tf:112)
+
+     Evidence:
+             | This rule evaluated aws_instance.test only, it is not a context-aware rule.
+
+
+-----------------------------------------------

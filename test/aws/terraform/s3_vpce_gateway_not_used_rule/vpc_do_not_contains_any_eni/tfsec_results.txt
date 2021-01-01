@@ -1,0 +1,75 @@
+
+Problem 1
+
+  [AWS009][WARNING] Resource 'aws_security_group.allow-public-outbound-sg' defines a fully open egress security group.
+  /src/main.tf:69
+
+      66 |     from_port   = 443
+      67 |     to_port     = 443
+      68 |     protocol    = "tcp"
+      69 |     cidr_blocks = ["0.0.0.0/0"]
+      70 |   }
+      71 | 
+      72 | }
+
+   See https://tfsec.dev/docs/aws/AWS009/ for more information. 
+
+Problem 2
+
+  [AWS001][WARNING] Resource 'aws_s3_bucket.public-bucket' has an ACL which allows public access.
+  /src/main.tf:84
+
+      81 | 
+      82 | resource "aws_s3_bucket" "public-bucket" {
+      83 |   bucket = "public-bucket"
+      84 |   acl = "public-read"
+      85 |   tags = {
+      86 |     Name        = "public-bucket"
+      87 |   }
+
+   See https://tfsec.dev/docs/aws/AWS001/ for more information. 
+
+Problem 3
+
+  [AWS002][ERROR] Resource 'aws_s3_bucket.public-bucket' does not have logging enabled.
+  /src/main.tf:82-88
+
+      79 |   }
+      80 | }
+      81 | 
+      82 | resource "aws_s3_bucket" "public-bucket" {
+      83 |   bucket = "public-bucket"
+      84 |   acl = "public-read"
+      85 |   tags = {
+      86 |     Name        = "public-bucket"
+      87 |   }
+      88 | }
+
+   See https://tfsec.dev/docs/aws/AWS002/ for more information. 
+
+Problem 4
+
+  [AWS017][ERROR] Resource 'aws_s3_bucket.public-bucket' defines an unencrypted S3 bucket (missing server_side_encryption_configuration block).
+  /src/main.tf:82-88
+
+      79 |   }
+      80 | }
+      81 | 
+      82 | resource "aws_s3_bucket" "public-bucket" {
+      83 |   bucket = "public-bucket"
+      84 |   acl = "public-read"
+      85 |   tags = {
+      86 |     Name        = "public-bucket"
+      87 |   }
+      88 | }
+
+   See https://tfsec.dev/docs/aws/AWS017/ for more information. 
+
+  disk i/o             37.000411ms
+  parsing HCL          13.01µs
+  evaluating values    323.945µs
+  running checks       12.737532ms
+  files loaded         1
+
+4 potential problems detected.
+
