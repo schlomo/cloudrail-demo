@@ -6,6 +6,12 @@ then
   exit 1
 fi
 
+if [ -z "$CLOUDRAIL_API_KEY" ]
+then
+  echo "To run this script, you'll need to provide the CLOUDRAIL_API_KEY environment variable."
+  exit 1
+fi
+
 # Generate all plan files
 echo Generating plan files, where they do not exist yet
 find . -name "main.tf" -exec dirname {} \; | grep -v ".terraform" | while read -r test_case; do echo $test_case ; ORG_PATH=$PWD ; cd $test_case ; if [ ! -f plan.out ]; then terraform init ; terraform plan -out=plan.out ; fi ; cd $ORG_PATH; done
@@ -23,4 +29,4 @@ find . -name "main.tf" -exec dirname {} \; | grep -v ".terraform" | while read -
 # Cloudrail
 echo Now running Cloudrail on all cases
 docker pull indeni/cloudrail-cli:latest
-find . -name "main.tf" -exec dirname {} \; | grep -v ".terraform" | while read -r test_case; do echo $test_case ; ORG_PATH=$PWD ; cd $test_case ; if [ ! -f cloudrail_results.txt ]; then docker run --rm -v $PWD:/data indeni/cloudrail-cli run --tf-plan /data/plan.out --directory /data --output-file cloudrail_results.txt ; fi ; cd $ORG_PATH; done
+find . -name "main.tf" -exec dirname {} \; | grep -v ".terraform" | while read -r test_case; do echo $test_case ; ORG_PATH=$PWD ; cd $test_case ; if [ ! -f cloudrail_results.txt ]; then docker run --rm -v $PWD:/data indeni/cloudrail-cli run --tf-plan /data/plan.out --directory /data --output-file cloudrail_results.txt --api-key $CLOUDRAIL_API_KEY; fi ; cd $ORG_PATH; done
