@@ -15,7 +15,7 @@ find . -name "main.tf" -exec dirname {} \; | grep -v ".terraform" | while read -
 echo Now running tfsec on all cases
 brew install tfsec
 brew upgrade tfsec
-find . -name "main.tf" -exec dirname {} \; | grep -v ".terraform" | while read -r test_case; do echo $test_case ; ORG_PATH=$PWD ; cd $test_case ; tfsec | tee tfsec_results.txt ; cd $ORG_PATH; done
+find . -name "main.tf" -exec dirname {} \; | grep -v ".terraform" | while read -r test_case; do echo $test_case ; ORG_PATH=$PWD ; cd $test_case ; tfsec --no-color | tee tfsec_results.txt ; cd $ORG_PATH; done
 
 # Cloudrail
 echo Now running Cloudrail on all cases
