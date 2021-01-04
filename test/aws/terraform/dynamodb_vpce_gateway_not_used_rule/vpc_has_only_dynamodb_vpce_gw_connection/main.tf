@@ -35,12 +35,6 @@ resource "aws_route_table_association" "public-rtb-assoc" {
   route_table_id = aws_route_table.public-rtb.id
 }
 
-
-resource "aws_vpc_endpoint_route_table_association" "vpce-gw-to-private-rtb-assoc" {
-  route_table_id  = aws_route_table.private-rtb.id
-  vpc_endpoint_id = aws_vpc_endpoint.dynamodb-vpce-gw.id
-}
-
 resource "aws_subnet" "private-subnet" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "192.168.100.128/25"
@@ -71,11 +65,6 @@ resource "aws_route_table_association" "private-rtb-assoc" {
 
 resource "aws_route_table" "private-rtb" {
   vpc_id = aws_vpc.main.id
-
-  route {
-    cidr_block = "3.218.183.128/25"
-    gateway_id = aws_vpc_endpoint.dynamodb-vpce-gw.id
-  }
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -126,11 +115,6 @@ resource "aws_internet_gateway" "internet-gateway" {
   tags = {
     Name = "internet-gateway"
   }
-}
-
-resource "aws_vpc_endpoint" "dynamodb-vpce-gw" {
-  vpc_id       = aws_vpc.main.id
-  service_name = "com.amazonaws.us-east-1.dynamodb"
 }
 
 data "aws_ami" "ubuntu" {

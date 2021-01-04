@@ -22,19 +22,14 @@ resource "aws_subnet" "private-subnet" {
 resource "aws_route_table" "private-rtb" {
   vpc_id = aws_vpc.main.id
 
-  route {
-    cidr_block = local.s3_prefix_list_cidr_block
-    gateway_id = "pl-fake-id"
-  }
-
   tags = {
     Name = "private-rtb"
   }
 }
 
-resource "aws_route_table_association" "private-rtb-assoc" {
-  subnet_id      = aws_subnet.private-subnet.id
-  route_table_id = aws_route_table.private-rtb.id
+resource "aws_vpc_endpoint" "dynamodb-vpce-gw" {
+  vpc_id       = aws_vpc.main.id
+  service_name = "com.amazonaws.us-east-1.dynamodb"
 }
 
 resource "aws_network_acl" "allow-public-outbound-nacl" {
