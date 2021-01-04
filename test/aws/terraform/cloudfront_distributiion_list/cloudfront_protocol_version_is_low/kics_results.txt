@@ -1,0 +1,25 @@
+Files scanned: 1
+Parsed files: 1
+Queries loaded: 728
+Queries failed to execute: 0
+S3 bucket without encryption at REST, Severity: HIGH, Results: 2
+	/src/main.tf:5
+	/src/main.tf:14
+S3 bucket without versioning, Severity: HIGH, Results: 2
+	/src/main.tf:5
+	/src/main.tf:14
+Unprotected S3 Storage, Severity: LOW, Results: 2
+	/src/main.tf:5
+	/src/main.tf:14
+HTTPS Traffic Disabled, Severity: HIGH, Results: 1
+	/src/main.tf:64
+Cloudfront configuration allow HTTP, Severity: HIGH, Results: 1
+	/src/main.tf:64
+Cloudfront without WAF, Severity: LOW, Results: 1
+	/src/main.tf:32
+S3 no logging, Severity: LOW, Results: 1
+	/src/main.tf:21
+S3 bucket with public RW access, Severity: INFO, Results: 1
+	/src/main.tf:16
+Access Key Is Not Rotated Within 90 Days, Severity: MEDIUM, Results: 1
+	/src/main.tf:1

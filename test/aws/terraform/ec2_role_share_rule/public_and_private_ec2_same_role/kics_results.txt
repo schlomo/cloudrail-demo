@@ -1,0 +1,55 @@
+Files scanned: 39
+Parsed files: 38
+Queries loaded: 728
+Queries failed to execute: 0
+Access Key Is Not Rotated Within 90 Days, Severity: MEDIUM, Results: 38
+	/src/.terraform/modules/vpc/.chglog/config.yml:1
+	/src/.terraform/modules/vpc/.kitchen.yml:1
+	/src/.terraform/modules/vpc/.pre-commit-config.yaml:1
+	/src/.terraform/modules/vpc/examples/complete-vpc/main.tf:1
+	/src/.terraform/modules/vpc/examples/complete-vpc/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/ipv6/main.tf:1
+	/src/.terraform/modules/vpc/examples/ipv6/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/issue-108-route-already-exists/main.tf:1
+	/src/.terraform/modules/vpc/examples/issue-108-route-already-exists/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/issue-224-vpcendpoint-apigw/main.tf:1
+	/src/.terraform/modules/vpc/examples/issue-44-asymmetric-private-subnets/main.tf:1
+	/src/.terraform/modules/vpc/examples/issue-44-asymmetric-private-subnets/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/issue-46-no-private-subnets/main.tf:1
+	/src/.terraform/modules/vpc/examples/issue-46-no-private-subnets/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/manage-default-vpc/main.tf:1
+	/src/.terraform/modules/vpc/examples/manage-default-vpc/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/network-acls/main.tf:1
+	/src/.terraform/modules/vpc/examples/network-acls/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/secondary-cidr-blocks/main.tf:1
+	/src/.terraform/modules/vpc/examples/secondary-cidr-blocks/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/simple-vpc/main.tf:1
+	/src/.terraform/modules/vpc/examples/simple-vpc/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/test_fixture/main.tf:1
+	/src/.terraform/modules/vpc/examples/test_fixture/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/test_fixture/variables.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/cloud-watch-logs.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/main.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/s3.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-separate-private-route-tables/main.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-separate-private-route-tables/outputs.tf:1
+	/src/.terraform/modules/vpc/main.tf:1
+	/src/.terraform/modules/vpc/outputs.tf:1
+	/src/.terraform/modules/vpc/variables.tf:1
+	/src/.terraform/modules/vpc/versions.tf:1
+	/src/.terraform/modules/vpc/vpc-endpoints.tf:1
+	/src/.terraform/modules/vpc/vpc-flow-logs.tf:1
+	/src/main.tf:1
+Default VPC Exists, Severity: MEDIUM, Results: 1
+	/src/.terraform/modules/vpc/main.tf:1135
+IAM policies allows all ('*') in policy statement, Severity: MEDIUM, Results: 1
+	/src/main.tf:91
+AWS CloudWatch Retention Period, Severity: MEDIUM, Results: 2
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/cloud-watch-logs.tf:51
+	/src/.terraform/modules/vpc/vpc-flow-logs.tf:36
+Cloudwatch without retention days, Severity: LOW, Results: 1
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/cloud-watch-logs.tf:51
+Instance With No VPC, Severity: MEDIUM, Results: 2
+	/src/main.tf:99
+	/src/main.tf:107

@@ -26,6 +26,11 @@ echo Now running tfsec on all cases
 docker pull liamg/tfsec:latest
 find . -name "main.tf" -exec dirname {} \; | grep -v ".terraform" | while read -r test_case; do echo $test_case ; ORG_PATH=$PWD ; cd $test_case ; docker run --rm -v "$(pwd):/src" liamg/tfsec /src --no-color > tfsec_results.txt ; cd $ORG_PATH; done
 
+# KICS
+echo Now running KICS on all cases
+docker pull checkmarx/kics:latest
+find . -name "main.tf" -exec dirname {} \; | grep -v ".terraform" | while read -r test_case; do echo $test_case ; ORG_PATH=$PWD ; cd $test_case ; docker run --rm -v "$(pwd):/src" checkmarx/kics:latest -p /src > kics_results.txt ; cd $ORG_PATH; done
+
 # Cloudrail
 echo Now running Cloudrail on all cases
 docker pull indeni/cloudrail-cli:latest

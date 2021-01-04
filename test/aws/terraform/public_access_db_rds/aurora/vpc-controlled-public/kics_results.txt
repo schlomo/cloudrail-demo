@@ -1,0 +1,67 @@
+Files scanned: 1
+Parsed files: 1
+Queries loaded: 728
+Queries failed to execute: 0
+Fully open Ingress, Severity: HIGH, Results: 1
+	/src/main.tf:19
+SSH' (TCP:22) in Public Scope, Severity: HIGH, Results: 1
+	/src/main.tf:25
+SQL Analysis Services Port 2383 (TCP) is Publicly Accessible, Severity: MEDIUM, Results: 1
+	/src/main.tf:19
+HTTP port open, Severity: HIGH, Results: 1
+	/src/main.tf:15
+Sensitive Port Is Exposed To Entire Network, Severity: HIGH, Results: 48
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+	/src/main.tf:15
+Access Key Is Not Rotated Within 90 Days, Severity: MEDIUM, Results: 1
+	/src/main.tf:1
+SSH port open, Severity: HIGH, Results: 1
+	/src/main.tf:15
+Remote Desktop Port Open, Severity: HIGH, Results: 1
+	/src/main.tf:15

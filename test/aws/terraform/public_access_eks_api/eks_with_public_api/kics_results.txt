@@ -1,0 +1,130 @@
+Files scanned: 115
+Parsed files: 114
+Queries loaded: 728
+Queries failed to execute: 0
+AWS CloudWatch Retention Period, Severity: MEDIUM, Results: 3
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/cloud-watch-logs.tf:51
+	/src/.terraform/modules/my-cluster/cluster.tf:4
+	/src/.terraform/modules/vpc/vpc-flow-logs.tf:36
+Access Key Is Not Rotated Within 90 Days, Severity: MEDIUM, Results: 103
+	/src/.terraform/modules/my-cluster/.chglog/config.yml:1
+	/src/.terraform/modules/my-cluster/.github/semantic.yml:1
+	/src/.terraform/modules/my-cluster/.github/stale.yml:1
+	/src/.terraform/modules/my-cluster/.github/workflows/changelog-check.yaml:1
+	/src/.terraform/modules/my-cluster/.github/workflows/lint.yml:1
+	/src/.terraform/modules/my-cluster/.pre-commit-config.yaml:1
+	/src/.terraform/modules/my-cluster/aws_auth.tf:1
+	/src/.terraform/modules/my-cluster/cluster.tf:1
+	/src/.terraform/modules/my-cluster/data.tf:1
+	/src/.terraform/modules/my-cluster/examples/basic/main.tf:1
+	/src/.terraform/modules/my-cluster/examples/basic/outputs.tf:1
+	/src/.terraform/modules/my-cluster/examples/basic/variables.tf:1
+	/src/.terraform/modules/my-cluster/examples/create_false/main.tf:1
+	/src/.terraform/modules/my-cluster/examples/create_false/variables.tf:1
+	/src/.terraform/modules/my-cluster/examples/fargate/main.tf:1
+	/src/.terraform/modules/my-cluster/examples/fargate/outputs.tf:1
+	/src/.terraform/modules/my-cluster/examples/fargate/variables.tf:1
+	/src/.terraform/modules/my-cluster/examples/irsa/cluster-autoscaler-chart-values.yaml:1
+	/src/.terraform/modules/my-cluster/examples/irsa/irsa.tf:1
+	/src/.terraform/modules/my-cluster/examples/irsa/locals.tf:1
+	/src/.terraform/modules/my-cluster/examples/irsa/main.tf:1
+	/src/.terraform/modules/my-cluster/examples/irsa/outputs.tf:1
+	/src/.terraform/modules/my-cluster/examples/irsa/variables.tf:1
+	/src/.terraform/modules/my-cluster/examples/launch_templates/main.tf:1
+	/src/.terraform/modules/my-cluster/examples/launch_templates/outputs.tf:1
+	/src/.terraform/modules/my-cluster/examples/launch_templates/variables.tf:1
+	/src/.terraform/modules/my-cluster/examples/launch_templates_with_managed_node_groups/disk_encryption_policy.tf:4
+	/src/.terraform/modules/my-cluster/examples/launch_templates_with_managed_node_groups/launchtemplate.tf:1
+	/src/.terraform/modules/my-cluster/examples/launch_templates_with_managed_node_groups/main.tf:1
+	/src/.terraform/modules/my-cluster/examples/launch_templates_with_managed_node_groups/variables.tf:1
+	/src/.terraform/modules/my-cluster/examples/managed_node_groups/main.tf:1
+	/src/.terraform/modules/my-cluster/examples/managed_node_groups/outputs.tf:1
+	/src/.terraform/modules/my-cluster/examples/managed_node_groups/variables.tf:1
+	/src/.terraform/modules/my-cluster/examples/secrets_encryption/main.tf:1
+	/src/.terraform/modules/my-cluster/examples/secrets_encryption/outputs.tf:1
+	/src/.terraform/modules/my-cluster/examples/secrets_encryption/variables.tf:1
+	/src/.terraform/modules/my-cluster/examples/spot_instances/main.tf:1
+	/src/.terraform/modules/my-cluster/examples/spot_instances/outputs.tf:1
+	/src/.terraform/modules/my-cluster/examples/spot_instances/variables.tf:1
+	/src/.terraform/modules/my-cluster/fargate.tf:1
+	/src/.terraform/modules/my-cluster/irsa.tf:1
+	/src/.terraform/modules/my-cluster/kubectl.tf:1
+	/src/.terraform/modules/my-cluster/local.tf:1
+	/src/.terraform/modules/my-cluster/modules/fargate/data.tf:1
+	/src/.terraform/modules/my-cluster/modules/fargate/fargate.tf:1
+	/src/.terraform/modules/my-cluster/modules/fargate/locals.tf:1
+	/src/.terraform/modules/my-cluster/modules/fargate/outputs.tf:1
+	/src/.terraform/modules/my-cluster/modules/fargate/variables.tf:1
+	/src/.terraform/modules/my-cluster/modules/node_groups/locals.tf:1
+	/src/.terraform/modules/my-cluster/modules/node_groups/node_groups.tf:1
+	/src/.terraform/modules/my-cluster/modules/node_groups/outputs.tf:1
+	/src/.terraform/modules/my-cluster/modules/node_groups/random.tf:1
+	/src/.terraform/modules/my-cluster/modules/node_groups/variables.tf:1
+	/src/.terraform/modules/my-cluster/node_groups.tf:1
+	/src/.terraform/modules/my-cluster/outputs.tf:1
+	/src/.terraform/modules/my-cluster/variables.tf:1
+	/src/.terraform/modules/my-cluster/versions.tf:1
+	/src/.terraform/modules/my-cluster/workers.tf:1
+	/src/.terraform/modules/my-cluster/workers_launch_template.tf:1
+	/src/.terraform/modules/vpc/.chglog/config.yml:1
+	/src/.terraform/modules/vpc/.pre-commit-config.yaml:1
+	/src/.terraform/modules/vpc/examples/complete-vpc/main.tf:1
+	/src/.terraform/modules/vpc/examples/complete-vpc/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/complete-vpc/versions.tf:1
+	/src/.terraform/modules/vpc/examples/ipv6/main.tf:1
+	/src/.terraform/modules/vpc/examples/ipv6/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/ipv6/versions.tf:1
+	/src/.terraform/modules/vpc/examples/issue-108-route-already-exists/main.tf:1
+	/src/.terraform/modules/vpc/examples/issue-108-route-already-exists/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/issue-108-route-already-exists/versions.tf:1
+	/src/.terraform/modules/vpc/examples/issue-44-asymmetric-private-subnets/main.tf:1
+	/src/.terraform/modules/vpc/examples/issue-44-asymmetric-private-subnets/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/issue-44-asymmetric-private-subnets/versions.tf:1
+	/src/.terraform/modules/vpc/examples/issue-46-no-private-subnets/main.tf:1
+	/src/.terraform/modules/vpc/examples/issue-46-no-private-subnets/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/issue-46-no-private-subnets/versions.tf:1
+	/src/.terraform/modules/vpc/examples/manage-default-vpc/main.tf:1
+	/src/.terraform/modules/vpc/examples/manage-default-vpc/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/manage-default-vpc/versions.tf:1
+	/src/.terraform/modules/vpc/examples/network-acls/main.tf:1
+	/src/.terraform/modules/vpc/examples/network-acls/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/network-acls/versions.tf:1
+	/src/.terraform/modules/vpc/examples/secondary-cidr-blocks/main.tf:1
+	/src/.terraform/modules/vpc/examples/secondary-cidr-blocks/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/secondary-cidr-blocks/versions.tf:1
+	/src/.terraform/modules/vpc/examples/simple-vpc/main.tf:1
+	/src/.terraform/modules/vpc/examples/simple-vpc/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/simple-vpc/versions.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/cloud-watch-logs.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/main.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/s3.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/versions.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-separate-private-route-tables/main.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-separate-private-route-tables/outputs.tf:1
+	/src/.terraform/modules/vpc/examples/vpc-separate-private-route-tables/versions.tf:1
+	/src/.terraform/modules/vpc/main.tf:1
+	/src/.terraform/modules/vpc/outputs.tf:1
+	/src/.terraform/modules/vpc/variables.tf:1
+	/src/.terraform/modules/vpc/versions.tf:1
+	/src/.terraform/modules/vpc/vpc-endpoints.tf:1
+	/src/.terraform/modules/vpc/vpc-flow-logs.tf:1
+	/src/main.tf:1
+Default VPC Exists, Severity: MEDIUM, Results: 1
+	/src/.terraform/modules/vpc/main.tf:1148
+Launch Configuration Is Not Encrypted, Severity: HIGH, Results: 1
+	/src/.terraform/modules/my-cluster/workers.tf:246
+Cloudwatch without retention days, Severity: LOW, Results: 1
+	/src/.terraform/modules/vpc/examples/vpc-flow-logs/cloud-watch-logs.tf:51
+Sensitive Port Is Exposed To Wide Private Network, Severity: MEDIUM, Results: 3
+	/src/.terraform/modules/my-cluster/examples/basic/main.tf:73
+	/src/.terraform/modules/my-cluster/examples/basic/main.tf:88
+	/src/.terraform/modules/my-cluster/examples/basic/main.tf:58
+Missing cluster log types, Severity: LOW, Results: 1
+	/src/.terraform/modules/my-cluster/cluster.tf:12
+Fully open Ingress, Severity: HIGH, Results: 1
+	/src/main.tf:41
+SSH' (TCP:22) in Public Scope, Severity: HIGH, Results: 3
+	/src/.terraform/modules/my-cluster/examples/basic/main.tf:106
+	/src/.terraform/modules/my-cluster/examples/basic/main.tf:106
+	/src/.terraform/modules/my-cluster/examples/basic/main.tf:106

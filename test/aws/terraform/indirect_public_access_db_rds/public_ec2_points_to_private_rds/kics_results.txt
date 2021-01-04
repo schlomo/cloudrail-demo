@@ -1,0 +1,73 @@
+Files scanned: 1
+Parsed files: 1
+Queries loaded: 728
+Queries failed to execute: 0
+SSH' (TCP:22) in Public Scope, Severity: HIGH, Results: 1
+	/src/main.tf:135
+Sensitive Port Is Exposed To Entire Network, Severity: HIGH, Results: 48
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+	/src/main.tf:131
+SQL Analysis Services Port 2383 (TCP) is Publicly Accessible, Severity: MEDIUM, Results: 1
+	/src/main.tf:135
+DB Instance Storage Not Encrypted, Severity: HIGH, Results: 1
+	/src/main.tf:113
+Auto Minor Version Upgrade Is Set To False, Severity: HIGH, Results: 1
+	/src/main.tf:113
+Access Key Is Not Rotated Within 90 Days, Severity: MEDIUM, Results: 1
+	/src/main.tf:1
+Remote Desktop Port Open, Severity: HIGH, Results: 1
+	/src/main.tf:131
+IAM Database Auth Not Enabled, Severity: HIGH, Results: 1
+	/src/main.tf:113
+HTTP port open, Severity: HIGH, Results: 1
+	/src/main.tf:131
+SSH port open, Severity: HIGH, Results: 1
+	/src/main.tf:131
+Fully open Ingress, Severity: HIGH, Results: 1
+	/src/main.tf:135

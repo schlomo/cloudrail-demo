@@ -1,0 +1,20 @@
+Files scanned: 1
+Parsed files: 1
+Queries loaded: 728
+Queries failed to execute: 0
+Access Key Is Not Rotated Within 90 Days, Severity: MEDIUM, Results: 1
+	/src/main.tf:1
+API Gateway Has CloudWatch Logging Disabled, Severity: MEDIUM, Results: 1
+	/src/main.tf:44
+API Gateway Content Encoding, Severity: MEDIUM, Results: 1
+	/src/main.tf:5
+API Gateway without Cloudwatch Log, Severity: MEDIUM, Results: 1
+	/src/main.tf:44
+API Gateway Tracing, Severity: MEDIUM, Results: 1
+	/src/main.tf:44
+API Gateway Without SSL Certificate, Severity: MEDIUM, Results: 1
+	/src/main.tf:44
+Metrics not enabled, Severity: MEDIUM, Results: 1
+	/src/main.tf:55
+Open access to resources through API, Severity: LOW, Results: 1
+	/src/main.tf:26
