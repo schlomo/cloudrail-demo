@@ -22,7 +22,7 @@ Cloudrail's main advantages vs existing tools are:
 Cloudrail currently supports Terraform files used with the AWS cloud provider.
 
 ## Requirements
-- Python >= 3.8
+- Container execution environment (such as Docker Desktop)
 - Terraform >= 0.12
 
 ## How does Cloudrail work?
