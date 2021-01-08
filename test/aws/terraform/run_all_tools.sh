@@ -34,4 +34,4 @@ find . -name "main.tf" -exec dirname {} \; | grep -v ".terraform" | while read -
 # Cloudrail
 echo Now running Cloudrail on all cases
 docker pull indeni/cloudrail-cli:latest
-find . -name "main.tf" -exec dirname {} \; | grep -v ".terraform" | while read -r test_case; do echo $test_case ; ORG_PATH=$PWD ; cd $test_case ; if [ ! -f cloudrail_results.txt ]; then docker run --rm -v $PWD:/data indeni/cloudrail-cli run --tf-plan /data/plan.out --directory /data --output-file /data/cloudrail_results.txt --api-key $CLOUDRAIL_API_KEY; fi ; cd $ORG_PATH; done
+find . -name "main.tf" -exec dirname {} \; | grep -v ".terraform" | while read -r test_case; do echo $test_case ; ORG_PATH=$PWD ; cd $test_case ; docker run --rm -v $PWD:/data indeni/cloudrail-cli run --tf-plan /data/plan.out --directory /data --output-file /data/cloudrail_results.txt --api-key $CLOUDRAIL_API_KEY --auto-approve; cd $ORG_PATH; done
