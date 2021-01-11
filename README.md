@@ -53,7 +53,7 @@ When running on your own workstation, we recommend adding this function to your 
 cloudrail () {
   printf 'Checking for an updated cloudrail image (may take a few minutes if a new one is downloaded)...'
   docker pull indeni/cloudrail-cli > /dev/null
-  printf '\r \n'
+  printf '\r                                                                                                 \n'
   docker run --rm -it -v $PWD:/data -v cloudrail:/indeni indeni/cloudrail-cli $@
 }
 ```
