@@ -32,7 +32,7 @@ cloudrail:
   stage: cloudrail
   image: indeni/cloudrail-cli:latest
   script:
-    - cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} --origin ci --build-link "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID"  --execution-source-identifier "$CI_COMMIT_BRANCH - $CI_JOB_ID" --output-format json-gitlab-sast --output-file ${CI_PROJECT_DIR}/cloudrail-sast-report.json
+    - cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} --origin ci --build-link "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID"  --execution-source-identifier "$CI_COMMIT_BRANCH - $CI_JOB_ID" --output-format json-gitlab-sast --output-file ${CI_PROJECT_DIR}/cloudrail-sast-report.json --auto-approve
   artifacts:
     reports:
       sast: cloudrail-sast-report.json
