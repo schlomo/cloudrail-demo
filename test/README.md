@@ -5,37 +5,17 @@
 To try any of these test cases, go to the specific test case's directory, create a TF plan and run an evaluation with Cloudrail. For example:
 
 ```
-~/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_ec2_explicit # terraform init
-~/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_ec2_explicit # terraform plan -out=plan.out
-~/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_ec2_explicit # cloudrail run
-Enter terraform plan file path: /root/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_ec2_explicit/plan.out
-Enter root directory of the .tf files. (Leave empty to use the plan path) []: 
-(  ●   ) Uploading Terraform plan file to the Cloudrail Service
-Successfully uploaded Terraform plan file, your job id is: f0366780-de4c-477c-8646-8b2c50e74096
-
-WARNINGs found:
-  Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to port 22 (SSH)
-     - Rule Description:
-     - Ensure no used security groups allow inbound connections from 0.0.0.0/0 or ::/0 to port 22 (SSH). security issue=1 are in used and exposing instances to SSH from the Internet
-       - SG permission: from_port=22, to_port=22, ip_protocol=tcp, property_type=SecurityGroupRulePropertyType.IP_RANGES, property_value=0.0.0.0/0 is exposing ENI id=eni-fk-41f30735-36f1-4612-a8b9-2459da3d7ef7 owned by=Instance Name: PublicAccessSecurityGroupsPort test - use case 2 VPC Name: PublicAccessSecurityGroupsPort test - use case 2 Public IP(s): ['0.0.0.0'] Private IP(s): 10.10.0.0 to SSH from the Internet
-
-Summary:
-X cloud resources analyzed by Cloudrail
-Y cloud resources identified as managed by Terraform
-
-1 rule violations found:
-  1 WARNINGs
-  24 PASS
-
-
-
-NOTE: WARNINGs are not listed by default. Please use the "-v" option to list them.
-
-~ #
+# cd test/aws/terraform/disallow_ec2_classic_mode_rule/deploy_redshift_in_ec2_classic_mode
+# terraform init
+# terraform plan -out=plan.out
+# cloudrail run --tf-plan plan.out --directory . --auto-approve
 ```
 
-NOTE: You do not need to run "terraform apply" as Cloudrail can simply analyze the plan. If you would like, you can apply the entire test case in your AWS account and see you are getting the same results.
-If you'd like to be even more creative, you can apply some of the resources first, then run a plan that will add only the remaining resources. Cloudrail is capable of understanding all of these scenarios.
+NOTES:
+1. You do not need to run ```terraform apply``` as Cloudrail can simply analyze the plan. If you would like, you can apply the entire test case in your AWS account and see you are getting the same results. If you'd like to be even more creative, you can apply some of the resources first, then run a plan that will add only the remaining resources. Cloudrail is capable of understanding all of these scenarios.
+2. When the Cloudrail CLI container analyzes your plan, it needs access to some files in the directory where the plan was created. These files are NOT uploaded to our service, and are only used locally for analysis.
+3. If the ```--auto-approve``` flag is excluded, the Cloudrail CLI will show you what it's going to upload before it does so. ```--auto-approve``` simply skips that step.
+4. If you'd like, you can split the ```run``` into two phases: ```cloudrail generate-context``` which will generate the filtered Terraform context and save it to a file, and then ```cloudrail run``` which will take the filtered context file as input. This allows you to run various data scanning tools before uploading the content to the Cloudrail Service.
 
 # Test Cases to try Cloudrail With
 <details>

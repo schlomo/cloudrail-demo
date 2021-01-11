@@ -1,4 +1,4 @@
-# Cloudrail: context-aware cloud security tool
+# Indeni Cloudrail: context-aware cloud security tool
 
 ## Contents
 
@@ -9,9 +9,9 @@
 - [Troubleshooting](#troubleshooting)
 
 ## Overview
-#### *Warning: Cloudrail is not GA yet. Please use it with development or small environments to begin with. It only supports Terraform with AWS at the moment.*
+#### *Important: Cloudrail is not GA yet. Please use it with development or small environments to begin with. It only supports Terraform with AWS at the moment.*
 Cloudrail is a context-aware cloud security tool that will audit your cloud environment and your IaC templates in order to build a security context of the resources being deployed to determine the security risks. 
-The goal of Cloudrail is to be integrated within a CI/CD process to catch violations of your security policy before they make it into the production environment.
+The goal of Cloudrail is to be integrated within a CI/CD pipeline to catch violations of your security policy before they make it into the production environment.
 
 Cloudrail's main advantages vs existing tools are:
 - The understanding of relationships between resources (for example, a given security group can be problematic or not, depending on how it's used)
@@ -22,26 +22,44 @@ Cloudrail's main advantages vs existing tools are:
 Cloudrail currently supports Terraform files used with the AWS cloud provider.
 
 ## Requirements
-- Python >= 3.8
+- Container execution environment (such as Docker Desktop)
+- Terraform >= 0.12
+
+## How does Cloudrail work?
+Cloudrail is a cloud-hosted service (SaaS) that receives a filtered version of your Terraform plan,
+merges it (in memory) with your cloud account's current snapshot, and runs context-aware rules on the merged model. 
+To do this, the Cloudrail CLI container will receive your Terraform plan, reduce it to a minimal version we need for analysis
+(what we call "Terraform context"), and then upload that minimal version to our service. 
+
+This ensures no highly-sensitive content from the plan ever leaves your network.
 
 ## Usage
 #### 1. Installation & Upgrade
-You can install Cloudrail with the following command:
-```
-~ # pip3 install cloudrail --extra-index-url https://indeni.jfrog.io/indeni/api/pypi/cloudrail-cli-pypi/simple
-```
-Once the installation is complete, you can verify the Cloudrail version with the command:
-```
-~ # cloudrail --version
-cloudrail, version 0.1.213
-```
-NOTE: If the installation completed successfully, but the above command fails, please try opening a new shell window or restarting.
+The CLI portion of Cloudrail is delivered as a container:
+https://hub.docker.com/r/indeni/cloudrail-cli
 
-If you need to upgrade the Cloudrail version, you can run the following command:
+You can start by pulling the container:
 ```
-~ # pip3 install cloudrail --upgrade --extra-index-url https://indeni.jfrog.io/indeni/api/pypi/cloudrail-cli-pypi/simple
+docker pull indeni/cloudrail-cli
 ```
 
+Then, you can run the container:
+```
+docker run --rm -it -v $PWD:/data -v cloudrail:/indeni indeni/cloudrail-cli --version
+```
+
+When running on your own workstation, we recommend adding this function to your shell's .rc file (~/.bashrc, ~/.zshrc, etc.):
+```shell script
+cloudrail () {
+  printf 'Checking for an updated cloudrail image (may take a few minutes if a new one is downloaded)...'
+  docker pull indeni/cloudrail-cli > /dev/null
+  printf '\r                                                                                                 \n'
+  docker run --rm -it -v $PWD:/data -v cloudrail:/indeni indeni/cloudrail-cli $@
+}
+```
+This will allow you to simply run ```cloudrail``` instead of the full docker command. Note that in
+all of the examples below, we write ```cloudrail```. If you haven't included the above function in your 
+shell's .rc file, you will need to use ```docker run --rm -it -v $PWD:/data -v cloudrail:/indeni indeni/cloudrail-cli``` instead.
 
 #### 2. Register with Cloudrail service
 Next step is to register with the Cloudrail service.
@@ -53,13 +71,14 @@ Repeat for confirmation:
 Successfully register
 Registration completed successfully. You can now begin to use the Cloudrail CLI tool.
 ```
-You will need to provide a valid email address and a password. Password should include capital letters, numbers and special characters.
+You will need to provide a valid email address and a password. Password should include at least one upper case letter, one lower case letter, a number, a special character, and be 6 characters long.
 
-The registration will generate a file on your hard drive at ~/.cloudrail/config with your API key, Customer ID and Username.
-You may choose to remove this file and retain the API key for your records. The API key can be provided as a parameter to the tool when using various commands.
+The registration will store a configuration file on the ```cloudrail``` docker volume. This volume will be accessible in future executions.
+The file contains your API key, Customer ID and Username. You may choose to remove this file and supply the API key in all of the 
+future Cloudrail CLI executions you make (via the argument ```--api-key```).
 
 #### 3. Login to Cloudrail service
-If you ever need to regenerate the ~/.cloudrail/config file, use the login function:
+If you have already registered and want to regenerate the configuration file on the ```cloudrail``` docker volume, use the login function:
 ```
 ~ # cloudrail login
 Your username [xxx@xxx.com]: xxx@xxx.com
