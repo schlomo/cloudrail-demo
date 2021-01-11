@@ -3,7 +3,7 @@
 
 # Based on example: https://gitlab.com/gitlab-org/configure/examples/gitlab-terraform-aws/-/blob/master/.gitlab-ci.yml
 
-image: registry.gitlab.com/gitlab-org/terraform-images/stable:latest
+image: registry.gitlab.com/gitlab-org/terraform-images/releases/0.13
 variables:
   # Picking some TF folder to test
   TEST_ROOT: ${CI_PROJECT_DIR}/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
