@@ -3,7 +3,7 @@
 
 # Based on example: https://gitlab.com/gitlab-org/configure/examples/gitlab-terraform-aws/-/blob/master/.gitlab-ci.yml
 
-image: registry.gitlab.com/gitlab-org/terraform-images/stable:latest
+image: registry.gitlab.com/gitlab-org/terraform-images/releases/0.13
 variables:
   # Picking some TF folder to test
   TEST_ROOT: ${CI_PROJECT_DIR}/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
@@ -32,7 +32,7 @@ cloudrail:
   stage: cloudrail
   image: indeni/cloudrail-cli:latest
   script:
-    - cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} --origin ci --build-link "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID"  --execution-source-identifier "$CI_COMMIT_BRANCH - $CI_JOB_ID" --output-format json-gitlab-sast --output-file ${CI_PROJECT_DIR}/cloudrail-sast-report.json
+    - cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} --origin ci --build-link "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID"  --execution-source-identifier "$CI_COMMIT_BRANCH - $CI_JOB_ID" --output-format json-gitlab-sast --output-file ${CI_PROJECT_DIR}/cloudrail-sast-report.json --auto-approve
   artifacts:
     reports:
       sast: cloudrail-sast-report.json
