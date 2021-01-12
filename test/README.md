@@ -5,52 +5,17 @@
 To try any of these test cases, go to the specific test case's directory, create a TF plan and run an evaluation with Cloudrail. For example:
 
 ```
-~/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_ec2_explicit # terraform init
-~/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_ec2_explicit # terraform plan -out=plan.out
-~/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_ec2_explicit # cloudrail run
-Enter terraform plan file path: /root/test/aws/terraform/public_access_security_groups_port_rule/port_22_allowed_from_internet_to_ec2_explicit/plan.out
-Enter root directory of the .tf files. (Leave empty to use the plan path) []: 
-✔ Uploading Terraform plan file to the Cloudrail Service...vice...
-✔ Successfully uploaded Terraform plan file, your job id is: f2d1e613-9f1b-4d9f-93c8-cdfe5ec0c079
-✔ Spinning up a secure, isolated container for analysis...ysis...
-✔ Running a customized Terraform show using a customized version of Terraform to produce a detailed resource map. This is the longest phase of the evaluation, as it includes downloading Terraform plugins and providers, as well as a re-calculation of the plan...
-✔ Building simulated graph model, representing how the cloud account will look like if the plan were to be applied...
-✔ Running context-aware rules...ules...
-✔ Returning results, almost done!t done!
-✔ Analysis complete, fetching results...ults...
-
-WARNINGs found:
-Rule: Ensure used routing tables for VPC peering are "least access"
- - 1 Resources Exposed:
------------------------------------------------
-   - Exposed Resource: [aws_vpc.vpc2] (main.tf:35)
-     Violating Resource: [aws_route_table.subnet2_1]  (main.tf:162)
-
-     Evidence:
-         VPC Peer aws_vpc.vpc1.id
-             | VPC Peer uses CIDR block aws_vpc.vpc1.id
-             | Local VPC's routing table aws_route_table.subnet2_1 has a route matching CIDR block
-             | Local VPC is potentially overexposing resources peering VPC
-         Local VPC aws_vpc.vpc2.id
-
-
------------------------------------------------
-
-Summary:
-1 Rules Violated:
-  0 Mandated Rules (these are considered FAILURES)
-  1 Advisory Rules (these are considered WARNINGS)
-83 Rules Passed
-
-
-
-NOTE: WARNINGs are not listed by default. Please use the "-v" option to list them.
-
-~ #
+# cd test/aws/terraform/disallow_ec2_classic_mode_rule/deploy_redshift_in_ec2_classic_mode
+# terraform init
+# terraform plan -out=plan.out
+# cloudrail run --tf-plan plan.out --directory . --auto-approve
 ```
 
-NOTE: You do not need to run "terraform apply" as Cloudrail can simply analyze the plan. If you would like, you can apply the entire test case in your AWS account and see you are getting the same results.
-If you'd like to be even more creative, you can apply some of the resources first, then run a plan that will add only the remaining resources. Cloudrail is capable of understanding all of these scenarios.
+NOTES:
+1. You do not need to run ```terraform apply``` as Cloudrail can simply analyze the plan. If you would like, you can apply the entire test case in your AWS account and see you are getting the same results. If you'd like to be even more creative, you can apply some of the resources first, then run a plan that will add only the remaining resources. Cloudrail is capable of understanding all of these scenarios.
+2. When the Cloudrail CLI container analyzes your plan, it needs access to some files in the directory where the plan was created. These files are NOT uploaded to our service, and are only used locally for analysis.
+3. If the ```--auto-approve``` flag is excluded, the Cloudrail CLI will show you what it's going to upload before it does so. ```--auto-approve``` simply skips that step.
+4. If you'd like, you can split the ```run``` into two phases: ```cloudrail generate-context``` which will generate the filtered Terraform context and save it to a file, and then ```cloudrail run``` which will take the filtered context file as input. This allows you to run various data scanning tools before uploading the content to the Cloudrail Service.
 
 # Test Cases to try Cloudrail With
 <details>
