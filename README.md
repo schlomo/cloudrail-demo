@@ -18,6 +18,13 @@ Cloudrail's main advantages vs existing tools are:
 - Taking into account the live cloud environment, and its potential impact on the resources in the IaC code
 - Support for tfvars, runtime variables and modules (Cloudrail reviews the full plan, instead of specific .tf files)
 
+## Examples of Cloudrail-only capabilities
+
+- [Find out if a public instance and a private instance use the same role](test/aws/terraform/ec2_role_share_role/public_and_private_ec2_same_role)
+- [Identify if a Default Security Group is in use AND open](test/aws/terraform/ensure_all_used_default_security_groups_restrict_all_traffic_rule/default_sg_in_new_vpc)
+- [Take into consideration the account-level Public Access Block for S3 buckets](test/aws/terraform/s3_acl_disallow_public_and_cross_account/acl_public_all_authenticated_users_canned)
+- [Calculate if a VPC endpoint should be used, and whether it's used correctly](test/aws/terraform/s3_vpce_gateway_not_used_rule/vpc_has_only_s3_vpce_gw_connection)
+
 ## Features
 Cloudrail currently supports Terraform files used with the AWS cloud provider.
 
