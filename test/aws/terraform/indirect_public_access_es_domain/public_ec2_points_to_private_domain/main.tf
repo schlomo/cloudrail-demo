@@ -2,11 +2,6 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-locals {
-  test_description = "Indirect public access to Redshift - a public EC2 can reach a private Redshift cluster"
-  test_name        = "Indirect public access to Redshift - use case 1"
-}
-
 resource "aws_vpc" "nondefault" {
   cidr_block = "10.1.1.0/24"
 }

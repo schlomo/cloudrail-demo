@@ -1,0 +1,36 @@
+
+WARNINGs found:
+Rule: Ensure S3 buckets are not made widely accessible through ACLs and bucket policies
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.public-bucket] (main.tf:5)
+     Violating Resource: [aws_s3_bucket_policy.bucket_2_policy]  (main.tf:9)
+
+     Evidence:
+         The S3 bucket
+             | aws_s3_bucket.public-bucket is publicly exposed through the S3 Policy with identifier aws_s3_bucket_policy.bucket_2_policy.
+
+
+-----------------------------------------------
+Rule: Ensure S3 buckets are set to be encrypted at rest
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.public-bucket] (main.tf:5)
+     Violating Resource: [aws_s3_bucket.public-bucket]  (main.tf:5)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.public-bucket is not set to be encrypted at rest
+
+
+-----------------------------------------------
+Rule: Ensure S3 buckets with data have versioning enabled
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.public-bucket] (main.tf:5)
+     Violating Resource: [aws_s3_bucket.public-bucket]  (main.tf:5)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.public-bucket does not have versioning enabled
+
+
+-----------------------------------------------

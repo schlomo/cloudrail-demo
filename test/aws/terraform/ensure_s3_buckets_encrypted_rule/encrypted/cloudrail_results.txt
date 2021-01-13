@@ -1,0 +1,20 @@
+
+WARNINGs found:
+Rule: Ensure S3 buckets with data have versioning enabled
+ - 2 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.kms-s3-encrypted] (main.tf:27)
+     Violating Resource: [aws_s3_bucket.kms-s3-encrypted]  (main.tf:27)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.kms-s3-encrypted does not have versioning enabled
+
+
+   - Exposed Resource: [aws_s3_bucket.sse-s3-encrypted] (main.tf:5)
+     Violating Resource: [aws_s3_bucket.sse-s3-encrypted]  (main.tf:5)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.sse-s3-encrypted does not have versioning enabled
+
+
+-----------------------------------------------

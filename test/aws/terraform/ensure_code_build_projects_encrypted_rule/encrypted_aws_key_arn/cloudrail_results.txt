@@ -1,0 +1,13 @@
+
+WARNINGs found:
+Rule: Ensure CodeBuild projects are set to be encrypted at rest with customer-managed CMK
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_codebuild_project.project-cloudrail-test] (main.tf:29)
+     Violating Resource: [aws_codebuild_project.project-cloudrail-test]  (main.tf:29)
+
+     Evidence:
+             | The CodeBuild project aws_codebuild_project.project-cloudrail-test is not set to use encryption at rest with customer-managed CMK
+
+
+-----------------------------------------------

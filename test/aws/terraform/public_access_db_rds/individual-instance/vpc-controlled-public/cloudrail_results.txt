@@ -1,0 +1,51 @@
+
+WARNINGs found:
+Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to port 3306 (MYSQL)
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_db_instance.test] (main.tf:60)
+     Violating Resource: [aws_security_group.nondefault]  (main.tf:9)
+
+     Evidence:
+         Internet
+             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Instance aws_db_instance.test is on aws_subnet.nondefault_1
+             | Subnet routes traffic from instance to Internet Gateway
+             | Subnet uses NACL nacl-pseudo-140a880c-6715-4090-89d4-23b14989eb8e which allows port 3306
+             | Instance uses Security Group ['aws_security_group.nondefault']
+             | Security Group allows port 3306
+         Instance
+
+
+-----------------------------------------------
+Rule: Ensure RDS database is not publicly accessible
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_db_instance.test] (main.tf:60)
+     Violating Resource: [aws_security_group.nondefault]  (main.tf:9)
+
+     Evidence:
+         Internet
+             | RDS instance aws_db_instance.test is on VPC aws_vpc.nondefault
+             | instance uses Security-Groups aws_security_group.nondefault 
+             | Instance uses the subnets aws_subnet.nondefault_1, aws_subnet.nondefault_2
+             | Instance is reachable from the internet due to subnet(s) and route table(s)
+             | Subnet uses NACL(s) nacl-pseudo-140a880c-6715-4090-89d4-23b14989eb8e, nacl-pseudo-140a880c-6715-4090-89d4-23b14989eb8e
+             | NACL(s) and Security Group(s) allows the RDS configured ports
+         RDS Instance
+
+
+-----------------------------------------------
+Rule: Ensure RDS instances/clusters being created are set to be encrypted at rest
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_db_instance.test] (main.tf:60)
+     Violating Resource: [aws_db_instance.test]  (main.tf:60)
+
+     Evidence:
+         RDS Instance
+             | RDS Instance aws_db_instance.test
+             | is not set to use encrypt at rest
+
+
+-----------------------------------------------

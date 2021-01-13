@@ -1,0 +1,24 @@
+
+WARNINGs found:
+Rule: Ensure S3 buckets are set to be encrypted at rest
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.cloudrail] (main.tf:5)
+     Violating Resource: [aws_s3_bucket.cloudrail]  (main.tf:5)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.cloudrail is not set to be encrypted at rest
+
+
+-----------------------------------------------
+Rule: Ensure S3 buckets with data have versioning enabled
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.cloudrail] (main.tf:5)
+     Violating Resource: [aws_s3_bucket.cloudrail]  (main.tf:5)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.cloudrail does not have versioning enabled
+
+
+-----------------------------------------------

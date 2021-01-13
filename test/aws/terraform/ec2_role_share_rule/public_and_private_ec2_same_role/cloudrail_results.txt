@@ -1,0 +1,84 @@
+
+WARNINGs found:
+Rule: EC2(s) within the public and private subnets should not share identical IAM roles
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.priv_ins] (main.tf:107)
+     Violating Resource: [aws_iam_role.test_role]  (main.tf:51)
+
+     Evidence:
+         Instance ['aws_instance.pub_ins']
+             | Instance is publicly exposed
+             | Instance uses IAM role aws_iam_role.test_role
+             | Private EC2 instance shares IAM role aws_iam_role.test_role as well
+         Instance aws_instance.priv_ins
+
+
+-----------------------------------------------
+Rule: Ensure all used default security groups of every VPC restrict all traffic
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.priv_ins] (main.tf:107)
+     Violating Resource: [module.vpc.aws_default_security_group.this[0]]  (.terraform/modules/vpc/main.tf:57)
+
+     Evidence:
+         VPC module.vpc.aws_vpc.this[0]
+             | eni-pseudo-2cb85757-c018-478b-b0f2-7fe486b66b5f uses ENI aws_instance.priv_ins
+             | The ENI is secured by default Security Group module.vpc.aws_default_security_group.this[0] and allow all traffic
+
+
+-----------------------------------------------
+Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to port 22 (SSH)
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.pub_ins] (main.tf:99)
+     Violating Resource: [module.vpc.aws_default_security_group.this[0]]  (.terraform/modules/vpc/main.tf:57)
+
+     Evidence:
+         Internet
+             | Subnet module.vpc.aws_subnet.public[0] has Internet Gateway
+             | Instance aws_instance.pub_ins is on module.vpc.aws_subnet.public[0]
+             | Subnet routes traffic from instance to Internet Gateway
+             | Subnet uses NACL nacl-pseudo-12535ff0-fea9-4ca5-8fd7-fe1ad3d26390 which allows port 22
+             | Instance uses Security Group ['module.vpc.aws_default_security_group.this[0]']
+             | Security Group allows port 22
+         Instance
+
+
+-----------------------------------------------
+Rule: Ensure IMDSv2 is used and IMDSv1 is disabled
+ - 2 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.priv_ins] (main.tf:107)
+     Violating Resource: [aws_instance.priv_ins]  (main.tf:107)
+
+     Evidence:
+             | The EC2 aws_instance.priv_ins is allowing IMDSv1
+
+
+   - Exposed Resource: [aws_instance.pub_ins] (main.tf:99)
+     Violating Resource: [aws_instance.pub_ins]  (main.tf:99)
+
+     Evidence:
+             | The EC2 aws_instance.pub_ins is allowing IMDSv1
+
+
+-----------------------------------------------
+Rule: Allow only private AMIs to be used
+ - 2 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.priv_ins] (main.tf:107)
+     Violating Resource: [ami-099e921e69356cf89]  (Not found in TF)
+
+     Evidence:
+             | The EC2 aws_instance.priv_ins uses AMI ami-099e921e69356cf89, which is public
+
+
+   - Exposed Resource: [aws_instance.pub_ins] (main.tf:99)
+     Violating Resource: [ami-099e921e69356cf89]  (Not found in TF)
+
+     Evidence:
+             | The EC2 aws_instance.pub_ins uses AMI ami-099e921e69356cf89, which is public
+
+
+-----------------------------------------------

@@ -1,0 +1,13 @@
+
+WARNINGs found:
+Rule: Ensure no human IAM users defined
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_iam_user.iam_user_1] (main.tf:5)
+     Violating Resource: [aws_iam_user.iam_user_1]  (main.tf:5)
+
+     Evidence:
+             | The IAM user aws_iam_user.iam_user_1 has console access, and so is considered human
+
+
+-----------------------------------------------

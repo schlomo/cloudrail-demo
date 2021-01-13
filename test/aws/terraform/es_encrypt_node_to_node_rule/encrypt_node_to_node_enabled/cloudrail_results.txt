@@ -1,0 +1,40 @@
+
+WARNINGs found:
+Rule: Ensure Elasticsearch Domain is not publicly accessible
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_elasticsearch_domain.example] (main.tf:5)
+     Violating Resource: [aws_elasticsearch_domain.example]  (main.tf:5)
+
+     Evidence:
+         Internet
+             | ES Domain: aws_elasticsearch_domain.example is publicly accessible
+             | Domain is currently not deployed within a VPC
+         ElasticSearch
+
+
+-----------------------------------------------
+Rule: Ensure Elasticsearch Domains being created are set to be encrypted at rest
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_elasticsearch_domain.example] (main.tf:5)
+     Violating Resource: [aws_elasticsearch_domain.example]  (main.tf:5)
+
+     Evidence:
+         Elasticsearch Domain
+             | ES Domain aws_elasticsearch_domain.example
+             | is not set to use encrypt at rest
+
+
+-----------------------------------------------
+Rule: Ensure Elasticsearch Service domain policy does not use wildcard actions
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_elasticsearch_domain.example] (main.tf:5)
+     Violating Resource: [aws_elasticsearch_domain.example]  (main.tf:5)
+
+     Evidence:
+             | There is no policy attached to aws_elasticsearch_domain.example, which is equivalent to granting * to all
+
+
+-----------------------------------------------

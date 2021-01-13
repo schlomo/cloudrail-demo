@@ -1,0 +1,71 @@
+Files scanned: 1
+Parsed files: 1
+Queries loaded: 728
+Queries failed to execute: 0
+Fully open Ingress, Severity: HIGH, Results: 1
+	/src/main.tf:120
+Redshift Not Encrypted, Severity: HIGH, Results: 1
+	/src/main.tf:103
+Access Key Is Not Rotated Within 90 Days, Severity: MEDIUM, Results: 1
+	/src/main.tf:1
+SSH' (TCP:22) in Public Scope, Severity: HIGH, Results: 1
+	/src/main.tf:120
+Sensitive Port Is Exposed To Entire Network, Severity: HIGH, Results: 48
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+	/src/main.tf:116
+AWS Redshift Cluster Logging Disabled, Severity: MEDIUM, Results: 1
+	/src/main.tf:103
+Remote Desktop Port Open, Severity: HIGH, Results: 1
+	/src/main.tf:116
+SQL Analysis Services Port 2383 (TCP) is Publicly Accessible, Severity: MEDIUM, Results: 1
+	/src/main.tf:120
+HTTP port open, Severity: HIGH, Results: 1
+	/src/main.tf:116
+SSH port open, Severity: HIGH, Results: 1
+	/src/main.tf:116
