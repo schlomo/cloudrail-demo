@@ -8,7 +8,7 @@ Rule: Ensure all used default security groups of every VPC restrict all traffic
 
      Evidence:
          VPC vpc-00f7a3e5b1a2d87f0
-             | eni-pseudo-dea5460a-a02e-41ee-9323-0db577e50104 uses ENI aws_db_instance.default
+             | eni-pseudo-8e696c16-b544-40dc-a479-211da8ea19bf uses ENI aws_db_instance.default
              | The ENI is secured by default Security Group default and allow all traffic
 
 

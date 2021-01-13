@@ -40,3 +40,32 @@ Rule: Ensure S3 buckets are set to be encrypted at rest
 
 
 -----------------------------------------------
+Rule: Ensure S3 buckets with data have versioning enabled
+ - 2 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.dist] (main.tf:14)
+     Violating Resource: [aws_s3_bucket.dist]  (main.tf:14)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.dist does not have versioning enabled
+
+
+   - Exposed Resource: [aws_s3_bucket.logging] (main.tf:5)
+     Violating Resource: [aws_s3_bucket.logging]  (main.tf:5)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.logging does not have versioning enabled
+
+
+-----------------------------------------------
+Rule: Ensure CloudFront Distribution being created are set to perform field-level encryption
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_cloudfront_distribution.s3_distribution] (main.tf:32)
+     Violating Resource: [aws_cloudfront_distribution.s3_distribution]  (main.tf:32)
+
+     Evidence:
+             | The CloudFront Distribution aws_cloudfront_distribution.s3_distribution is not set to use HTTPS to protect data in transit default_cache_behavior and in ['ordered_cache_behavior #1', 'ordered_cache_behavior #2']
+
+
+-----------------------------------------------

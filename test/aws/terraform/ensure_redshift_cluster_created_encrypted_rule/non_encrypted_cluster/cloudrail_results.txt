@@ -8,7 +8,7 @@ Rule: Ensure all used default security groups of every VPC restrict all traffic
 
      Evidence:
          VPC vpc-00f7a3e5b1a2d87f0
-             | eni-pseudo-dcbb58ab-3852-433b-babb-aaaa7f3ed073 uses ENI aws_redshift_cluster.test
+             | eni-pseudo-448241c1-0416-4b43-a6b9-d6fef2a0e101 uses ENI aws_redshift_cluster.test
              | The ENI is secured by default Security Group default and allow all traffic
 
 
@@ -32,7 +32,7 @@ Rule: Ensure Redshift clusters being created are set to be encrypted at rest
      Violating Resource: [aws_redshift_cluster.test]  (main.tf:5)
 
      Evidence:
-             | "The Redshift cluster aws_redshift_cluster.test is not set to use encryption at rest"
+             | The Redshift cluster aws_redshift_cluster.test is not set to use encryption at rest
 
 
 -----------------------------------------------

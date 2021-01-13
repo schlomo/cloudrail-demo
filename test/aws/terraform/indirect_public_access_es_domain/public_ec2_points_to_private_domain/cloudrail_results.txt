@@ -375,43 +375,14 @@ Rule: Allow only private AMIs to be used
 
 
 -----------------------------------------------
-Rule: Ensure all data stored in the Launch configuration EBS is securely encrypted
- - 1 Resources Exposed:
------------------------------------------------
-   - Exposed Resource: [aws_instance.public_ins] (main.tf:138)
-     Violating Resource: [aws_instance.public_ins]  (main.tf:138)
-
-     Evidence:
-             | This rule evaluated aws_instance.public_ins only, it is not a context-aware rule.
-
-
------------------------------------------------
-Rule: Ensure every security groups rule has a description
- - 2 Resources Exposed:
------------------------------------------------
-   - Exposed Resource: [aws_security_group.esdomain] (main.tf:92)
-     Violating Resource: [aws_security_group.esdomain]  (main.tf:92)
-
-     Evidence:
-             | This rule evaluated aws_security_group.esdomain only, it is not a context-aware rule.
-
-
-   - Exposed Resource: [aws_security_group.publicly_accessible_sg] (main.tf:121)
-     Violating Resource: [aws_security_group.publicly_accessible_sg]  (main.tf:121)
-
-     Evidence:
-             | This rule evaluated aws_security_group.publicly_accessible_sg only, it is not a context-aware rule.
-
-
------------------------------------------------
-Rule: Ensure Elasticsearch Domain enforces HTTPS
+Rule: Ensure Elasticsearch Service domain policy does not use wildcard actions
  - 1 Resources Exposed:
 -----------------------------------------------
    - Exposed Resource: [aws_elasticsearch_domain.test] (main.tf:107)
      Violating Resource: [aws_elasticsearch_domain.test]  (main.tf:107)
 
      Evidence:
-             | This rule evaluated aws_elasticsearch_domain.test only, it is not a context-aware rule.
+             | There is no policy attached to aws_elasticsearch_domain.test, which is equivalent to granting * to all
 
 
 -----------------------------------------------

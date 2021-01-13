@@ -1,19 +1,5 @@
 
 WARNINGs found:
-Rule: Ensure that the private bucket's policy reference a VPC Endpoint as source
- - 1 Resources Exposed:
------------------------------------------------
-   - Exposed Resource: [aws_s3_bucket.cloudrail] (main.tf:5)
-     Violating Resource: [aws_s3_bucket.cloudrail]  (main.tf:5)
-
-     Evidence:
-             | ~Bucket aws_s3_bucket.cloudrail
-             | is accessible via VPC endpoint vpce-0d03e8972ac4910df
-             | in VPC sfdc-somestage-consoleme
-             | with a policy that is not restricting requests sourced from a VPC Endpoint.
-
-
------------------------------------------------
 Rule: Ensure S3 buckets are set to be encrypted at rest
  - 1 Resources Exposed:
 -----------------------------------------------
@@ -22,6 +8,17 @@ Rule: Ensure S3 buckets are set to be encrypted at rest
 
      Evidence:
              | The S3 bucket aws_s3_bucket.cloudrail is not set to be encrypted at rest
+
+
+-----------------------------------------------
+Rule: Ensure S3 buckets with data have versioning enabled
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.cloudrail] (main.tf:5)
+     Violating Resource: [aws_s3_bucket.cloudrail]  (main.tf:5)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.cloudrail does not have versioning enabled
 
 
 -----------------------------------------------

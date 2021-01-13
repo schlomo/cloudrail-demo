@@ -40,14 +40,14 @@ Rule: Ensure Elasticsearch domains being created are set to be encrypted node-to
 
 
 -----------------------------------------------
-Rule: Ensure Elasticsearch Domain enforces HTTPS
+Rule: Ensure Elasticsearch Service domain policy does not use wildcard actions
  - 1 Resources Exposed:
 -----------------------------------------------
    - Exposed Resource: [aws_elasticsearch_domain.example] (main.tf:5)
      Violating Resource: [aws_elasticsearch_domain.example]  (main.tf:5)
 
      Evidence:
-             | This rule evaluated aws_elasticsearch_domain.example only, it is not a context-aware rule.
+             | There is no policy attached to aws_elasticsearch_domain.example, which is equivalent to granting * to all
 
 
 -----------------------------------------------

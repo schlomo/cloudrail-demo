@@ -1,6 +1,6 @@
 
 WARNINGs found:
-Rule: Ensure Athena Workgroup query results are set to be encrypted at rest
+Rule: Ensure Athena Workgroup query results are set to be encrypted at rest and enforced on clients
  - 1 Resources Exposed:
 -----------------------------------------------
    - Exposed Resource: [aws_athena_workgroup.cloudrail_wg] (main.tf:18)
@@ -8,30 +8,6 @@ Rule: Ensure Athena Workgroup query results are set to be encrypted at rest
 
      Evidence:
              | The Athena Workgroup aws_athena_workgroup.cloudrail_wg is set to encrypt at rest the query results, but the workgroup configurations are not set to enforce
-
-
------------------------------------------------
-Rule: Ensure that the private bucket's policy reference a VPC Endpoint as source
- - 2 Resources Exposed:
------------------------------------------------
-   - Exposed Resource: [aws_s3_bucket.cloudrail_anthena_bucket] (main.tf:5)
-     Violating Resource: [aws_s3_bucket.cloudrail_anthena_bucket]  (main.tf:5)
-
-     Evidence:
-             | ~Bucket aws_s3_bucket.cloudrail_anthena_bucket
-             | is accessible via VPC endpoint vpce-0d03e8972ac4910df
-             | in VPC sfdc-somestage-consoleme
-             | with a policy that is not restricting requests sourced from a VPC Endpoint.
-
-
-   - Exposed Resource: [aws_s3_bucket.cloudrail_anthena_bucket_2] (main.tf:35)
-     Violating Resource: [aws_s3_bucket.cloudrail_anthena_bucket_2]  (main.tf:35)
-
-     Evidence:
-             | ~Bucket aws_s3_bucket.cloudrail_anthena_bucket_2
-             | is accessible via VPC endpoint vpce-0d03e8972ac4910df
-             | in VPC sfdc-somestage-consoleme
-             | with a policy that is not restricting requests sourced from a VPC Endpoint.
 
 
 -----------------------------------------------
@@ -50,6 +26,24 @@ Rule: Ensure S3 buckets are set to be encrypted at rest
 
      Evidence:
              | The S3 bucket aws_s3_bucket.cloudrail_anthena_bucket_2 is not set to be encrypted at rest
+
+
+-----------------------------------------------
+Rule: Ensure S3 buckets with data have versioning enabled
+ - 2 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.cloudrail_anthena_bucket] (main.tf:5)
+     Violating Resource: [aws_s3_bucket.cloudrail_anthena_bucket]  (main.tf:5)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.cloudrail_anthena_bucket does not have versioning enabled
+
+
+   - Exposed Resource: [aws_s3_bucket.cloudrail_anthena_bucket_2] (main.tf:35)
+     Violating Resource: [aws_s3_bucket.cloudrail_anthena_bucket_2]  (main.tf:35)
+
+     Evidence:
+             | The S3 bucket aws_s3_bucket.cloudrail_anthena_bucket_2 does not have versioning enabled
 
 
 -----------------------------------------------
