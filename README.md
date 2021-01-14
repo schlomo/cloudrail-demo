@@ -55,7 +55,7 @@ Then, you can run the container:
 docker run --rm -it -v $PWD:/data -v cloudrail:/indeni indeni/cloudrail-cli --version
 ```
 
-When running on your own workstation, we recommend adding this function to your shell's .rc file (~/.bashrc, ~/.zshrc, etc.):
+*IMPORTANT: Currently you must always run the "latest" container version, as the contract between the container and the Cloudrail Service expands almost daily. This means it's important to pull ":latest" before every run. To help with this, you can add the function below to your shell's .rc file (~/.bashrc, ~/.zshrc, etc.):*
 ```shell script
 cloudrail () {
   printf 'Checking for an updated cloudrail image (may take a few minutes if a new one is downloaded)...'
@@ -64,7 +64,7 @@ cloudrail () {
   docker run --rm -it -v $PWD:/data -v cloudrail:/indeni indeni/cloudrail-cli $@
 }
 ```
-This will allow you to simply run ```cloudrail``` instead of the full docker command. Note that in
+This will also allow you to simply run ```cloudrail``` instead of the full docker command. Note that in
 all of the examples below, we write ```cloudrail```. If you haven't included the above function in your 
 shell's .rc file, you will need to use ```docker run --rm -it -v $PWD:/data -v cloudrail:/indeni indeni/cloudrail-cli``` instead.
 
