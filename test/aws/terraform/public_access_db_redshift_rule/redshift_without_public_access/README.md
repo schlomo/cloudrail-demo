@@ -3,7 +3,7 @@ looking at a flag (like "publicly_accessible = true"). One must also check to se
 if there's routing that exposes the resource, and whether the security group and NACL is 
 exposing the specific ports the resource uses.
 
-This kind of context analysis is unique to Cloudrail, and can be seen in the output:
+In the example here, Cloudrail is NOT alerting about the database being public because it doesn't have a route to the Internet. If it did, the violation would look like this:
 
 ```
 Rule: Ensure Redshift database is not publicly accessible
