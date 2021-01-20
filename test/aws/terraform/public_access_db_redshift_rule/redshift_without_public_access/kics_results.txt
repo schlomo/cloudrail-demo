@@ -1,0 +1,23 @@
+Files scanned: 1
+Parsed files: 1
+Queries loaded: 788
+Queries failed to execute: 0
+
+Redshift Not Encrypted, Severity: HIGH, Results: 1
+	/src/main.tf:89
+Redshift Publicly Accessible, Severity: HIGH, Results: 1
+	/src/main.tf:97
+Unknown Port Exposed To Internet, Severity: HIGH, Results: 1
+	/src/main.tf:15
+AWS Redshift Cluster Logging Disabled, Severity: MEDIUM, Results: 1
+	/src/main.tf:89
+Fully open Ingress, Severity: HIGH, Results: 1
+	/src/main.tf:18
+
+Results Summary:
+HIGH: 4
+MEDIUM: 1
+LOW: 0
+INFO: 0
+TOTAL: 5
+
