@@ -1,5 +1,15 @@
+Determining whether a database, or any resource, is accessible to the Internet is more than just
+looking at a flag (like "publicly_accessible = true"). One must also check to see
+if there's routing that exposes the resource, and whether the security group and NACL is 
+exposing the specific ports the resource uses.
 
-WARNINGs found:
+This kind of context analysis is unique to Cloudrail. Notice that Cloudrail is the only tool not
+alerting about this database being exposed publicly. The reason for that is that Cloudrail
+can see the database cannot route to the Internet, and therefore isn't truly exposed publicly.
+
+If it would have had routing to the Internet, the message would look like this:
+
+```
 Rule: Ensure Redshift database is not publicly accessible
  - 1 Resources Exposed:
 -----------------------------------------------
@@ -15,17 +25,4 @@ Rule: Ensure Redshift database is not publicly accessible
              | Subnets rely on NACL(s) aws_network_acl.public, aws_network_acl.private
              | Redshift is capable of traversing to the internet via Redshift associated port
          Redshift aws_redshift_cluster.test
-
-
------------------------------------------------
-Rule: Ensure Redshift clusters being created are set to be encrypted at rest
- - 1 Resources Exposed:
------------------------------------------------
-   - Exposed Resource: [aws_redshift_cluster.test] (main.tf:97)
-     Violating Resource: [aws_redshift_cluster.test]  (main.tf:97)
-
-     Evidence:
-             | The Redshift cluster aws_redshift_cluster.test is not set to use encryption at rest
-
-
------------------------------------------------
+```

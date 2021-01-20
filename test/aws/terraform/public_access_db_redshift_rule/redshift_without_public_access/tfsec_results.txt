@@ -41,35 +41,36 @@ Problem 2
 Problem 3
 
   [AWS011][WARNING] Resource 'aws_redshift_cluster.test' is exposed publicly.
-  /src/main.tf:105
+  /src/main.tf:97
 
-     102 |   skip_final_snapshot = true
-     103 |   vpc_security_group_ids = [aws_security_group.nondefault.id]
-     104 |   cluster_subnet_group_name = aws_redshift_subnet_group.nondefault.name
-     105 |   publicly_accessible = true
-     106 | }
+      94 |   skip_final_snapshot = true
+      95 |   vpc_security_group_ids = [aws_security_group.nondefault.id]
+      96 |   cluster_subnet_group_name = aws_redshift_subnet_group.nondefault.name
+      97 |   publicly_accessible = true
+      98 | }
+      99 | 
 
    See https://tfsec.dev/docs/aws/AWS011/ for more information. 
 
 Problem 4
 
   [GEN003][WARNING] Block 'aws_redshift_cluster.test' includes a potentially sensitive attribute which is defined within the project.
-  /src/main.tf:100
+  /src/main.tf:92
 
-      97 | resource "aws_redshift_cluster" "test" {
-      98 |   cluster_identifier = "redshift-defaults-only"
-      99 |   node_type = "dc2.large"
-     100 |   master_password = "Test1234"
-     101 |   master_username = "test"
-     102 |   skip_final_snapshot = true
-     103 |   vpc_security_group_ids = [aws_security_group.nondefault.id]
+      89 | resource "aws_redshift_cluster" "test" {
+      90 |   cluster_identifier = "redshift-defaults-only"
+      91 |   node_type = "dc2.large"
+      92 |   master_password = "Test1234"
+      93 |   master_username = "test"
+      94 |   skip_final_snapshot = true
+      95 |   vpc_security_group_ids = [aws_security_group.nondefault.id]
 
    See https://tfsec.dev/docs/general/GEN003/ for more information. 
 
-  disk i/o             33.724268ms
-  parsing HCL          11.542µs
-  evaluating values    3.162448ms
-  running checks       16.683101ms
+  disk i/o             85.1754ms
+  parsing HCL          51µs
+  evaluating values    2.6339ms
+  running checks       35.5453ms
   files loaded         1
 
 4 potential problems detected.

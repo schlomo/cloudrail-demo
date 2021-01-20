@@ -24,6 +24,7 @@ Cloudrail's main advantages vs existing tools are:
 - [Identify if a Default Security Group is in use AND open](test/aws/terraform/ensure_all_used_default_security_groups_restrict_all_traffic_rule/default_sg_in_new_vpc)
 - [Take into consideration the account-level Public Access Block for S3 buckets](test/aws/terraform/s3_acl_disallow_public_and_cross_account/acl_public_all_authenticated_users_canned)
 - [Calculate if a VPC endpoint should be used, and whether it's used correctly](test/aws/terraform/s3_vpce_gateway_not_used_rule/vpc_has_only_s3_vpce_gw_connection)
+- [Do not alert about a resource being public if it isn't](test/aws/terraform/public_access_db_redshift_rule/redshift_without_public_access)
 
 ## Features
 Cloudrail currently supports Terraform files used with the AWS cloud provider.
