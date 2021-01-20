@@ -1,14 +1,13 @@
 # This is a sample gitlab CI configuration showing how to use Cloudrail
-# to test Terraform content. It will actually go and test all the cases included in this repo.
+# to test Terraform content.
 
 # Based on example: https://gitlab.com/gitlab-org/configure/examples/gitlab-terraform-aws/-/blob/master/.gitlab-ci.yml
 
+# The example TF code we use here only works in v0.13, however Cloudrail supports 0.14 as well.
 image: registry.gitlab.com/gitlab-org/terraform-images/releases/0.13
 variables:
-  # Picking some TF folder to test
+  # We're picking a specific test case to run against.
   TEST_ROOT: ${CI_PROJECT_DIR}/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
-  TEST_RELATIVE_ROOT: /test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
-  TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/${CI_PROJECT_NAME}
 
 before_script:
   - cd ${TEST_ROOT}
@@ -17,6 +16,7 @@ stages:
   - init_and_plan
   - cloudrail
 
+# Cloudrail requires a Terraform plan as an input, so we must create a plan first.
 init_and_plan:
   stage: init_and_plan
   script:
@@ -28,6 +28,12 @@ init_and_plan:
       - ./**/plan.out
       - ./**/.terraform
 
+# This will run Cloudrail and produce a SAST report according to GitLab's requirements. The idea is that if there are
+# any rules that are set to MANDATE, and they find violations, we will have results listed in the GitLab-SAST output.
+# This will then cause GitLab to stop the pipeline and provide the list of violations found,
+# allowing dev's to fix the violations.
+# Note that Cloudrail has other output formats as well, but GitLab-SAST is the one intended for GitLab use.
+# Also note that rules that are set to ADVISE (which is the default) will _not_ be included in the output by default.
 cloudrail:
   stage: cloudrail
   image: indeni/cloudrail-cli:latest

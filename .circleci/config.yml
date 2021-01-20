@@ -1,11 +1,14 @@
 version: 2.1
 
+# For more details about how to use this Orb, please see:
+# https://circleci.com/developer/orbs/orb/indeni/cloudrail
 orbs:
   cloudrail: indeni/cloudrail@1.4.0
 
 workflows:
   main:
     jobs:
+      # Cloudrail requires a Terraform plan as an input, so we must create a plan first.
       - tf_plan
       - security_check_terraform:
           requires:
@@ -15,6 +18,7 @@ jobs:
   tf_plan:
     working_directory: /tmp/test_tf
     docker:
+      # The example TF code we use here only works in v0.13, however Cloudrail supports 0.14 as well.
       - image: hashicorp/terraform:0.13.5
     steps:
       - checkout
@@ -24,6 +28,7 @@ jobs:
             cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
             terraform init -input=false
             terraform plan -out plan.out
+      # This persistence is important in order to pass the plan.out to Cloudrail
       - persist_to_workspace:
           root: .
           paths:
@@ -31,12 +36,19 @@ jobs:
   security_check_terraform:
     executor: cloudrail/default
     steps:
+      # This loads the plan.out file:
       - attach_workspace:
           at: .
       - run: # Tests must be in a sub directory, per https://support.circleci.com/hc/en-us/articles/360021624194-Test-summary-troubleshooting
           name: Create test result directory (if not exists)
           command: |
             mkdir test_results
+      # This will run Cloudrail and produce Junit test results. The idea is that if there are any rules
+      # that are set to MANDATE, and they find violations, we will have "failed" tests in the Junit output.
+      # This will then cause CircleCI to stop the pipeline and list the failed tests, allowing dev's to fix
+      # the violations.
+      # Note that Cloudrail has other output formats as well, please see the Orb documentation for more information.
+      # Also note that rules that are set to ADVISE (which is the default) will _not_ be included in the output by default.
       - cloudrail/scan_terraform_junit:
           cloud-account-id: $AWS_ACCOUNT_ID
           cloudrail_api_key: $CLOUDRAIL_API_KEY
