@@ -36,16 +36,8 @@ resource "aws_redshift_subnet_group" "nondefault" {
   subnet_ids = [aws_subnet.nondefault_1.id, aws_subnet.nondefault_2.id]
 }
 
-resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.nondefault.id
-}
-
 resource "aws_route_table" "nondefault" {
   vpc_id = aws_vpc.nondefault.id
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw.id
-  }
 }
 
 resource "aws_route_table_association" "nondefault1" {
