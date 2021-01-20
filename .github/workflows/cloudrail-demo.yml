@@ -9,7 +9,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  # This workflow contains a single job called "build"
   build:
     runs-on: ubuntu-20.04
 
@@ -17,21 +16,30 @@ jobs:
       - uses: actions/checkout@v2
       - uses: hashicorp/setup-terraform@v1.2.1
         with:
+          # The example TF code we use here only works in v0.13, however Cloudrail supports 0.14 as well.
           terraform_version: v0.13.2
       
       # We're picking a specific test case to run against.
       - run: terraform init
         working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+
+      # Cloudrail requires a Terraform plan as an input, so we must create a plan first.
       - run: terraform plan -out=plan.out
         working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      # Confirm we have the plan file
+      # Confirm we have the plan file (not necessary, just an extra validation)
       - run: stat plan.out
         working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
-          
+
+      # This will run Cloudrail and produce SARIF-formatted results. The idea is that if there are any rules
+      # that are set to MANDATE, and they find violations, we will have results listed in the SARIF output.
+      # This will then cause GitHub Actions to stop the pipeline and provide the list of violations found,
+      # allowing dev's to fix the violations.
+      # Note that Cloudrail has other output formats as well, but SARIF is the default for our GitHub Actions.
+      # Also note that rules that are set to ADVISE (which is the default) will _not_ be included in the output by default.
       - uses: indeni/cloudrail-run-ga@v1.0
         with:
           tf-plan-file: plan.out
