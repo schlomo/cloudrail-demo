@@ -1,0 +1,13 @@
+Files scanned: 1
+Parsed files: 1
+Queries loaded: 788
+Queries failed to execute: 0
+
+
+Results Summary:
+HIGH: 0
+MEDIUM: 0
+LOW: 0
+INFO: 0
+TOTAL: 0
+

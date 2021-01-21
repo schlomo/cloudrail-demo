@@ -1,0 +1,13 @@
+
+WARNINGs found:
+Rule: Ensure IAM permissions are not given directly to users
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_iam_user.user-1] (main.tf:5)
+     Violating Resource: [aws_iam_user_policy.allow-policy]  (main.tf:11)
+
+     Evidence:
+             | The user aws_iam_user.user-1 has the policy aws_iam_user_policy.allow-policy  attached directly to it
+
+
+-----------------------------------------------
