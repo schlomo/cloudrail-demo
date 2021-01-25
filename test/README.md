@@ -63,5 +63,12 @@ NOTES:
   41. [Only private AMIs should be used](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/allow_only_private_amis_rule)
   42. [Codebuild projects should be set to be encrypted at rest with customer-managed CMK](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_code_build_projects_encrypted_rule)
   43. [SQS queues should be set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_sqs_queues_encrypted_at_rest_rule)
+  44. [Disallow IAM permissions which can lead to privilege escalation](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/iam_privilege_escalation_policy_rule)
+  45. [SQS policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_sqs_queue_policy_not_use_wildcard_rule)
+  46. [ECR Repository policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_ecr_repository_policy_not_use_wildcard_rule)
+  47. [SNS topics should be set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_sns_topic_encrypted_at_rest_rule)
+  48. [Elasticache replication groups being created should be set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_elasticache_replication_groups_encrypted_at_rest_rule)
+  49. [Elasticache replication groups being created should be set to be encrypted in transit](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_elasticache_replication_groups_encrypted_in_transit_rule)
+  50. [Neptune clusters being created should be set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_neptune_cluster_encrypted_at_rest_rule)
 
 </details>
