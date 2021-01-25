@@ -63,5 +63,16 @@ NOTES:
   41. [Only private AMIs should be used](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/allow_only_private_amis_rule)
   42. [Codebuild projects should be set to be encrypted at rest with customer-managed CMK](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_code_build_projects_encrypted_rule)
   43. [SQS queues should be set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_sqs_queues_encrypted_at_rest_rule)
+  44. [RDS global clusters should be set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_rds_encrypt_at_rest_rule)
+  45. [EFS file system policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_efs_fs_policy_not_use_wildcard_rule)
+  46. [S3 Glacier vault policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_glacier_vault_policy_not_use_wildcard_rule)
+  47. [S3 bucket policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_s3_bucket_policy_not_use_wildcard_rule)
+  48. [KMS key policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_kms_key_policy_not_use_wildcard_rule)
+  49. [Secrets Manager secret policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_secrets_manager_secret_policy_not_use_wildcard)
+  50. [CloudWatch Logs destination policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_cloudwatch_log_destination_policy_not_use_wildcard_rule)
+  51. [API Gateway endpoint policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_rest_api_gw_policy_not_use_wildcard_rule)
+  52. [Elasticsearch Service domain policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_elastic_search_domain_policy_not_use_wildcard_rule)
+  53. [Glue data catalog policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_glue_data_catalog_policy_not_use_wildcard_rule)
+  54. [S3 bucket objects are set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_s3_bucket_objects_encrypted_rule)
 
 </details>
