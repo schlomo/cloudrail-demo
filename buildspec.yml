@@ -12,12 +12,12 @@ phases:
   build:
     commands:
       - docker run --rm 
-        -v test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data -u $(id -u):$(id -g)
+        -v ./test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data -u $(id -u):$(id -g)
         -e AWS_DEFAULT_REGION -e AWS_CONTAINER_CREDENTIALS_RELATIVE_URI
         hashicorp/terraform:0.13.5 
         terraform plan -out plan.out
       - docker run --rm
-        -v test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data 
+        -v ./test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data 
         indeni/cloudrail-cli
         run  --directory . --tf-plan "plan.out"
         --origin ci --build-link "https://console.aws.amazon.com/codesuite/codebuild/"
