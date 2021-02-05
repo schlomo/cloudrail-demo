@@ -24,6 +24,7 @@ phases:
         hashicorp/terraform:0.13.5 
         plan -out plan.out
       - docker run --rm
+        -u $(id -u):$(id -g)
         -v $(pwd)/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data 
         indeni/cloudrail-cli
         run  --directory . --tf-plan "plan.out"
