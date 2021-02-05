@@ -1,0 +1,31 @@
+version: 0.2
+env:
+  shell: bash
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      # Docker requires the privileged flag in the CodeBuild configuration
+      - docker info
+  build:
+    commands:
+      - docker run --rm 
+        -v test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data -u $(id -u):$(id -g)
+        -e AWS_DEFAULT_REGION -e AWS_CONTAINER_CREDENTIALS_RELATIVE_URI
+        hashicorp/terraform:0.13.5 
+        terraform plan -out plan.out
+      - docker run --rm
+        -v test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data 
+        indeni/cloudrail-cli
+        run  --directory . --tf-plan "plan.out"
+        --origin ci --build-link "https://console.aws.amazon.com/codesuite/codebuild/"
+        --execution-source-identifier "${CODEBUILD_BUILD_ID}"  
+        --api-key "${CLOUDRAIL_API_KEY}" 
+        --output-format junit --output-file ${WORKSPACE}/cloudrail.result.xml 
+        --auto-approve 
+reports:
+  CloudrailTest:
+    files:
+      - '**/cloudrail.result.xml'
