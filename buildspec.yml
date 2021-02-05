@@ -11,18 +11,27 @@ phases:
       - docker info
   build:
     commands:
+      # The example TF code we use here only works in v0.13, however Cloudrail supports 0.14 as well.
       - docker run --rm 
         -v $(pwd)/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data -u $(id -u):$(id -g)
         -w /data
         -e AWS_DEFAULT_REGION -e AWS_CONTAINER_CREDENTIALS_RELATIVE_URI
         hashicorp/terraform:0.13.5 
         init
+
+      # Cloudrail requires a Terraform plan as an input, so we must create a plan first.
+      # Note we are picking a specific test to run against.
       - docker run --rm 
         -v $(pwd)/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data -u $(id -u):$(id -g)
         -w /data
         -e AWS_DEFAULT_REGION -e AWS_CONTAINER_CREDENTIALS_RELATIVE_URI
         hashicorp/terraform:0.13.5 
         plan -out plan.out
+
+      # This will run Cloudrail and produce JUnit results. These results are then uploaded into the Reports
+      # function included in AWS CodeBuild. Note that only rules that are set to MANDATE will produce
+      # JUnit test results. Rules that are set to ADVISE will not, and their results can be viewed in the 
+      # Cloudrail Web UI.
       - docker run --rm
         -u $(id -u):$(id -g)
         -v $(pwd)/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data 
@@ -33,6 +42,9 @@ phases:
         --api-key "${CLOUDRAIL_API_KEY}" 
         --output-format junit --output-file /data/cloudrail.result.xml 
         --auto-approve 
+
+# The report is accessible via the AWS CodeBuild interface. Each failed test includes details about 
+# what failed and why, and how to fix it. This helps the develoepr easily correct the issue.
 reports:
   CloudrailTest:
     files:
