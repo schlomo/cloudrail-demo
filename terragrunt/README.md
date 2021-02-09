@@ -1,7 +1,7 @@
 This is a simple example of using Indeni Cloudrail with Terragrunt. Notice that we're using an after hook,
 to make it easier to integrate Cloudrail with the execution of many plans:
 
-```
+```hcl
 terraform {
   after_hook "cloudrail_after_hook" {
     commands     = ["plan"]
