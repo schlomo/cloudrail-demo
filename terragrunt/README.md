@@ -1,5 +1,24 @@
 This is a simple example of using Indeni Cloudrail with Terragrunt. Notice that we're using an after hook,
-to make it easier to integrate Cloudrail with the execution of many plans.
+to make it easier to integrate Cloudrail with the execution of many plans:
+
+```
+terraform {
+  after_hook "cloudrail_after_hook" {
+    commands     = ["plan"]
+
+    execute      = [
+      "docker", 
+      "run", 
+      "--rm", 
+      "-v", "${get_env("PWD", "")}:/data", 
+      "indeni/cloudrail-cli", 
+      "run", 
+      "-d", ".",
+      "--tf-plan", "plan.out"
+      ]
+  }
+}
+```
 
 If Cloudrail finds a violation in a mandated rule, it will return a non-zero exit code, which
 Terragrunt will then bubble up. Example:
@@ -67,7 +86,7 @@ Hit multiple errors:
 exit status 1
 ```
 
-Whereas, if there are no violations were found for mandated rules, the end of the execution would look like this:
+Whereas, if there are no violations found for mandated rules, the end of the execution would look like this:
 
 ```
 [terragrunt] 2021/02/09 10:59:13 Running command: docker run --rm -v /Users/grunt/code/cloudrail-demo/terragrunt:/data indeni/cloudrail-cli run -d . --tf-plan plan.out --origin ci --build-link https://somelink --execution-source-identifier build-id --api-key myapikey --auto-approve
