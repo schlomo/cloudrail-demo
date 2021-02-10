@@ -40,9 +40,17 @@ jobs:
       # allowing dev's to fix the violations.
       # Note that Cloudrail has other output formats as well, but SARIF is the default for our GitHub Actions.
       # Also note that rules that are set to ADVISE (which is the default) will _not_ be included in the output by default.
-      - uses: indeni/cloudrail-run-ga@v1.0
+      - uses: indeni/cloudrail-run-ga@v1.1
         with:
           tf-plan-file: plan.out
           cloudrail-api-key: ${{ secrets.CLOUDRAIL_API_KEY }}
           cloud-account-id: 154724799477
           working-directory: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role # Note, this is not part of the GitHub action syntax, but a parameter of the action
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        # Remember that if issues are found, Cloudrail return non-zero exit code, so the if: always()
+        # is needed to ensure the SARIF file is uploaded
+        if: always() 
+        with:
+          sarif_file: test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role/cloudrail_results.sarif
