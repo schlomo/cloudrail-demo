@@ -24,33 +24,6 @@ Problem 1
 
 Problem 2
 
-  [AWS031][ERROR] Resource 'aws_elasticsearch_domain.test' defines an unencrypted Elasticsearch domain (missing encrypt_at_rest block).
-  /src/main.tf:107-119
-
-     104 |   description      = "Allows Amazon ES to manage AWS resources for a domain on your behalf."
-     105 | }
-     106 | 
-     107 | resource "aws_elasticsearch_domain" "test" {
-     108 |   domain_name = "test"
-     109 |   vpc_options {
-     110 |     subnet_ids = [aws_subnet.nondefault_1.id]
-     111 |     security_group_ids = [aws_security_group.esdomain.id]
-     112 |   }
-     113 | 
-     114 |   ebs_options {
-     115 |     ebs_enabled = true
-     116 |     volume_size = 10
-     117 |     volume_type = "gp2"
-     118 |   }
-     119 | }
-     120 | 
-     121 | resource "aws_security_group" "publicly_accessible_sg" {
-     122 |   vpc_id = aws_vpc.nondefault.id
-
-   See https://tfsec.dev/docs/aws/AWS031/ for more information. 
-
-Problem 3
-
   [AWS032][ERROR] Resource 'aws_elasticsearch_domain.test' defines an Elasticsearch domain with plaintext traffic (missing node_to_node_encryption block).
   /src/main.tf:107-119
 
@@ -76,7 +49,7 @@ Problem 3
 
    See https://tfsec.dev/docs/aws/AWS032/ for more information. 
 
-Problem 4
+Problem 3
 
   [AWS033][ERROR] Resource 'aws_elasticsearch_domain.test' defines an Elasticsearch domain with plaintext traffic (missing domain_endpoint_options block).
   /src/main.tf:107-119
@@ -103,61 +76,7 @@ Problem 4
 
    See https://tfsec.dev/docs/aws/AWS033/ for more information. 
 
-Problem 5
-
-  [AWS055][ERROR] Resource 'aws_elasticsearch_domain.test' does not configure node to node encryption on the domain.
-  /src/main.tf:107-119
-
-     104 |   description      = "Allows Amazon ES to manage AWS resources for a domain on your behalf."
-     105 | }
-     106 | 
-     107 | resource "aws_elasticsearch_domain" "test" {
-     108 |   domain_name = "test"
-     109 |   vpc_options {
-     110 |     subnet_ids = [aws_subnet.nondefault_1.id]
-     111 |     security_group_ids = [aws_security_group.esdomain.id]
-     112 |   }
-     113 | 
-     114 |   ebs_options {
-     115 |     ebs_enabled = true
-     116 |     volume_size = 10
-     117 |     volume_type = "gp2"
-     118 |   }
-     119 | }
-     120 | 
-     121 | resource "aws_security_group" "publicly_accessible_sg" {
-     122 |   vpc_id = aws_vpc.nondefault.id
-
-   See https://tfsec.dev/docs/aws/AWS055/ for more information. 
-
-Problem 6
-
-  [AWS057][ERROR] Resource 'aws_elasticsearch_domain.test' does not configure logging at rest on the domain.
-  /src/main.tf:107-119
-
-     104 |   description      = "Allows Amazon ES to manage AWS resources for a domain on your behalf."
-     105 | }
-     106 | 
-     107 | resource "aws_elasticsearch_domain" "test" {
-     108 |   domain_name = "test"
-     109 |   vpc_options {
-     110 |     subnet_ids = [aws_subnet.nondefault_1.id]
-     111 |     security_group_ids = [aws_security_group.esdomain.id]
-     112 |   }
-     113 | 
-     114 |   ebs_options {
-     115 |     ebs_enabled = true
-     116 |     volume_size = 10
-     117 |     volume_type = "gp2"
-     118 |   }
-     119 | }
-     120 | 
-     121 | resource "aws_security_group" "publicly_accessible_sg" {
-     122 |   vpc_id = aws_vpc.nondefault.id
-
-   See https://tfsec.dev/docs/aws/AWS057/ for more information. 
-
-Problem 7
+Problem 4
 
   [AWS008][WARNING] Resource 'aws_security_group.publicly_accessible_sg' defines a fully open ingress security group.
   /src/main.tf:127
@@ -172,22 +91,7 @@ Problem 7
 
    See https://tfsec.dev/docs/aws/AWS008/ for more information. 
 
-Problem 8
-
-  [AWS009][WARNING] Resource 'aws_security_group.publicly_accessible_sg' defines a fully open egress security group.
-  /src/main.tf:133
-
-     130 |     from_port = 0
-     131 |     protocol = "tcp"
-     132 |     to_port = 65000
-     133 |     cidr_blocks = ["0.0.0.0/0"]
-     134 |   }
-     135 | }
-     136 | 
-
-   See https://tfsec.dev/docs/aws/AWS009/ for more information. 
-
-Problem 9
+Problem 5
 
   [AWS018][ERROR] Resource 'aws_security_group.publicly_accessible_sg' should include a description for auditing purposes.
   /src/main.tf:121-135
@@ -216,7 +120,7 @@ Problem 9
 
    See https://tfsec.dev/docs/aws/AWS018/ for more information. 
 
-Problem 10
+Problem 6
 
   [AWS012][ERROR] Resource 'aws_instance.public_ins' has a public IP address associated.
   /src/main.tf:141
@@ -231,10 +135,106 @@ Problem 10
 
    See https://tfsec.dev/docs/aws/AWS012/ for more information. 
 
-  disk i/o             45.677417ms
-  parsing HCL          9.024µs
-  evaluating values    985.384µs
-  running checks       39.710058ms
+Problem 7
+
+  [AWS031][ERROR] Resource 'aws_elasticsearch_domain.test' defines an unencrypted Elasticsearch domain (missing encrypt_at_rest block).
+  /src/main.tf:107-119
+
+     104 |   description      = "Allows Amazon ES to manage AWS resources for a domain on your behalf."
+     105 | }
+     106 | 
+     107 | resource "aws_elasticsearch_domain" "test" {
+     108 |   domain_name = "test"
+     109 |   vpc_options {
+     110 |     subnet_ids = [aws_subnet.nondefault_1.id]
+     111 |     security_group_ids = [aws_security_group.esdomain.id]
+     112 |   }
+     113 | 
+     114 |   ebs_options {
+     115 |     ebs_enabled = true
+     116 |     volume_size = 10
+     117 |     volume_type = "gp2"
+     118 |   }
+     119 | }
+     120 | 
+     121 | resource "aws_security_group" "publicly_accessible_sg" {
+     122 |   vpc_id = aws_vpc.nondefault.id
+
+   See https://tfsec.dev/docs/aws/AWS031/ for more information. 
+
+Problem 8
+
+  [AWS055][ERROR] Resource 'aws_elasticsearch_domain.test' does not configure node to node encryption on the domain.
+  /src/main.tf:107-119
+
+     104 |   description      = "Allows Amazon ES to manage AWS resources for a domain on your behalf."
+     105 | }
+     106 | 
+     107 | resource "aws_elasticsearch_domain" "test" {
+     108 |   domain_name = "test"
+     109 |   vpc_options {
+     110 |     subnet_ids = [aws_subnet.nondefault_1.id]
+     111 |     security_group_ids = [aws_security_group.esdomain.id]
+     112 |   }
+     113 | 
+     114 |   ebs_options {
+     115 |     ebs_enabled = true
+     116 |     volume_size = 10
+     117 |     volume_type = "gp2"
+     118 |   }
+     119 | }
+     120 | 
+     121 | resource "aws_security_group" "publicly_accessible_sg" {
+     122 |   vpc_id = aws_vpc.nondefault.id
+
+   See https://tfsec.dev/docs/aws/AWS055/ for more information. 
+
+Problem 9
+
+  [AWS057][ERROR] Resource 'aws_elasticsearch_domain.test' does not configure logging at rest on the domain.
+  /src/main.tf:107-119
+
+     104 |   description      = "Allows Amazon ES to manage AWS resources for a domain on your behalf."
+     105 | }
+     106 | 
+     107 | resource "aws_elasticsearch_domain" "test" {
+     108 |   domain_name = "test"
+     109 |   vpc_options {
+     110 |     subnet_ids = [aws_subnet.nondefault_1.id]
+     111 |     security_group_ids = [aws_security_group.esdomain.id]
+     112 |   }
+     113 | 
+     114 |   ebs_options {
+     115 |     ebs_enabled = true
+     116 |     volume_size = 10
+     117 |     volume_type = "gp2"
+     118 |   }
+     119 | }
+     120 | 
+     121 | resource "aws_security_group" "publicly_accessible_sg" {
+     122 |   vpc_id = aws_vpc.nondefault.id
+
+   See https://tfsec.dev/docs/aws/AWS057/ for more information. 
+
+Problem 10
+
+  [AWS009][WARNING] Resource 'aws_security_group.publicly_accessible_sg' defines a fully open egress security group.
+  /src/main.tf:133
+
+     130 |     from_port = 0
+     131 |     protocol = "tcp"
+     132 |     to_port = 65000
+     133 |     cidr_blocks = ["0.0.0.0/0"]
+     134 |   }
+     135 | }
+     136 | 
+
+   See https://tfsec.dev/docs/aws/AWS009/ for more information. 
+
+  disk i/o             44.3366ms
+  parsing HCL          27µs
+  evaluating values    803.9µs
+  running checks       34.8452ms
   files loaded         1
 
 10 potential problems detected.

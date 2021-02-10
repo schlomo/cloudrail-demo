@@ -8,8 +8,8 @@ Rule: Ensure all used default security groups of every VPC restrict all traffic
 
      Evidence:
          VPC vpc-00f7a3e5b1a2d87f0
-             | eni-pseudo-448241c1-0416-4b43-a6b9-d6fef2a0e101 uses ENI aws_redshift_cluster.test
-             | The ENI is secured by default Security Group default and allow all traffic
+             | aws_redshift_cluster.test uses ENI eni-pseudo-10d10e7f-89f9-4fa2-8fba-3f3d607dd14b
+             | The ENI is secured by default Security group default and allows all traffic
 
 
 -----------------------------------------------

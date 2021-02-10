@@ -5,7 +5,7 @@
  | (__| | | |  __/ (__|   < (_) \ V / 
   \___|_| |_|\___|\___|_|\_\___/ \_/  
                                       
-By bridgecrew.io | version: 1.0.712 
+By bridgecrew.io | version: 1.0.771 
 
 terraform scan results:
 

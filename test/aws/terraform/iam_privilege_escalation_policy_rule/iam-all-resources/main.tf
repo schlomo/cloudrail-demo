@@ -43,13 +43,6 @@ resource "aws_iam_role_policy" "policy" {
         ],
         "Effect": "Allow",
         "Resource": "*"
-      },
-      {
-        "Action": [
-          "ec2:createroute"
-        ],
-        "Effect": "Allow",
-        "Resource": "*"
       }
     ]
   }

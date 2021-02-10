@@ -74,5 +74,6 @@ NOTES:
   52. [Elasticsearch Service domain policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_elastic_search_domain_policy_not_use_wildcard_rule)
   53. [Glue data catalog policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_glue_data_catalog_policy_not_use_wildcard_rule)
   54. [S3 bucket objects are set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_s3_bucket_objects_encrypted_rule)
+  55. [Identify policies allowing for privilege escalation](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/iam_privilege_escalation_policy_rule)
 
 </details>

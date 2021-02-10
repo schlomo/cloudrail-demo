@@ -8,11 +8,9 @@ Rule: VPC's in Transit Gateway should not have common CIDR's
 
      Evidence:
          VPC module.vpc1.aws_vpc.this[0]
-             | uses CIDR block 10.10.1.0/24
-             | has attachment to Transit Gateway aws_ec2_transit_gateway.tgw
+             | module.vpc1.aws_vpc.this[0] uses CIDR block 10.10.1.0/24 and has an attachment to Transit Gateway aws_ec2_transit_gateway.tgw
          VPC module.vpc2.aws_vpc.this[0]
-             | uses the same CIDR block
-             | is attached to the same Transit Gateway
+             | module.vpc2.aws_vpc.this[0] uses the same CIDR block and is is attached to the same Transit Gateway
          Transit Gateway module.vpc2.aws_vpc.this[0]
 
 

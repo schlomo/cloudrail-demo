@@ -7,18 +7,18 @@ Rule: Ensure SQS queues are set to be encrypted at rest
      Violating Resource: [aws_sqs_queue.cloudrail]  (main.tf:5)
 
      Evidence:
-             | The SQS queue aws_sqs_queue.cloudrail is not set to use encryption at rest
+             | The SQS queue aws_sqs_queue.cloudrail                             is not set to use encryption at rest
 
 
 -----------------------------------------------
-Rule: Ensure SQS queue policy does not use wildcard actions
+Rule: Ensure use of SQS queue policy, and no action wildcards are being used
  - 1 Resources Exposed:
 -----------------------------------------------
    - Exposed Resource: [aws_sqs_queue.cloudrail] (main.tf:5)
      Violating Resource: [aws_sqs_queue.cloudrail]  (main.tf:5)
 
      Evidence:
-             | There is no policy attached to aws_sqs_queue.cloudrail, which is equivalent to granting * to all
+             | There is no resource policy or no statements attached to aws_sqs_queue.cloudrail
 
 
 -----------------------------------------------

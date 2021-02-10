@@ -4,12 +4,12 @@ Rule: Ensure all used default security groups of every VPC restrict all traffic
  - 1 Resources Exposed:
 -----------------------------------------------
    - Exposed Resource: [aws_redshift_cluster.test] (main.tf:28)
-     Violating Resource: [sg-pseudo-68bb567d-cca3-4d43-af58-a8b8d0ad6f55]  (Not found in TF)
+     Violating Resource: [sg-pseudo-2cdd808a-ea5e-478e-a444-28de4375b55f]  (Not found in TF)
 
      Evidence:
          VPC aws_vpc.nondefault
-             | eni-pseudo-b11feca3-c638-4c5d-8c6c-2ac2caef3d31 uses ENI aws_redshift_cluster.test
-             | The ENI is secured by default Security Group sg-pseudo-68bb567d-cca3-4d43-af58-a8b8d0ad6f55 and allow all traffic
+             | aws_redshift_cluster.test uses ENI eni-pseudo-390fb5e5-eb28-43b2-b04d-b0da6d985f5b
+             | The ENI is secured by default Security group sg-pseudo-2cdd808a-ea5e-478e-a444-28de4375b55f and allows all traffic
 
 
 -----------------------------------------------
