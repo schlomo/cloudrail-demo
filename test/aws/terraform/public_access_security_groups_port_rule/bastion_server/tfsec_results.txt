@@ -2,38 +2,38 @@
 Problem 1
 
   [AWS008][WARNING] Resource 'module.ec2-bastion-server:aws_security_group.default' defines a fully open ingress security group.
-  /src/.terraform/modules/ec2-bastion-server/main.tf:55
+  /src/.terraform/modules/ec2-bastion-server/main.tf:48
 
-      52 |     from_port = 22
-      53 |     to_port   = 22
-      54 | 
-      55 |     cidr_blocks = var.allowed_cidr_blocks
-      56 |   }
-      57 | 
-      58 |   ingress {
+      45 |       protocol    = "tcp"
+      46 |       from_port   = 22
+      47 |       to_port     = 22
+      48 |       cidr_blocks = var.allowed_cidr_blocks
+      49 |       description = "Allow SSH ingress traffic from trusted CIDR Blocks"
+      50 |     }
+      51 |   }
 
    See https://tfsec.dev/docs/aws/AWS008/ for more information. 
 
 Problem 2
 
   [AWS012][ERROR] Resource 'module.ec2-bastion-server:aws_instance.default' has a public IP address associated.
-  /src/.terraform/modules/ec2-bastion-server/main.tf:97
+  /src/.terraform/modules/ec2-bastion-server/main.tf:112
 
-      94 |   vpc_security_group_ids = compact(concat(aws_security_group.default.*.id, var.security_groups))
-      95 | 
-      96 |   iam_instance_profile        = aws_iam_instance_profile.default[0].name
-      97 |   associate_public_ip_address = var.associate_public_ip_address    [bool] true
-      98 | 
-      99 |   key_name = var.key_name
-     100 | 
+     109 |   vpc_security_group_ids = compact(concat(aws_security_group.default.*.id, var.security_groups))
+     110 | 
+     111 |   iam_instance_profile        = aws_iam_instance_profile.default[0].name
+     112 |   associate_public_ip_address = var.associate_public_ip_address    [bool] true
+     113 | 
+     114 |   key_name = var.key_name
+     115 | 
 
    See https://tfsec.dev/docs/aws/AWS012/ for more information. 
 
-  disk i/o             803.499307ms
-  parsing HCL          5.027146ms
-  evaluating values    659.165129ms
-  running checks       10.133803ms
-  files loaded         24
+  disk i/o             1.025641s
+  parsing HCL          3.9556ms
+  evaluating values    733.8151ms
+  running checks       9.3334ms
+  files loaded         25
 
 2 potential problems detected.
 

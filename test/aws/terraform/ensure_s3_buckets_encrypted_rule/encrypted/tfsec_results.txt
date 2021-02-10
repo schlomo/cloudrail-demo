@@ -51,10 +51,10 @@ Problem 2
 
    See https://tfsec.dev/docs/aws/AWS002/ for more information. 
 
-  disk i/o             41.195958ms
-  parsing HCL          17.606µs
-  evaluating values    396.646µs
-  running checks       5.469187ms
+  disk i/o             50.6895ms
+  parsing HCL          20.2µs
+  evaluating values    439.3µs
+  running checks       8.0303ms
   files loaded         1
 
 2 potential problems detected.

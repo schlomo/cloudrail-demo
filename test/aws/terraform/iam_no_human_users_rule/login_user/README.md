@@ -1,4 +1,4 @@
-Cloudrail has a logic for determing whether human users are defined. If they are, Cloudrail will flag them as a violation.
+Cloudrail has a logic for determining whether human users are defined. If they are, Cloudrail will flag them as a violation.
 
 The best practice is to use SSO, or some other mechanism, to grant humans access without creating dedicated users.
 

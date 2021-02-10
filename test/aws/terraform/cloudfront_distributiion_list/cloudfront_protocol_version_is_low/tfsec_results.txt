@@ -203,10 +203,10 @@ Problem 6
 
    See https://tfsec.dev/docs/aws/AWS045/ for more information. 
 
-  disk i/o             64.802618ms
-  parsing HCL          10.076µs
-  evaluating values    268.754µs
-  running checks       18.895037ms
+  disk i/o             49.3177ms
+  parsing HCL          26.9µs
+  evaluating values    466.4µs
+  running checks       19.8042ms
   files loaded         1
 
 6 potential problems detected.

@@ -8,12 +8,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 22
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 22
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 22
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 22
          Instance
 
 
@@ -26,12 +26,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 3389
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 3389
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 3389
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 3389
          Instance
 
 
@@ -44,12 +44,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 1521
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 1521
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 1521
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 1521
          Instance
 
 
@@ -62,12 +62,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 2483
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 2483
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 2483
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 2483
          Instance
 
 
@@ -80,12 +80,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 2484
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 2484
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 2484
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 2484
          Instance
 
 
@@ -98,12 +98,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 3306
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 3306
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 3306
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 3306
          Instance
 
 
@@ -116,12 +116,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 5432
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 5432
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 5432
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 5432
          Instance
 
 
@@ -134,12 +134,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 6379
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 6379
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 6379
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 6379
          Instance
 
 
@@ -152,12 +152,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 27017
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 27017
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 27017
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 27017
          Instance
 
 
@@ -170,12 +170,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 27018
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 27018
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 27018
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 27018
          Instance
 
 
@@ -188,12 +188,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 7199
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 7199
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 7199
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 7199
          Instance
 
 
@@ -206,12 +206,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 9160
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 9160
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 9160
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 9160
          Instance
 
 
@@ -224,12 +224,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 8888
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 8888
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 8888
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 8888
          Instance
 
 
@@ -242,12 +242,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 11211
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 11211
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 11211
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 11211
          Instance
 
 
@@ -260,12 +260,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 9300
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 9300
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 9300
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 9300
          Instance
 
 
@@ -278,12 +278,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 9200
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 9200
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 9200
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 9200
          Instance
 
 
@@ -296,12 +296,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_instance.public_ins is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL aws_network_acl.ec2_nacl which allows port 5601
-             | Instance uses Security Group ['aws_security_group.publicly_accessible_sg']
-             | Security Group allows port 5601
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's aws_network_acl.ec2_nacl which allows port 5601
+             | Instance uses security group aws_security_group.publicly_accessible_sg
+             | aws_security_group.publicly_accessible_sg allows port 5601
          Instance
 
 
@@ -314,16 +314,16 @@ Rule: Ensure Redshift database is not accessible indirectly via a publicly acces
 
      Evidence:
          Internet
-             | Instance aws_instance.public_ins resides in subnet(s) that are routable to Internet Gateway
+             | Instance aws_instance.public_ins resides in subnet(s) that are routable to internet gateway
              | Instance has public IP address
              | Instance accepts incoming traffic on port 443
          Instance aws_instance.public_ins
-             | Redshift DB: aws_redshift_cluster.test does not have a public IP address
+             | Redshift Database: aws_redshift_cluster.test does not have a public IP address
              | Redshift cluster is on subnets: aws_subnet.nondefault_1, aws_subnet.nondefault_2
              | Redshift resides in same subnet as Instance aws_instance.public_ins
-             | Redshift DB uses NACL`s aws_network_acl.ec2_nacl, aws_network_acl.redshift_eni2_nacl
-             | Redshift is accessible from instance within public subnet
-         Redshift aws_redshift_cluster.test
+             | Redshift Database uses Network ACL's aws_network_acl.ec2_nacl, aws_network_acl.redshift_eni2_nacl
+             | Redshift cluster is accessible from instance within public subnet
+         Redshift cluster aws_redshift_cluster.test
 
 
 -----------------------------------------------
@@ -334,7 +334,7 @@ Rule: Ensure IMDSv2 is used and IMDSv1 is disabled
      Violating Resource: [aws_instance.public_ins]  (main.tf:131)
 
      Evidence:
-             | The EC2 aws_instance.public_ins is allowing IMDSv1
+             | The EC2 Instance aws_instance.public_ins is allowing IMDSv1
 
 
 -----------------------------------------------
@@ -356,7 +356,29 @@ Rule: Allow only private AMIs to be used
      Violating Resource: [ami-0130bec6e5047f596]  (Not found in TF)
 
      Evidence:
-             | The EC2 aws_instance.public_ins uses AMI ami-0130bec6e5047f596, which is public
+             | The EC2 Instance aws_instance.public_ins uses AMI ami-0130bec6e5047f596, which is public
+
+
+-----------------------------------------------
+Rule: Ensure all security groups and rules have a description detailing the rule
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_security_group.publicly_accessible_sg] (main.tf:114)
+     Violating Resource: [aws_security_group.publicly_accessible_sg]  (main.tf:114)
+
+     Evidence:
+             | The Security group aws_security_group.publicly_accessible_sg does not have a description for the ingress rule of 0.0.0.0/0 for ports 0:65000 using protocol tcp
+
+
+-----------------------------------------------
+Rule: Ensure all data stored in the Launch configuration EBS is securely encrypted
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.public_ins] (main.tf:131)
+     Violating Resource: [aws_instance.public_ins]  (main.tf:131)
+
+     Evidence:
+             | This rule evaluated aws_instance.public_ins's configuration
 
 
 -----------------------------------------------

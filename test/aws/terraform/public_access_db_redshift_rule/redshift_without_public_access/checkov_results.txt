@@ -1,15 +1,11 @@
 
-
        _               _              
    ___| |__   ___  ___| | _______   __
   / __| '_ \ / _ \/ __| |/ / _ \ \ / /
  | (__| | | |  __/ (__|   < (_) \ V / 
   \___|_| |_|\___|\___|_|\_\___/ \_/  
                                       
-By bridgecrew.io | version: 1.0.697 
-Update available 1.0.697 → 1.0.711
-Run pip3 install -U checkov to update 
-
+By bridgecrew.io | version: 1.0.771 
 
 terraform scan results:
 

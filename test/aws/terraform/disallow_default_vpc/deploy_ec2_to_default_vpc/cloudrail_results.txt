@@ -8,8 +8,8 @@ Rule: Ensure all used default security groups of every VPC restrict all traffic
 
      Evidence:
          VPC aws_default_vpc.default
-             | eni-pseudo-d7abe198-bcde-4162-82e1-657683623dd0 uses ENI aws_instance.t2-instance
-             | The ENI is secured by default Security Group default and allow all traffic
+             | aws_instance.t2-instance uses ENI eni-pseudo-bf121444-e0c2-4917-9357-7e189679ebc9
+             | The ENI is secured by default Security group default and allows all traffic
 
 
 -----------------------------------------------
@@ -32,7 +32,7 @@ Rule: Ensure IMDSv2 is used and IMDSv1 is disabled
      Violating Resource: [aws_instance.t2-instance]  (main.tf:49)
 
      Evidence:
-             | The EC2 aws_instance.t2-instance is allowing IMDSv1
+             | The EC2 Instance aws_instance.t2-instance is allowing IMDSv1
 
 
 -----------------------------------------------
@@ -40,10 +40,21 @@ Rule: Allow only private AMIs to be used
  - 1 Resources Exposed:
 -----------------------------------------------
    - Exposed Resource: [aws_instance.t2-instance] (main.tf:49)
-     Violating Resource: [ami-099e921e69356cf89]  (Not found in TF)
+     Violating Resource: [ami-0f593aebffc0070e1]  (Not found in TF)
 
      Evidence:
-             | The EC2 aws_instance.t2-instance uses AMI ami-099e921e69356cf89, which is public
+             | The EC2 Instance aws_instance.t2-instance uses AMI ami-0f593aebffc0070e1, which is public
+
+
+-----------------------------------------------
+Rule: Ensure all data stored in the Launch configuration EBS is securely encrypted
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_instance.t2-instance] (main.tf:49)
+     Violating Resource: [aws_instance.t2-instance]  (main.tf:49)
+
+     Evidence:
+             | This rule evaluated aws_instance.t2-instance's configuration
 
 
 -----------------------------------------------

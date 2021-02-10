@@ -33,10 +33,10 @@ Problem 2
 
    See https://tfsec.dev/docs/aws/AWS017/ for more information. 
 
-  disk i/o             159.551027ms
-  parsing HCL          6.123µs
-  evaluating values    198.012µs
-  running checks       8.7997ms
+  disk i/o             31.4393ms
+  parsing HCL          156.5µs
+  evaluating values    745.2µs
+  running checks       14.4585ms
   files loaded         1
 
 2 potential problems detected.

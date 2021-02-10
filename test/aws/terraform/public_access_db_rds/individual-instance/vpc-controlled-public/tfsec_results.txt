@@ -1,6 +1,23 @@
 
 Problem 1
 
+  [AWS052][ERROR] Resource 'aws_db_instance.test' defines a disabled RDS Instance Encryption.
+  /src/main.tf:60-65
+
+      57 |   subnet_id = aws_subnet.nondefault_2.id
+      58 | }
+      59 | 
+      60 | resource "aws_db_instance" "test" {
+      61 |   instance_class = "db.t3.micro"
+      62 |   publicly_accessible = true
+      63 |   db_subnet_group_name = aws_db_subnet_group.nondefault.name
+      64 |   vpc_security_group_ids = [aws_security_group.nondefault.id]
+      65 | }
+
+   See https://tfsec.dev/docs/aws/AWS052/ for more information. 
+
+Problem 2
+
   [AWS008][WARNING] Resource 'aws_security_group.nondefault' defines a fully open ingress security group.
   /src/main.tf:16
 
@@ -14,7 +31,7 @@ Problem 1
 
    See https://tfsec.dev/docs/aws/AWS008/ for more information. 
 
-Problem 2
+Problem 3
 
   [AWS018][ERROR] Resource 'aws_security_group.nondefault' should include a description for auditing purposes.
   /src/main.tf:9-18
@@ -38,7 +55,7 @@ Problem 2
 
    See https://tfsec.dev/docs/aws/AWS018/ for more information. 
 
-Problem 3
+Problem 4
 
   [AWS011][WARNING] Resource 'aws_db_instance.test' is exposed publicly.
   /src/main.tf:62
@@ -53,27 +70,10 @@ Problem 3
 
    See https://tfsec.dev/docs/aws/AWS011/ for more information. 
 
-Problem 4
-
-  [AWS052][ERROR] Resource 'aws_db_instance.test' defines a disabled RDS Instance Encryption.
-  /src/main.tf:60-65
-
-      57 |   subnet_id = aws_subnet.nondefault_2.id
-      58 | }
-      59 | 
-      60 | resource "aws_db_instance" "test" {
-      61 |   instance_class = "db.t3.micro"
-      62 |   publicly_accessible = true
-      63 |   db_subnet_group_name = aws_db_subnet_group.nondefault.name
-      64 |   vpc_security_group_ids = [aws_security_group.nondefault.id]
-      65 | }
-
-   See https://tfsec.dev/docs/aws/AWS052/ for more information. 
-
-  disk i/o             44.036755ms
-  parsing HCL          22.114µs
-  evaluating values    1.920887ms
-  running checks       16.508064ms
+  disk i/o             56.4518ms
+  parsing HCL          47.1µs
+  evaluating values    960.5µs
+  running checks       20.9435ms
   files loaded         1
 
 4 potential problems detected.
