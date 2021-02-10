@@ -6,3 +6,4 @@ cli.log
 *.json
 *.py
 *.pyc
+account-data/
