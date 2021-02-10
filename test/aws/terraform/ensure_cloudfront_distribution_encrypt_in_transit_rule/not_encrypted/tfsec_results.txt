@@ -1,91 +1,6 @@
 
 Problem 1
 
-  [AWS002][ERROR] Resource 'aws_s3_bucket.cdn-content' does not have logging enabled.
-  /src/main.tf:10-30
-
-       7 |   s3_origin_id = "cloudfront-dist-non-encrypted-bucket"
-       8 | }
-       9 | 
-      10 | resource "aws_s3_bucket" "cdn-content" {
-      11 |   bucket = local.name
-      12 |   acl    = "private"
-      13 |   policy = <<POLICY
-      14 | {
-      15 |   "Version": "2012-10-17",
-      16 |   "Id": "AllowCloudFrontOAI",
-      17 |   "Statement": [
-      18 |     {
-      19 |       "Sid": "AllowCloudFrontOAI",
-      20 |       "Effect": "Allow",
-      21 |       "Principal": {
-      22 |         "CanonicalUser": "${aws_cloudfront_origin_access_identity.oai.s3_canonical_user_id}"
-      23 |       },
-      24 |       "Action": "s3:GetObject",
-      25 |       "Resource": "arn:aws:s3:::${local.name}/*"
-      26 |     }
-      27 |   ]
-      28 | }
-      29 | POLICY
-      30 | }
-      31 | 
-      32 | resource "aws_s3_bucket_public_access_block" "cdn-content" {
-      33 |   bucket                  = aws_s3_bucket.cdn-content.id
-
-   See https://tfsec.dev/docs/aws/AWS002/ for more information. 
-
-Problem 2
-
-  [AWS017][ERROR] Resource 'aws_s3_bucket.cdn-content' defines an unencrypted S3 bucket (missing server_side_encryption_configuration block).
-  /src/main.tf:10-30
-
-       7 |   s3_origin_id = "cloudfront-dist-non-encrypted-bucket"
-       8 | }
-       9 | 
-      10 | resource "aws_s3_bucket" "cdn-content" {
-      11 |   bucket = local.name
-      12 |   acl    = "private"
-      13 |   policy = <<POLICY
-      14 | {
-      15 |   "Version": "2012-10-17",
-      16 |   "Id": "AllowCloudFrontOAI",
-      17 |   "Statement": [
-      18 |     {
-      19 |       "Sid": "AllowCloudFrontOAI",
-      20 |       "Effect": "Allow",
-      21 |       "Principal": {
-      22 |         "CanonicalUser": "${aws_cloudfront_origin_access_identity.oai.s3_canonical_user_id}"
-      23 |       },
-      24 |       "Action": "s3:GetObject",
-      25 |       "Resource": "arn:aws:s3:::${local.name}/*"
-      26 |     }
-      27 |   ]
-      28 | }
-      29 | POLICY
-      30 | }
-      31 | 
-      32 | resource "aws_s3_bucket_public_access_block" "cdn-content" {
-      33 |   bucket                  = aws_s3_bucket.cdn-content.id
-
-   See https://tfsec.dev/docs/aws/AWS017/ for more information. 
-
-Problem 3
-
-  [AWS020][ERROR] Resource 'aws_cloudfront_distribution.s3_distribution' defines a CloudFront distribution that allows unencrypted communications.
-  /src/main.tf:83
-
-      80 |     allowed_methods        = ["GET", "HEAD", "OPTIONS"]
-      81 |     cached_methods         = ["GET", "HEAD"]
-      82 |     target_origin_id       = local.s3_origin_id
-      83 |     viewer_protocol_policy = "allow-all"
-      84 | 
-      85 |     forwarded_values {
-      86 |       query_string = false
-
-   See https://tfsec.dev/docs/aws/AWS020/ for more information. 
-
-Problem 4
-
   [AWS020][ERROR] Resource 'aws_cloudfront_distribution.s3_distribution' defines a CloudFront distribution that allows unencrypted communications.
   /src/main.tf:100
 
@@ -99,7 +14,7 @@ Problem 4
 
    See https://tfsec.dev/docs/aws/AWS020/ for more information. 
 
-Problem 5
+Problem 2
 
   [AWS020][ERROR] Resource 'aws_cloudfront_distribution.s3_distribution' defines a CloudFront distribution that allows unencrypted communications.
   /src/main.tf:118
@@ -114,7 +29,7 @@ Problem 5
 
    See https://tfsec.dev/docs/aws/AWS020/ for more information. 
 
-Problem 6
+Problem 3
 
   [AWS021][ERROR] Resource 'aws_cloudfront_distribution.s3_distribution' defines outdated SSL/TLS policies (missing minimum_protocol_version attribute)
   /src/main.tf:75-77
@@ -131,7 +46,7 @@ Problem 6
 
    See https://tfsec.dev/docs/aws/AWS021/ for more information. 
 
-Problem 7
+Problem 4
 
   [AWS045][WARNING] Resource 'aws_cloudfront_distribution.s3_distribution' does not have a WAF in front of it.
   /src/main.tf:44-128
@@ -228,10 +143,95 @@ Problem 7
 
    See https://tfsec.dev/docs/aws/AWS045/ for more information. 
 
-  disk i/o             55.608025ms
-  parsing HCL          24.513µs
-  evaluating values    345.494µs
-  running checks       17.883866ms
+Problem 5
+
+  [AWS002][ERROR] Resource 'aws_s3_bucket.cdn-content' does not have logging enabled.
+  /src/main.tf:10-30
+
+       7 |   s3_origin_id = "cloudfront-dist-non-encrypted-bucket"
+       8 | }
+       9 | 
+      10 | resource "aws_s3_bucket" "cdn-content" {
+      11 |   bucket = local.name
+      12 |   acl    = "private"
+      13 |   policy = <<POLICY
+      14 | {
+      15 |   "Version": "2012-10-17",
+      16 |   "Id": "AllowCloudFrontOAI",
+      17 |   "Statement": [
+      18 |     {
+      19 |       "Sid": "AllowCloudFrontOAI",
+      20 |       "Effect": "Allow",
+      21 |       "Principal": {
+      22 |         "CanonicalUser": "${aws_cloudfront_origin_access_identity.oai.s3_canonical_user_id}"
+      23 |       },
+      24 |       "Action": "s3:GetObject",
+      25 |       "Resource": "arn:aws:s3:::${local.name}/*"
+      26 |     }
+      27 |   ]
+      28 | }
+      29 | POLICY
+      30 | }
+      31 | 
+      32 | resource "aws_s3_bucket_public_access_block" "cdn-content" {
+      33 |   bucket                  = aws_s3_bucket.cdn-content.id
+
+   See https://tfsec.dev/docs/aws/AWS002/ for more information. 
+
+Problem 6
+
+  [AWS017][ERROR] Resource 'aws_s3_bucket.cdn-content' defines an unencrypted S3 bucket (missing server_side_encryption_configuration block).
+  /src/main.tf:10-30
+
+       7 |   s3_origin_id = "cloudfront-dist-non-encrypted-bucket"
+       8 | }
+       9 | 
+      10 | resource "aws_s3_bucket" "cdn-content" {
+      11 |   bucket = local.name
+      12 |   acl    = "private"
+      13 |   policy = <<POLICY
+      14 | {
+      15 |   "Version": "2012-10-17",
+      16 |   "Id": "AllowCloudFrontOAI",
+      17 |   "Statement": [
+      18 |     {
+      19 |       "Sid": "AllowCloudFrontOAI",
+      20 |       "Effect": "Allow",
+      21 |       "Principal": {
+      22 |         "CanonicalUser": "${aws_cloudfront_origin_access_identity.oai.s3_canonical_user_id}"
+      23 |       },
+      24 |       "Action": "s3:GetObject",
+      25 |       "Resource": "arn:aws:s3:::${local.name}/*"
+      26 |     }
+      27 |   ]
+      28 | }
+      29 | POLICY
+      30 | }
+      31 | 
+      32 | resource "aws_s3_bucket_public_access_block" "cdn-content" {
+      33 |   bucket                  = aws_s3_bucket.cdn-content.id
+
+   See https://tfsec.dev/docs/aws/AWS017/ for more information. 
+
+Problem 7
+
+  [AWS020][ERROR] Resource 'aws_cloudfront_distribution.s3_distribution' defines a CloudFront distribution that allows unencrypted communications.
+  /src/main.tf:83
+
+      80 |     allowed_methods        = ["GET", "HEAD", "OPTIONS"]
+      81 |     cached_methods         = ["GET", "HEAD"]
+      82 |     target_origin_id       = local.s3_origin_id
+      83 |     viewer_protocol_policy = "allow-all"
+      84 | 
+      85 |     forwarded_values {
+      86 |       query_string = false
+
+   See https://tfsec.dev/docs/aws/AWS020/ for more information. 
+
+  disk i/o             221.3365ms
+  parsing HCL          82.3µs
+  evaluating values    1.1474ms
+  running checks       167.9486ms
   files loaded         1
 
 7 potential problems detected.

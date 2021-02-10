@@ -7,7 +7,7 @@ Rule: Ensure DocDB clusters being created are set to be encrypted at rest
      Violating Resource: [aws_docdb_cluster.docdb]  (main.tf:5)
 
      Evidence:
-             | The DocDB cluster aws_docdb_cluster.docdb is not set to be encrypted at rest
+             | The DocumentDB Cluster aws_docdb_cluster.docdb is not set to be encrypted at rest
 
 
 -----------------------------------------------

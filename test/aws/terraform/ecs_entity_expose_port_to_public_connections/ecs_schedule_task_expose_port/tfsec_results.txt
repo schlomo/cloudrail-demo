@@ -78,10 +78,10 @@ Problem 4
 
    See https://tfsec.dev/docs/aws/AWS018/ for more information. 
 
-  disk i/o             29.961153ms
-  parsing HCL          10.844µs
-  evaluating values    415.022µs
-  running checks       8.655732ms
+  disk i/o             59.2339ms
+  parsing HCL          39.9µs
+  evaluating values    759.8µs
+  running checks       18.677ms
   files loaded         1
 
 4 potential problems detected.

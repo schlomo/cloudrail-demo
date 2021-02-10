@@ -8,12 +8,12 @@ Rule: Ensure no used security groups allow ingress from 0.0.0.0/0 or ::/0 to por
 
      Evidence:
          Internet
-             | Subnet aws_subnet.nondefault_1 has Internet Gateway
+             | Subnet aws_subnet.nondefault_1 has internet gateway
              | Instance aws_db_instance.test is on aws_subnet.nondefault_1
-             | Subnet routes traffic from instance to Internet Gateway
-             | Subnet uses NACL nacl-pseudo-140a880c-6715-4090-89d4-23b14989eb8e which allows port 3306
-             | Instance uses Security Group ['aws_security_group.nondefault']
-             | Security Group allows port 3306
+             | Subnet routes traffic from instance to internet gateway
+             | Subnet uses Network ACL's nacl-pseudo-3e6ea1a8-adb9-41ae-a5ca-92ee2f83cfba which allows port 3306
+             | Instance uses security group aws_security_group.nondefault
+             | aws_security_group.nondefault allows port 3306
          Instance
 
 
@@ -26,12 +26,12 @@ Rule: Ensure RDS database is not publicly accessible
 
      Evidence:
          Internet
-             | RDS instance aws_db_instance.test is on VPC aws_vpc.nondefault
-             | instance uses Security-Groups aws_security_group.nondefault 
-             | Instance uses the subnets aws_subnet.nondefault_1, aws_subnet.nondefault_2
-             | Instance is reachable from the internet due to subnet(s) and route table(s)
-             | Subnet uses NACL(s) nacl-pseudo-140a880c-6715-4090-89d4-23b14989eb8e, nacl-pseudo-140a880c-6715-4090-89d4-23b14989eb8e
-             | NACL(s) and Security Group(s) allows the RDS configured ports
+             | RDS Instance aws_db_instance.test is on VPCaws_vpc.nondefault
+             | instance uses security groups aws_security_group.nondefault 
+             | RDS Instance uses the subnetsaws_subnet.nondefault_1, aws_subnet.nondefault_2
+             | RDS Instance is reachable from the internet due to subnet(s) and route table(s)
+             | Subnet uses Network ACL's nacl-pseudo-3e6ea1a8-adb9-41ae-a5ca-92ee2f83cfba, nacl-pseudo-3e6ea1a8-adb9-41ae-a5ca-92ee2f83cfba
+             | Network ACL's and security group(s) allows the RDS configured ports
          RDS Instance
 
 
@@ -44,8 +44,18 @@ Rule: Ensure RDS instances/clusters being created are set to be encrypted at res
 
      Evidence:
          RDS Instance
-             | RDS Instance aws_db_instance.test
-             | is not set to use encrypt at rest
+             | RDS Instance aws_db_instance.test is not set to use encrypt at rest
+
+
+-----------------------------------------------
+Rule: Ensure all security groups and rules have a description detailing the rule
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_security_group.nondefault] (main.tf:9)
+     Violating Resource: [aws_security_group.nondefault]  (main.tf:9)
+
+     Evidence:
+             | The Security group aws_security_group.nondefault does not have a description for the ingress rule of 0.0.0.0/0 for ports 0:65000 using protocol tcp
 
 
 -----------------------------------------------

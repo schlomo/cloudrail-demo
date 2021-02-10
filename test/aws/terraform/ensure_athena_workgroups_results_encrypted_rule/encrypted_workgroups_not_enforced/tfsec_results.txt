@@ -71,10 +71,10 @@ Problem 4
 
    See https://tfsec.dev/docs/aws/AWS017/ for more information. 
 
-  disk i/o             53.088663ms
-  parsing HCL          20.992µs
-  evaluating values    543.211µs
-  running checks       18.564756ms
+  disk i/o             110.5236ms
+  parsing HCL          36.5µs
+  evaluating values    253.3µs
+  running checks       67.4307ms
   files loaded         1
 
 4 potential problems detected.

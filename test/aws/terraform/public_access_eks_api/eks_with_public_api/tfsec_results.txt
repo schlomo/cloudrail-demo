@@ -1,6 +1,36 @@
 
 Problem 1
 
+  [AWS007][WARNING] Resource 'module.my-cluster:aws_security_group_rule.cluster_egress_internet' defines a fully open egress security group rule.
+  /src/.terraform/modules/my-cluster/cluster.tf:98
+
+      95 |   description       = "Allow cluster egress access to the Internet."
+      96 |   protocol          = "-1"
+      97 |   security_group_id = local.cluster_security_group_id
+      98 |   cidr_blocks       = ["0.0.0.0/0"]
+      99 |   from_port         = 0
+     100 |   to_port           = 0
+     101 |   type              = "egress"
+
+   See https://tfsec.dev/docs/aws/AWS007/ for more information. 
+
+Problem 2
+
+  [AWS007][WARNING] Resource 'module.my-cluster:aws_security_group_rule.workers_egress_internet' defines a fully open egress security group rule.
+  /src/.terraform/modules/my-cluster/workers.tf:330
+
+     327 |   description       = "Allow nodes all egress to the Internet."
+     328 |   protocol          = "-1"
+     329 |   security_group_id = local.worker_security_group_id
+     330 |   cidr_blocks       = ["0.0.0.0/0"]
+     331 |   from_port         = 0
+     332 |   to_port           = 0
+     333 |   type              = "egress"
+
+   See https://tfsec.dev/docs/aws/AWS007/ for more information. 
+
+Problem 3
+
   [AWS008][WARNING] Resource 'aws_security_group.cluster' defines a fully open ingress security group.
   /src/main.tf:41
 
@@ -14,7 +44,7 @@ Problem 1
 
    See https://tfsec.dev/docs/aws/AWS008/ for more information. 
 
-Problem 2
+Problem 4
 
   [AWS018][ERROR] Resource 'aws_security_group.cluster' should include a description for auditing purposes.
   /src/main.tf:35-44
@@ -38,7 +68,7 @@ Problem 2
 
    See https://tfsec.dev/docs/aws/AWS018/ for more information. 
 
-Problem 3
+Problem 5
 
   [AWS018][ERROR] Resource 'module.my-cluster:aws_security_group_rule.cluster_private_access' should include a description for auditing purposes.
   /src/.terraform/modules/my-cluster/cluster.tf:51-60
@@ -62,40 +92,10 @@ Problem 3
 
    See https://tfsec.dev/docs/aws/AWS018/ for more information. 
 
-Problem 4
-
-  [AWS007][WARNING] Resource 'module.my-cluster:aws_security_group_rule.cluster_egress_internet' defines a fully open egress security group rule.
-  /src/.terraform/modules/my-cluster/cluster.tf:98
-
-      95 |   description       = "Allow cluster egress access to the Internet."
-      96 |   protocol          = "-1"
-      97 |   security_group_id = local.cluster_security_group_id
-      98 |   cidr_blocks       = ["0.0.0.0/0"]
-      99 |   from_port         = 0
-     100 |   to_port           = 0
-     101 |   type              = "egress"
-
-   See https://tfsec.dev/docs/aws/AWS007/ for more information. 
-
-Problem 5
-
-  [AWS007][WARNING] Resource 'module.my-cluster:aws_security_group_rule.workers_egress_internet' defines a fully open egress security group rule.
-  /src/.terraform/modules/my-cluster/workers.tf:330
-
-     327 |   description       = "Allow nodes all egress to the Internet."
-     328 |   protocol          = "-1"
-     329 |   security_group_id = local.worker_security_group_id
-     330 |   cidr_blocks       = ["0.0.0.0/0"]
-     331 |   from_port         = 0
-     332 |   to_port           = 0
-     333 |   type              = "egress"
-
-   See https://tfsec.dev/docs/aws/AWS007/ for more information. 
-
-  disk i/o             613.239036ms
-  parsing HCL          1.203584ms
-  evaluating values    350.691693ms
-  running checks       81.710619ms
+  disk i/o             1.2453019s
+  parsing HCL          18.2489ms
+  evaluating values    559.5747ms
+  running checks       115.4465ms
   files loaded         30
 
 5 potential problems detected.

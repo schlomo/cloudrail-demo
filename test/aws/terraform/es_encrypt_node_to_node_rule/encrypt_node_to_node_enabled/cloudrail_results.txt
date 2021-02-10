@@ -8,8 +8,8 @@ Rule: Ensure Elasticsearch Domain is not publicly accessible
 
      Evidence:
          Internet
-             | ES Domain: aws_elasticsearch_domain.example is publicly accessible
-             | Domain is currently not deployed within a VPC
+             | ElasticSearch Domain: aws_elasticsearch_domain.example is publicly accessible
+             | ElasticSearch Domain is currently not deployed within a VPC
          ElasticSearch
 
 
@@ -21,20 +21,31 @@ Rule: Ensure Elasticsearch Domains being created are set to be encrypted at rest
      Violating Resource: [aws_elasticsearch_domain.example]  (main.tf:5)
 
      Evidence:
-         Elasticsearch Domain
-             | ES Domain aws_elasticsearch_domain.example
+         ElasticSearch Domain
+             | ElasticSearch Domain aws_elasticsearch_domain.example
              | is not set to use encrypt at rest
 
 
 -----------------------------------------------
-Rule: Ensure Elasticsearch Service domain policy does not use wildcard actions
+Rule: Ensure use of Elasticsearch Service domain policy, and no action wildcards are being used
  - 1 Resources Exposed:
 -----------------------------------------------
    - Exposed Resource: [aws_elasticsearch_domain.example] (main.tf:5)
      Violating Resource: [aws_elasticsearch_domain.example]  (main.tf:5)
 
      Evidence:
-             | There is no policy attached to aws_elasticsearch_domain.example, which is equivalent to granting * to all
+             | There is no resource policy or no statements attached to aws_elasticsearch_domain.example
+
+
+-----------------------------------------------
+Rule: Ensure Elasticsearch Domain enforces HTTPS
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_s3_bucket.sse-s3-encrypted] (main.tf:5)
+     Violating Resource: [aws_s3_bucket.sse-s3-encrypted]  (main.tf:5)
+
+     Evidence:
+             | This rule evaluated aws_s3_bucket.sse-s3-encrypted's configuration
 
 
 -----------------------------------------------

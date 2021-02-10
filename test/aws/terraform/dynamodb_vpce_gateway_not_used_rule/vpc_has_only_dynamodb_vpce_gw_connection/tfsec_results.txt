@@ -2,22 +2,22 @@
 Problem 1
 
   [AWS009][WARNING] Resource 'aws_security_group.allow-public-outbound-sg' defines a fully open egress security group.
-  /src/main.tf:118
+  /src/main.tf:107
 
-     115 |     from_port   = 443
-     116 |     to_port     = 443
-     117 |     protocol    = "tcp"
-     118 |     cidr_blocks = ["0.0.0.0/0"]
-     119 |   }
-     120 | 
-     121 | }
+     104 |     from_port   = 443
+     105 |     to_port     = 443
+     106 |     protocol    = "tcp"
+     107 |     cidr_blocks = ["0.0.0.0/0"]
+     108 |   }
+     109 | 
+     110 | }
 
    See https://tfsec.dev/docs/aws/AWS009/ for more information. 
 
-  disk i/o             39.174188ms
-  parsing HCL          14.335µs
-  evaluating values    931.616µs
-  running checks       4.699957ms
+  disk i/o             77.7039ms
+  parsing HCL          44.6µs
+  evaluating values    1.0753ms
+  running checks       6.4667ms
   files loaded         1
 
 1 potential problems detected.

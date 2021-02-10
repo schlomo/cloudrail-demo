@@ -11,3 +11,14 @@ Rule: Ensure Redshift clusters being created are set to be encrypted at rest
 
 
 -----------------------------------------------
+Rule: Ensure all security groups and rules have a description detailing the rule
+ - 1 Resources Exposed:
+-----------------------------------------------
+   - Exposed Resource: [aws_security_group.nondefault] (main.tf:11)
+     Violating Resource: [aws_security_group.nondefault]  (main.tf:11)
+
+     Evidence:
+             | The Security group aws_security_group.nondefault does not have a description for the ingress rule of 0.0.0.0/0 for ports 5439:5439 using protocol tcp
+
+
+-----------------------------------------------

@@ -8,8 +8,8 @@ Rule: Ensure all used default security groups of every VPC restrict all traffic
 
      Evidence:
          VPC vpc-00f7a3e5b1a2d87f0
-             | eni-pseudo-8e696c16-b544-40dc-a479-211da8ea19bf uses ENI aws_db_instance.default
-             | The ENI is secured by default Security Group default and allow all traffic
+             | aws_db_instance.default uses ENI eni-pseudo-5a8b4ec4-56d0-4012-af24-e58dff87b0fd
+             | The ENI is secured by default Security group default and allows all traffic
 
 
 -----------------------------------------------
@@ -33,8 +33,7 @@ Rule: Ensure RDS instances/clusters being created are set to be encrypted at res
 
      Evidence:
          RDS Instance
-             | RDS Instance aws_db_instance.default
-             | is not set to use encrypt at rest
+             | RDS Instance aws_db_instance.default is not set to use encrypt at rest
 
 
 -----------------------------------------------

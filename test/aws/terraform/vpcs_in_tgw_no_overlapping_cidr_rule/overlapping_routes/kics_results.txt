@@ -1,101 +1,27 @@
+Scanning with Keeping Infrastructure as Code Secure v1.1.2
+
 Files scanned: 108
 Parsed files: 107
-Queries loaded: 728
+Queries loaded: 790
 Queries failed to execute: 0
-Default VPC Exists, Severity: MEDIUM, Results: 2
-	/src/.terraform/modules/vpc1/main.tf:1137
-	/src/.terraform/modules/vpc2/main.tf:1137
-Cloudwatch without retention days, Severity: LOW, Results: 2
-	/src/.terraform/modules/vpc1/examples/vpc-flow-logs/cloud-watch-logs.tf:51
-	/src/.terraform/modules/vpc2/examples/vpc-flow-logs/cloud-watch-logs.tf:51
+------------------------------------
 AWS CloudWatch Retention Period, Severity: MEDIUM, Results: 4
 	/src/.terraform/modules/vpc1/examples/vpc-flow-logs/cloud-watch-logs.tf:51
 	/src/.terraform/modules/vpc2/examples/vpc-flow-logs/cloud-watch-logs.tf:51
 	/src/.terraform/modules/vpc1/vpc-flow-logs.tf:36
 	/src/.terraform/modules/vpc2/vpc-flow-logs.tf:36
-Access Key Is Not Rotated Within 90 Days, Severity: MEDIUM, Results: 85
-	/src/.terraform/modules/vpc1/.chglog/config.yml:1
-	/src/.terraform/modules/vpc1/.pre-commit-config.yaml:1
-	/src/.terraform/modules/vpc1/examples/complete-vpc/main.tf:1
-	/src/.terraform/modules/vpc1/examples/complete-vpc/outputs.tf:1
-	/src/.terraform/modules/vpc1/examples/complete-vpc/versions.tf:1
-	/src/.terraform/modules/vpc1/examples/ipv6/main.tf:1
-	/src/.terraform/modules/vpc1/examples/ipv6/outputs.tf:1
-	/src/.terraform/modules/vpc1/examples/ipv6/versions.tf:1
-	/src/.terraform/modules/vpc1/examples/issue-108-route-already-exists/main.tf:1
-	/src/.terraform/modules/vpc1/examples/issue-108-route-already-exists/outputs.tf:1
-	/src/.terraform/modules/vpc1/examples/issue-108-route-already-exists/versions.tf:1
-	/src/.terraform/modules/vpc1/examples/issue-44-asymmetric-private-subnets/main.tf:1
-	/src/.terraform/modules/vpc1/examples/issue-44-asymmetric-private-subnets/outputs.tf:1
-	/src/.terraform/modules/vpc1/examples/issue-44-asymmetric-private-subnets/versions.tf:1
-	/src/.terraform/modules/vpc1/examples/issue-46-no-private-subnets/main.tf:1
-	/src/.terraform/modules/vpc1/examples/issue-46-no-private-subnets/outputs.tf:1
-	/src/.terraform/modules/vpc1/examples/issue-46-no-private-subnets/versions.tf:1
-	/src/.terraform/modules/vpc1/examples/manage-default-vpc/main.tf:1
-	/src/.terraform/modules/vpc1/examples/manage-default-vpc/outputs.tf:1
-	/src/.terraform/modules/vpc1/examples/manage-default-vpc/versions.tf:1
-	/src/.terraform/modules/vpc1/examples/network-acls/main.tf:1
-	/src/.terraform/modules/vpc1/examples/network-acls/outputs.tf:1
-	/src/.terraform/modules/vpc1/examples/network-acls/versions.tf:1
-	/src/.terraform/modules/vpc1/examples/secondary-cidr-blocks/main.tf:1
-	/src/.terraform/modules/vpc1/examples/secondary-cidr-blocks/outputs.tf:1
-	/src/.terraform/modules/vpc1/examples/secondary-cidr-blocks/versions.tf:1
-	/src/.terraform/modules/vpc1/examples/simple-vpc/main.tf:1
-	/src/.terraform/modules/vpc1/examples/simple-vpc/outputs.tf:1
-	/src/.terraform/modules/vpc1/examples/simple-vpc/versions.tf:1
-	/src/.terraform/modules/vpc1/examples/vpc-flow-logs/cloud-watch-logs.tf:1
-	/src/.terraform/modules/vpc1/examples/vpc-flow-logs/main.tf:1
-	/src/.terraform/modules/vpc1/examples/vpc-flow-logs/outputs.tf:1
-	/src/.terraform/modules/vpc1/examples/vpc-flow-logs/s3.tf:1
-	/src/.terraform/modules/vpc1/examples/vpc-flow-logs/versions.tf:1
-	/src/.terraform/modules/vpc1/examples/vpc-separate-private-route-tables/main.tf:1
-	/src/.terraform/modules/vpc1/examples/vpc-separate-private-route-tables/outputs.tf:1
-	/src/.terraform/modules/vpc1/examples/vpc-separate-private-route-tables/versions.tf:1
-	/src/.terraform/modules/vpc1/main.tf:1
-	/src/.terraform/modules/vpc1/outputs.tf:1
-	/src/.terraform/modules/vpc1/variables.tf:1
-	/src/.terraform/modules/vpc1/versions.tf:1
-	/src/.terraform/modules/vpc1/vpc-endpoints.tf:1
-	/src/.terraform/modules/vpc1/vpc-flow-logs.tf:1
-	/src/.terraform/modules/vpc2/examples/complete-vpc/main.tf:1
-	/src/.terraform/modules/vpc2/examples/complete-vpc/outputs.tf:1
-	/src/.terraform/modules/vpc2/examples/complete-vpc/versions.tf:1
-	/src/.terraform/modules/vpc2/examples/ipv6/main.tf:1
-	/src/.terraform/modules/vpc2/examples/ipv6/outputs.tf:1
-	/src/.terraform/modules/vpc2/examples/ipv6/versions.tf:1
-	/src/.terraform/modules/vpc2/examples/issue-108-route-already-exists/main.tf:1
-	/src/.terraform/modules/vpc2/examples/issue-108-route-already-exists/outputs.tf:1
-	/src/.terraform/modules/vpc2/examples/issue-108-route-already-exists/versions.tf:1
-	/src/.terraform/modules/vpc2/examples/issue-44-asymmetric-private-subnets/main.tf:1
-	/src/.terraform/modules/vpc2/examples/issue-44-asymmetric-private-subnets/outputs.tf:1
-	/src/.terraform/modules/vpc2/examples/issue-44-asymmetric-private-subnets/versions.tf:1
-	/src/.terraform/modules/vpc2/examples/issue-46-no-private-subnets/main.tf:1
-	/src/.terraform/modules/vpc2/examples/issue-46-no-private-subnets/outputs.tf:1
-	/src/.terraform/modules/vpc2/examples/issue-46-no-private-subnets/versions.tf:1
-	/src/.terraform/modules/vpc2/examples/manage-default-vpc/main.tf:1
-	/src/.terraform/modules/vpc2/examples/manage-default-vpc/outputs.tf:1
-	/src/.terraform/modules/vpc2/examples/manage-default-vpc/versions.tf:1
-	/src/.terraform/modules/vpc2/examples/network-acls/main.tf:1
-	/src/.terraform/modules/vpc2/examples/network-acls/outputs.tf:1
-	/src/.terraform/modules/vpc2/examples/network-acls/versions.tf:1
-	/src/.terraform/modules/vpc2/examples/secondary-cidr-blocks/main.tf:1
-	/src/.terraform/modules/vpc2/examples/secondary-cidr-blocks/outputs.tf:1
-	/src/.terraform/modules/vpc2/examples/secondary-cidr-blocks/versions.tf:1
-	/src/.terraform/modules/vpc2/examples/simple-vpc/main.tf:1
-	/src/.terraform/modules/vpc2/examples/simple-vpc/outputs.tf:1
-	/src/.terraform/modules/vpc2/examples/simple-vpc/versions.tf:1
-	/src/.terraform/modules/vpc2/examples/vpc-flow-logs/cloud-watch-logs.tf:1
-	/src/.terraform/modules/vpc2/examples/vpc-flow-logs/main.tf:1
-	/src/.terraform/modules/vpc2/examples/vpc-flow-logs/outputs.tf:1
-	/src/.terraform/modules/vpc2/examples/vpc-flow-logs/s3.tf:1
-	/src/.terraform/modules/vpc2/examples/vpc-flow-logs/versions.tf:1
-	/src/.terraform/modules/vpc2/examples/vpc-separate-private-route-tables/main.tf:1
-	/src/.terraform/modules/vpc2/examples/vpc-separate-private-route-tables/outputs.tf:1
-	/src/.terraform/modules/vpc2/examples/vpc-separate-private-route-tables/versions.tf:1
-	/src/.terraform/modules/vpc2/main.tf:1
-	/src/.terraform/modules/vpc2/outputs.tf:1
-	/src/.terraform/modules/vpc2/variables.tf:1
-	/src/.terraform/modules/vpc2/versions.tf:1
-	/src/.terraform/modules/vpc2/vpc-endpoints.tf:1
-	/src/.terraform/modules/vpc2/vpc-flow-logs.tf:1
-	/src/main.tf:1
+Cloudwatch without retention days, Severity: LOW, Results: 2
+	/src/.terraform/modules/vpc1/examples/vpc-flow-logs/cloud-watch-logs.tf:51
+	/src/.terraform/modules/vpc2/examples/vpc-flow-logs/cloud-watch-logs.tf:51
+Default VPC Exists, Severity: MEDIUM, Results: 2
+	/src/.terraform/modules/vpc1/main.tf:1148
+	/src/.terraform/modules/vpc2/main.tf:1148
+
+Results Summary:
+HIGH: 0
+MEDIUM: 6
+LOW: 2
+INFO: 0
+TOTAL: 8
+
+Scan duration: 55.6068107s
