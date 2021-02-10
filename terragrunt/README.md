@@ -13,16 +13,24 @@ terraform {
       "-v", "${get_env("PWD", "")}:/data", 
       "indeni/cloudrail-cli", 
       "run", 
-      "-d", ".",
-      "--tf-plan", "plan.out"
+      "-d", "${path_relative_to_include()}",
+      "--tf-plan", "${path_relative_to_include()}/plan.out",
+      "--origin", "ci",
+      "--build-link", "https://somelink",
+      "--execution-source-identifier", "somebuildnumber - tg module ${path_relative_to_include()}",
+      "--api-key", "${get_env("CLOUDRAIL_API_KEY", "")}",
+      "--auto-approve"
       ]
   }
 }
 ```
 
 If Cloudrail finds a violation in a mandated rule, it will return a non-zero exit code, which
-Terragrunt will then bubble up. Example:
+Terragrunt will then bubble up.
 
+### How it will look like with just one module
+
+When an issue is found:
 ```
 # terragrunt plan -out plan.out
 [terragrunt] 2021/02/09 10:50:56 Reading Terragrunt config file at /Users/grunt/code/cloudrail-demo/terragrunt/terragrunt.hcl
@@ -114,4 +122,71 @@ NOTE: WARNINGs are not listed by default. Please use the "-v" option to list the
 To view this assessment in the Cloudrail Web UI, go to https://web.cloudrail.app/environments/assessments/6081f56b-f468-4909-896a-2d2e347ffbf3
 ```
 
-Note that Terragrunt doesn't print anything about the exit code if the hook was successful.
+### How it will look like in a multi-module scenario
+
+```
+terragrunt run-all plan -out plan.out 
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+
+------------------------------------------------------------------------
+
+... (plan data) ...
+
+Plan: 35 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+This plan was saved to: plan.out
+
+------------------------------------------------------------------------
+
+... (plan data) ...
+
+Plan: 35 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+This plan was saved to: plan.out
+
+------------------------------------------------------------------------
+
+... (plan data) ...
+
+Plan: 35 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+This plan was saved to: plan.out
+
+ERRO[0143] Encountered the following errors:
+Hit multiple errors:
+Hit multiple errors:
+exit status 1
+Hit multiple errors:
+Hit multiple errors:
+exit status 1
+Hit multiple errors:
+Hit multiple errors:
+exit status 1 
+```
+
+Notice that the Cloudrail output is basically hidden here, and only the exit code is shown. To see
+the results of each of the three assessments, you can use the Cloudrail web interface.
+
+Alternatively, you can run Terragrunt with `--terragrunt-log-level info` like so:
+```
+terragrunt run-all --terragrunt-log-level info plan -out plan.out
+```
+
+This will provide the full details of each Cloudrail execution after each plan.

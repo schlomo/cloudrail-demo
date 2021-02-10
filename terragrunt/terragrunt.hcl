@@ -1,7 +1,3 @@
-locals {
-  cloudrail_api_key = get_env("CLOUDRAIL_API_KEY", "")
-}
-
 terraform {
   after_hook "cloudrail_after_hook" {
     commands     = ["plan"]
@@ -16,12 +12,12 @@ terraform {
       "-v", "${get_env("PWD", "")}:/data", 
       "indeni/cloudrail-cli", 
       "run", 
-      "-d", ".",
-      "--tf-plan", "plan.out",
+      "-d", "${path_relative_to_include()}",
+      "--tf-plan", "${path_relative_to_include()}/plan.out",
       "--origin", "ci",
       "--build-link", "https://somelink",
-      "--execution-source-identifier", "build-id",
-      "--api-key", "${local.cloudrail_api_key}",
+      "--execution-source-identifier", "somebuildnumber - tg module ${path_relative_to_include()}",
+      "--api-key", "${get_env("CLOUDRAIL_API_KEY", "")}",
       "--auto-approve"
       ]
   }
