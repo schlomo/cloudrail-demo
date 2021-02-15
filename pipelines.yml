@@ -34,11 +34,15 @@ pipelines:
             - name: aws_cloudrail_dev
         execution:
           onExecute:
-            - cd dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
             - docker pull hashicorp/terraform:0.13.5
-            - docker run -v $PWD:/data -w /data hashicorp/terraform:0.13.5 init 
-            - docker run -v $PWD:/data -e AWS_ACCESS_KEY_ID=$int_aws_cloudrail_dev_accessKeyId -e AWS_SECRET_ACCESS_KEY=$int_aws_cloudrail_dev_secretAccessKey -w /data hashicorp/terraform:0.13.5 plan -out=plan.out
-            - find 
+            - docker run -v $PWD/dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data \ 
+              -w /data hashicorp/terraform:0.13.5 \
+              init 
+            - docker run -v $PWD/dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data \ 
+              -e AWS_ACCESS_KEY_ID=$int_aws_cloudrail_dev_accessKeyId \
+              -e AWS_SECRET_ACCESS_KEY=$int_aws_cloudrail_dev_secretAccessKey \
+              -w /data hashicorp/terraform:0.13.5 \
+              plan -out=plan.out
           onComplete:
             - add_run_files dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role/plan.out planfile
             - add_run_files dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role/.terraform tfdir
@@ -58,6 +62,9 @@ pipelines:
             - restore_run_files dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role/plan.out planfile
             - restore_run_files dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role/.terraform tfdir
           onExecute:
-            - cd dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
             - docker pull indeni/cloudrail-cli
-            - docker run -v $PWD:/data -w /data indeni/cloudrail-cli run -p plan.out -d . --auto-approve -v --api-key $int_cloudrail_credentials_cloudrail_api_key
+            - docker run \
+              -v $PWD/dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data \
+              -w /data indeni/cloudrail-cli \
+              run -p plan.out -d . --auto-approve -v \
+              --api-key $int_cloudrail_credentials_cloudrail_api_key
