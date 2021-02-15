@@ -32,8 +32,7 @@ pipelines:
             - name: cloudrail_demo_repo
         execution:
           onExecute:
-            - find
-            - cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+            - cd dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
             - docker pull hashicorp/terraform:0.13.5
             - docker run -v $PWD:/data -w /data hashicorp/terraform:0.13.5 init 
 
