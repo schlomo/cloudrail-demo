@@ -25,7 +25,7 @@ resources:
 pipelines:
   - name: terraform_and_cloudrail_example
     steps:
-      - name: tf_init
+      - name: tf_init_and_plan
         type: Bash
         configuration:
           inputResources:
@@ -35,34 +35,26 @@ pipelines:
             - cd dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
             - docker pull hashicorp/terraform:0.13.5
             - docker run -v $PWD:/data -w /data hashicorp/terraform:0.13.5 init 
-
-      - name: tf_plan
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: tf_init
-        execution:
-          onExecute:
-            - cd dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
-            - docker pull hashicorp/terraform:0.13.5
             - docker run -v $PWD:/data -w /data hashicorp/terraform:0.13.5 plan -out=plan.out 
           onComplete:
             - add_run_files tfplan plan.out
+            - add_run_files terraform_dir .terraform
 
 
       - name: cloudrail_run
         type: Bash
         configuration:
+          inputResources:
+            - name: cloudrail_demo_repo
           inputSteps:
-            - name: tf_plan
+            - name: tf_init_and_plan
           integrations:
             - name: cloudrail_credentials
         execution:
           onStart:
             - restore_run_files tfplan plan.out
+            - restore_run_files terraform_dir .terraform
           onExecute:
             - cd dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
             - docker pull indeni/cloudrail-cli
             - docker run -v $PWD:/data -w /data indeni/cloudrail-cli run -p plan.out -d . --auto-approve -v --api-key int_cloudrail_credentials_cloudrail_api_key
-
-
