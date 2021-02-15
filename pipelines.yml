@@ -55,8 +55,8 @@ pipelines:
         configuration:
           inputSteps:
             - name: tf_plan
-        integrations:
-          - name: cloudrail_credentials
+          integrations:
+            - name: cloudrail_credentials
         execution:
           onStart:
             - restore_run_files tfplan plan.out
