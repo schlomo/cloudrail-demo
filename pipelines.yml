@@ -30,6 +30,8 @@ pipelines:
         configuration:
           inputResources:
             - name: cloudrail_demo_repo
+          integrations:
+            - name: aws_cloudrail_dev
         execution:
           onExecute:
             - cd dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
