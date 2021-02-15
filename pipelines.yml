@@ -1,0 +1,62 @@
+resources:
+  - name: cloudrail_demo_repo
+    type: GitRepo
+    configuration:
+      gitProvider: github
+      path: indeni/cloudrail-demo
+
+  - name: terraform_img
+    type: Image
+    configuration:
+      registry: docker
+      imageName: hashicorp/terraform
+      imageTag: 0.13.5
+      autoPull: true
+
+
+  - name: cloudrail_img
+    type: Image
+    configuration:
+      registry: docker
+      imageName: indeni/cloudrail-cli
+      imageTag: latest
+      autoPull: true
+
+pipelines:
+  - name: terraform_and_cloudrail_example
+    steps:
+      - name: tf_init
+        type: Bash
+        configuration:
+          inputResources:
+            - name: cloudrail_demo_repo
+        execution:
+          onExecute:
+            - cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
+            - docker pull hashicorp/terraform:0.13.5
+            - docker run -v $PWD:/data -w /data hashicorp/terraform:0.13.5 init 
+
+      - name: tf_plan
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: tf_init
+        execution:
+          onExecute:
+            - echo "hello"
+          onComplete:
+            - add_run_files tfplan plan.out
+
+
+      - name: cloudrail_run
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: tf_plan
+        execution:
+          onStart:
+            - restore_run_files tfplan plan.out
+          onExecute:
+            - echo "hello"
+
+
