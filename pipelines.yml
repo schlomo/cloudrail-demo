@@ -64,6 +64,7 @@ pipelines:
           onExecute:
             - docker pull indeni/cloudrail-cli
             - docker run 
+              --user root 
               -v $PWD/dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data 
               -w /data indeni/cloudrail-cli 
               run -p plan.out -d . --auto-approve -v 
