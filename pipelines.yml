@@ -68,3 +68,7 @@ pipelines:
               -w /data indeni/cloudrail-cli 
               run -p plan.out -d . --auto-approve -v 
               --api-key $int_cloudrail_credentials_cloudrail_api_key
+              --output-file cloudrail_results.xml --output-format junit
+          onComplete:
+            - save_tests cloudrail_results.xml
+
