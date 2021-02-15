@@ -70,6 +70,9 @@ pipelines:
               run -p plan.out -d . --auto-approve -v 
               --api-key $int_cloudrail_credentials_cloudrail_api_key
               --output-file cloudrail_results.xml --output-format junit
+              --origin ci
+              --build-link "$step_url"
+              --execution-source-identifier "$pipeline_name - $run_id"
           onComplete:
             - save_tests dependencyState/resources/cloudrail_demo_repo/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role/cloudrail_results.xml
 
