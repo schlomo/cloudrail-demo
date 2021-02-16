@@ -43,8 +43,8 @@ cloudrail:
   image: indeni/cloudrail-cli:latest
   script:
     - |
-      echo ${GILAB_FEATURES}
-      if [ "${GILAB_FEATURES}" == *"security_dashboard"* ]; then
+      echo ${GITLAB_FEATURES}
+      if [ "${GITLAB_FEATURES}" == *"security_dashboard"* ]; then
         echo "You are licensed for GitLab Security Dashboards, you will find scanning results in Security Dashboard"
         # add scanning utility argument to output myscanner_gl-sast-report.json"
       else
