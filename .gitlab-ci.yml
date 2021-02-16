@@ -44,7 +44,7 @@ cloudrail:
   script:
     - |
       echo ${GITLAB_FEATURES}
-      if [ "${GITLAB_FEATURES}" == *"security_dashboard"* ]; then
+      if [[ "${GITLAB_FEATURES}" == *"security_dashboard"* ]]; then
         echo "You are licensed for GitLab Security Dashboards, you will find scanning results in Security Dashboard"
         # add scanning utility argument to output myscanner_gl-sast-report.json"
       else
