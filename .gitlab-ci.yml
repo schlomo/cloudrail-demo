@@ -28,22 +28,29 @@ init_and_plan:
       - ./**/plan.out
       - ./**/.terraform
 
-# This will run Cloudrail and produce a SAST report according to GitLab's requirements. The idea is that if there are
-# any rules that are set to MANDATE, and they find violations, we will have results listed in the GitLab-SAST output.
-# This will then cause GitLab to stop the pipeline and provide the list of violations found,
+# This will run Cloudrail and produce a report. The report may be in one of two formats:
+# 1. GitLab SAST, if this is supported by your version of GitLab ("Security Dashboards" feature). In such a case,
+# the results will appear in a "Security" tab in the pipeline.
+# 2. JUnit format, if the first is not available. The results will appear in the GitLab Test results panel.
+
+# If there are any rules that are set to MANDATE, and they find violations, we will have results listed
+# in the report. This will then cause GitLab to stop the pipeline and provide the list of violations found,
 # allowing dev's to fix the violations.
-# Note that Cloudrail has other output formats as well, but GitLab-SAST is the one intended for GitLab use.
 # Also note that rules that are set to ADVISE (which is the default) will _not_ be included in the output by default.
+
 cloudrail:
   stage: cloudrail
   image: indeni/cloudrail-cli:latest
   script:
-    - cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} --origin ci --build-link "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID"  --execution-source-identifier "$CI_COMMIT_BRANCH - $CI_JOB_ID" --output-format json-gitlab-sast --output-file ${CI_PROJECT_DIR}/cloudrail-sast-report.json --auto-approve
+    - |
+      if [[ "${GITLAB_FEATURES}" == *"security_dashboard"* ]]; then
+        echo "You are licensed for GitLab Security Dashboards, you will find scanning results in Security Dashboard"
+        cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} --origin ci --build-link "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID"  --execution-source-identifier "$CI_COMMIT_BRANCH - $CI_JOB_ID" --output-format json-gitlab-sast --output-file ${CI_PROJECT_DIR}/cloudrail-sast-report.json --auto-approve
+      else
+        echo "You will find scanning results in the GitLab Test results visualization panel"
+        cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} --origin ci --build-link "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID"  --execution-source-identifier "$CI_COMMIT_BRANCH - $CI_JOB_ID" --output-format junit --output-file ${CI_PROJECT_DIR}/cloudrail-junit-report.xml --auto-approve
+      fi
   artifacts:
     reports:
       sast: cloudrail-sast-report.json
-    paths:
-      - cloudrail-sast-report.json
-
-
-
+      junit: cloudrail-junit-report.xml
