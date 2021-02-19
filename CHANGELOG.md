@@ -1,11 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
+
+## [0.7.82] - (January 19, 2021)
+### Added
+Non-Context Aware
+- [CR-548] Cloudfront Distribution being created should be set to perform field-level encryption
+- [CR-708] Kinesis streams should be set to be encrypted at rest
+- [CR-746] Kinesis Firehose delivery streams should be set to be encrypted at rest
+- [CR-946] X-Ray encryption config should be set to be encrypted at rest with customer-managed CMK
+- [CR-1302] API Gateway should use modern TLS
+
+## [0.7.82] - (January 13, 2021)
+### Added
+Non-Context Aware (2):
+- [CR-706] EFS filesystems should be encrypted at rest
+- [CR-759] All data stored in the S3 bucket should have versioning enabled
+
 ## [0.7.75] - (January 12, 2021)
 ### Added
-Rule Added:
-Non-Context Aware (1):
-- [CR-845] DocDB clusters are set to be encrypted in transit
-
 Security Improvements (1):
 - Prohibit user from accessing API keys from other environments
 

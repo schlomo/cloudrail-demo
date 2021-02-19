@@ -74,5 +74,14 @@ NOTES:
   52. [Elasticsearch Service domain policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_elastic_search_domain_policy_not_use_wildcard_rule)
   53. [Glue data catalog policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_glue_data_catalog_policy_not_use_wildcard_rule)
   54. [S3 bucket objects are set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_s3_bucket_objects_encrypted_rule)
+  55. [EFS Filesystems should be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_efs_filesystems_encrypted_at_rest_rule)
+  56. [All data stored in the S3 bucket should have versioning enabled](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_s3_buckets_versioning_rule)
+  57. [Cloudfront Distribution being created should be set to perform field-level encryption](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/
+  58. [Cloudfront Distribution being created should be set to perform field-level encryption](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_cloudfront_distribution_field_level_encryption_rule)
+  59. [Kinesis streams should be set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_kinesis_stream_encrypted_at_rest_rule)
+  60. [Kinesis Firehose delivery streams should be set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_kinesis_firehose_stream_encypted_at_rest_rule)
+  61. [X-Ray encryption config should be set to be encrypted at rest with customer-managed CMK](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_xray_encryption_using_customer_cmk_rule)
+  62. [API Gateway should use modern TLS](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_api_gw_use_modern_tls_rule)
+
 
 </details>
