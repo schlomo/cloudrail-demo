@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
-## [[0.7.60] - (January 11, 2021)
+## [0.7.75] - (January 12, 2021)
+### Added
+Rule Added:
+Non-Context Aware (1):
+- [CR-845] DocDB clusters are set to be encrypted in transit
+
+Security Improvements (1):
+- Prohibit user from accessing API keys from other environments
+
+
+## [0.7.60] - (January 11, 2021)
 ### Added
 Rule Added:
 Non-Context Aware (11):
