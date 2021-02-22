@@ -75,5 +75,17 @@ NOTES:
   53. [Glue data catalog policy should not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_glue_data_catalog_policy_not_use_wildcard_rule)
   54. [S3 bucket objects are set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_s3_bucket_objects_encrypted_rule)
   55. [Identify policies allowing for privilege escalation](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/iam_privilege_escalation_policy_rule)
+  56. [Cloudwatch log groups should specify retention days](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_cloudwatch_log_groups_specify_retention_days_rule)
+  57. [CloudTrail log file validation should be enabled](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_cloudtrail_log_validation_enabled_rule)
+  58. [DocDB clusters should be set to encrypted at rest using customer managed CMK](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_docdb_clusters_encrypted_using_customer_managed_cmk_rule)
+  59. [Workspaces root volume being created should be set to encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_workspace_root_volume_encrypted_at_rest_rule)
+  60. [Secrets Manager secrets should be encrypted at rest with customer-managed CMK](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_secrets_manager_secrets_encrypted_at_rest_with_customer_amanaged_cmk_rule)
+  61. [Workspaces user volume being created should be set to be encrypted at rest](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_workspace_user_volume_encrypted_at_rest_rule)
+  62. [SNS topics should be encrypted at rest with customer-managed CMK](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_sns_topic_encrypted_at_rest_with_customer_managed_cmk_rule)
+  63. [Ensure CloudFront protocol version is a good one](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/cloudfront_distributiion_list)
+  64. [Ensure Lambda function policy does not use wildcard actions](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_lambda_function_policy_not_use_wildcard_rule)
+  65. [Ensure every security groups rule has a description](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_security_group_rule_include_description_rule)
+  66. [Ensure Workspaces user volume being created are set to be encrypted at rest with customer-managed CMK](https://github.com/indeni/cloudrail-demo/tree/master/test/aws/terraform/ensure_workspace_user_volume_encrypted_with_customer_cmk_rule)
+
 
 </details>
