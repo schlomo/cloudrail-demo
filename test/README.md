@@ -8,7 +8,7 @@ To try any of these test cases, go to the specific test case's directory, create
 # cd test/aws/terraform/disallow_ec2_classic_mode_rule/deploy_redshift_in_ec2_classic_mode
 # terraform init
 # terraform plan -out=plan.out
-# cloudrail run --tf-plan plan.out --directory . --auto-approve
+# cloudrail run --tf-plan plan.out --directory . --auto-approve -v
 ```
 
 NOTES:
