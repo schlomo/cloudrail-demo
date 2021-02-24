@@ -18,7 +18,6 @@ terraform {
       "--origin", "ci",
       "--build-link", "https://somelink",
       "--execution-source-identifier", "somebuildnumber - tg module ${path_relative_to_include()}",
-      "--api-key", "${get_env("CLOUDRAIL_API_KEY", "")}",
       "--auto-approve"
       ]
   }
