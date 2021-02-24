@@ -33,6 +33,8 @@ pipeline {
                 }
             }
             environment {
+                // The "cloudrail run" command knows to look for this environment variable. Otherwise,
+                // you can provide --api-key, but that may be written to the console logs.
                 CLOUDRAIL_API_KEY = credentials('bdf6753e-05fe-47b2-9994-67e3ed4f2b9c')
             }
             steps {
@@ -51,7 +53,6 @@ pipeline {
                     cd test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role
                     cloudrail run --directory . --tf-plan "plan.out" \
                       --origin ci --build-link "${BUILD_URL}"  --execution-source-identifier "${BUILD_NUMBER}"  \
-                      --api-key "$CLOUDRAIL_API_KEY" \
                       --auto-approve
              '''
             }

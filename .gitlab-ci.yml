@@ -41,14 +41,18 @@ init_and_plan:
 cloudrail:
   stage: cloudrail
   image: indeni/cloudrail-cli:latest
+
+  # In the script below, we are not passing the "--api-key" parameter, and are assuming there's an environment
+  # variable defined called CLOUDRAIL_API_KEY. The cloudrail container knows to look there if "--api-key" is not provided.
+  # This ensures the API key is never printed to the console.
   script:
     - |
       if [[ "${GITLAB_FEATURES}" == *"security_dashboard"* ]]; then
         echo "You are licensed for GitLab Security Dashboards, you will find scanning results in Security Dashboard"
-        cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} --origin ci --build-link "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID"  --execution-source-identifier "$CI_COMMIT_BRANCH - $CI_JOB_ID" --output-format json-gitlab-sast --output-file ${CI_PROJECT_DIR}/cloudrail-sast-report.json --auto-approve
+        cloudrail run --tf-plan plan.out --directory . --origin ci --build-link "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID"  --execution-source-identifier "$CI_COMMIT_BRANCH - $CI_JOB_ID" --output-format json-gitlab-sast --output-file ${CI_PROJECT_DIR}/cloudrail-sast-report.json --auto-approve
       else
         echo "You will find scanning results in the GitLab Test results visualization panel"
-        cloudrail run --tf-plan plan.out --directory . --api-key ${CLOUDRAIL_API_KEY} --origin ci --build-link "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID"  --execution-source-identifier "$CI_COMMIT_BRANCH - $CI_JOB_ID" --output-format junit --output-file ${CI_PROJECT_DIR}/cloudrail-junit-report.xml --auto-approve
+        cloudrail run --tf-plan plan.out --directory . --origin ci --build-link "$CI_PROJECT_URL/-/jobs/$CI_JOB_ID"  --execution-source-identifier "$CI_COMMIT_BRANCH - $CI_JOB_ID" --output-format junit --output-file ${CI_PROJECT_DIR}/cloudrail-junit-report.xml --auto-approve
       fi
   artifacts:
     reports:

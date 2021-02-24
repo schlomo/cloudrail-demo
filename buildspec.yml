@@ -35,11 +35,11 @@ phases:
       - docker run --rm
         -u $(id -u):$(id -g)
         -v $(pwd)/test/aws/terraform/ec2_role_share_rule/public_and_private_ec2_same_role:/data 
+        -e CLOUDRAIL_API_KEY
         indeni/cloudrail-cli
         run  --directory . --tf-plan "plan.out"
         --origin ci --build-link "https://console.aws.amazon.com/codesuite/codebuild/"
         --execution-source-identifier "${CODEBUILD_BUILD_ID}"  
-        --api-key "${CLOUDRAIL_API_KEY}" 
         --output-format junit --output-file /data/cloudrail.result.xml 
         --auto-approve 
 
